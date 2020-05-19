@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.css" integrity="sha256-QO6eO4Oq7Sqx48sjw2DTj5GJLbKb1HWVDzDV8jobF/w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css" integrity="sha256-cZDeXQ7c9XipzTtDgc7DML5txS3AkSj0sjGvWcdhfns=" crossorigin="anonymous" />
 {% endblock %}
 
 {% block body %}
@@ -13,26 +13,15 @@
 <input type="submit" value="{% trans "Upload story" %}"/>
 </form>
 
-<!-- MODAL TO CROP THE IMAGE -->
-<div class="modal fade" id="modalCrop" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{% trans "Crop the poster" %}</h4>
-      </div>
-      <div class="modal-body">
-        <img src="" id="image" style="max-width: 100%;">
-      </div>
-      <div class="modal-footer">
-        <button type="button" data-dismiss="modal" class="btn btn-primary js-crop">{% trans "Crop" %}</button>
-      </div>
-    </div>
-  </div>
+
+<div>
+  <img src="" id="image" style="max-width: 100%; display : block;">
 </div>
 
 {% endblock %}
 
 {% block javascript %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.js" integrity="sha256-bIJf9UoBlMSWH93AiO3pECjw1Gx2n4LBil6o2M9v08k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js" integrity="sha256-EuV9YMxdV2Es4m9Q11L6t42ajVDj1x+6NZH4U1F+Jvw=" crossorigin="anonymous"></script>
+<script import Cropper from 'cropperjs';></script>
 <script src="{% static '/js/library_crop.js' %}"></script>
 {% endblock %}
