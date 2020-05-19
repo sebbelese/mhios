@@ -1,14 +1,19 @@
 $(function () {
+    var cropper;
     
     /* SCRIPT TO SHOW THE PICTURE WHEN UPLOADED */
     $("#id_poster").change(function () {
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 	    var file;
+	    reader.readAsDataURL(this.files[0]);
             reader.onload = function (e) {
 		$("#image").attr("src",e.target.result);
 		const image = document.getElementById('image');
-		const cropper = new Cropper(image, {
+		if (typeof cropper !== 'undefined'){
+		    cropper.replace(e.target.result);
+		}
+		cropper = new Cropper(image, {
 		    aspectRatio: 1 / 1,
 		    crop(event) {
 			$("#id_x").val(event.detail.x);
@@ -18,7 +23,6 @@ $(function () {
 		    },
 		});
             }
-	    reader.readAsDataURL(this.files[0]);
         }
 	
 
