@@ -1,0 +1,19 @@
+.story-line {
+    background: #ffffff;
+    margin-top:7px;
+    margin-left:0px;
+    margin-right:0px;
+    border-radius:7px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:12px;
+    color:#182628;
+}
+
+.story-title {
+    font-size:larger;
+}
+
+.poster {
+    border-radius:7px;
+}

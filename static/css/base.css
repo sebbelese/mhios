@@ -1,0 +1,44 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #ECECEC;
+}
+/*--- navigation bar ---*/
+.navbar {
+  background:#65CCB8;
+}
+.nav-link,
+.navbar-brand {
+  color: #182628;
+}
+.nav-link {
+  margin-right: 1em !important;
+}
+.nav-link:hover,
+.navbar-brand:hover{
+  color: #3B945E;
+}
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+a {
+  color: #3B945E;
+  text-decoration: none;
+}
+
+a:hover {
+    color: #182628;
+    text-decoration: none;
+}
+
+/*
+Theme colors
+#182628
+#65CCB8
+#57BA98
+#3B945E
+#F2F2F2
+
+*/
+
