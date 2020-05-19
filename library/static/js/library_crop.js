@@ -25,22 +25,14 @@ $(function () {
 		$image.cropper("setCropBoxData", cropBoxData);
             }
         });
-    }).on("hidden.bs.modal", function () {
+    }).on("hidden.bs.modal", function (e) {
         cropBoxData = $image.cropper("getCropBoxData");
         canvasData = $image.cropper("getCanvasData");
         $image.cropper("destroy");
     });
     
-    $(".js-zoom-in").click(function () {
-        $image.cropper("zoom", 0.1);
-    });
-    
-    $(".js-zoom-out").click(function () {
-        $image.cropper("zoom", -0.1);
-    });
-    
     /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
-    $(".js-crop-and-upload").click(function () {
+    $(".js-crop").click(function () {
         var cropData = $image.cropper("getData");
         $("#id_x").val(cropData["x"]);
         $("#id_y").val(cropData["y"]);
