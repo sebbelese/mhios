@@ -12,10 +12,12 @@
 {{form.as_ul}}
 <input type="submit" value="{% trans "Upload story" %}"/>
 </form>
-
-
-<div>
-  <img src="" id="image" style="max-width: 100%; display : block;">
+<div class="row story-line no-gutters">
+  <div class="col-6">
+    <div class="img-container">
+      <img src="" id="image" style="max-width: 100%; width:100%; display : block;">
+    </div>
+  </div>
 </div>
 
 {% endblock %}
