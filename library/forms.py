@@ -11,6 +11,7 @@ class addStoryForm(forms.ModelForm):
     y = forms.FloatField(widget=forms.HiddenInput())
     width = forms.FloatField(widget=forms.HiddenInput())
     height = forms.FloatField(widget=forms.HiddenInput())
+    rotation = forms.FloatField(widget=forms.HiddenInput())
     
     class Meta:
         model = story
@@ -25,9 +26,11 @@ class addStoryForm(forms.ModelForm):
         y = self.cleaned_data.get('y')
         w = self.cleaned_data.get('width')
         h = self.cleaned_data.get('height')
+        rot = self.cleaned_data.get('rotation')
 
         image = Image.open(story.poster)
-        cropped_image = image.crop((x, y, w+x, h+y))
+        rotated_image = image.rotate(-rot, expand=True)
+        cropped_image = rotated_image.crop((x, y, w+x, h+y))
         resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
         resized_image.save(story.poster.path)
         

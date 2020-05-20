@@ -20,6 +20,7 @@ $(function () {
 			$("#id_y").val(event.detail.y);
 			$("#id_height").val(event.detail.height);
 			$("#id_width").val(event.detail.width);
+			$("#id_rotation").val(event.detail.rotate);
 		    },
 		});
             }
