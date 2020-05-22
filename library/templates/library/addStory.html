@@ -1,24 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css" integrity="sha256-cZDeXQ7c9XipzTtDgc7DML5txS3AkSj0sjGvWcdhfns=" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'css/library.css' %}">
 {% endblock %}
 
 {% block body %}
 <form enctype="multipart/form-data" action="" id="formUpload" method="POST">
-{% csrf_token %}
-{{form.as_ul}}
-<input type="submit" value="{% trans "Upload story" %}"/>
-</form>
-<div class="row story-line no-gutters">
-  <div class="col-6">
-    <div class="img-container">
-      <img src="" id="image" style="max-width: 100%; width:100%; display : block;">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-12">
+      {{ form.title|as_crispy_field }}
+    </div>
+    <div class="col-12 col-md-7">
+      {{ form.storyFile|as_crispy_field }}
+      {{ form.abstract|as_crispy_field }}
+      {{ form.language|as_crispy_field }}
+      {{ form.age|as_crispy_field }}
+    </div>
+    <div class="col-12 col-md-5">
+      <div class="mr-md-20 form-poster">
+	<div class="col-12">
+	  {{ form.poster|as_crispy_field }}
+	  <div class="img-container">
+	    <img src="{% get_media_prefix %}/posters/default.png" id="image" class="preview-poster">
+	  </div>
+	</div>
+      </div>
     </div>
   </div>
-</div>
+  <input type="submit" class="btn btn-primary" value="{% trans "Upload story" %}"/>
+</form>
 
 {% endblock %}
 

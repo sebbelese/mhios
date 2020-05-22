@@ -25,7 +25,7 @@ class story(models.Model):
     title = models.CharField(_("Title"),max_length = 500)
     pub_date = models.DateTimeField(_('Date published'))
     language = models.CharField(_("Language"),max_length=10, choices=LANGUAGE_CHOICES)
-    poster = models.ImageField(_("Poster"),default='posters/default.jpg',upload_to='posters')
+    poster = models.ImageField(_("Poster"),default='posters/default.png',upload_to='posters')
     storyFile = models.FileField(_("Story"),upload_to='stories')
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)

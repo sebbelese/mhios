@@ -19,7 +19,7 @@
 {% for story in latest_stories_list %}
 <div class="row story-line no-gutters">
   <div class="col-2">
-    <img src="{% get_media_prefix %}{{ story.poster }}"  class = "poster img-fluid" />
+    <img src="{% get_media_prefix %}{{ story.poster }}" alt="{{ story.title }}" class = "poster img-fluid" />
   </div>
   <div class="col-10">
     <div class="content container-fluid">

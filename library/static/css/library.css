@@ -1,3 +1,6 @@
+
+
+/* Index of library */
 .story-line {
     background: #ffffff;
     margin-top:7px;
@@ -16,4 +19,18 @@
 
 .poster {
     border-radius:7px;
+}
+
+/* Add story */
+.preview-poster {
+    max-width: 100%;
+    width: 100%;
+    display : block;
+}
+
+.form-poster {
+    background: #ffffff;
+    border-radius:7px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
