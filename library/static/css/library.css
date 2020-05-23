@@ -24,8 +24,11 @@
 /* Add story */
 .preview-poster {
     max-width: 100%;
-    width: 100%;
+    max-height: 442.5px;/*Such that it is never bigger than the left column */
     display : block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
 }
 
 .form-poster {
@@ -33,4 +36,12 @@
     border-radius:7px;
     padding-bottom: 15px;
     margin-bottom: 15px;
+}
+
+/* only for md screens and larger */
+/* we make the two columns of same height */
+@media screen and (min-width: 720px){
+  .form-poster{
+    height:535px;
+  }
 }
