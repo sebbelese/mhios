@@ -2,3 +2,4 @@ Django==3.0.5
 django-crispy-forms==1.9.1
 whitenoise==5.1.0
 Pillow==6.1.0
+django-heroku==0.3.1
