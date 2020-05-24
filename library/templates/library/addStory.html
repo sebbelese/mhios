@@ -11,6 +11,11 @@
 {% block body %}
 <form enctype="multipart/form-data" action="" id="formUpload" method="POST">
   {% csrf_token %}
+  {{ form.x }}
+  {{ form.y }}
+  {{ form.width }}
+  {{ form.height }}
+  {{ form.rotation }}
   <div class="row">
     <div class="col-12">
       {{ form.title|as_crispy_field }}

@@ -3,7 +3,6 @@ var cropper;
 function init_crop(elem) {
     if(cropper){
 	cropper.destroy()
-	console.log("destroyine")
     }
     var reader = new FileReader();
     var file;
