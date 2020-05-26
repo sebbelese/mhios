@@ -29,8 +29,9 @@ class story(models.Model):
     storyFile = models.FileField(_("Story"),upload_to='stories')
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)
-    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='upvotes')
-    downvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='downvotes')
+    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='upvotes')
+    downvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='downvotes')
+    uploader = models.ForeignKey('accounts.User', null=True, blank=True, on_delete=models.SET_NULL)
     def score(self):
         return self.upvotes.all().count() - self.downvotes.all().count()
     def __str__(self):

@@ -10,7 +10,7 @@
     padding-top:12px;
     padding-bottom:12px;
     padding-left:12px;
-    color:#182628;
+    color:var(--theme-3-color);
 }
 
 .story-title {

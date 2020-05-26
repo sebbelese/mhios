@@ -70,11 +70,12 @@ def watchStory(request, storyId):
 @login_required
 def addStory(request):
     if request.method == "POST":
-        currentStoryForm = addStoryForm(request.POST, request.FILES)
+        currentStoryForm = addStoryForm(request.POST, request.FILES, user=request.user)
         if currentStoryForm.is_valid():
             currentStory = currentStoryForm.save()
             return redirect('watchStory', storyId=currentStory.id)
         else:
+            print(currentStoryForm.errors)
             return HttpResponse("Error invalid input")
     else:
         form = addStoryForm(initial={'language': get_language()})

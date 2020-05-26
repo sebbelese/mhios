@@ -7,6 +7,10 @@ from PIL import Image
 from .models import story
 
 class addStoryForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+         self.user = kwargs.pop('user',None)
+         super(MyForm, self).__init__(*args, **kwargs)
+         
     x = forms.FloatField(widget=forms.HiddenInput(), required=False)
     y = forms.FloatField(widget=forms.HiddenInput(), required=False)
     width = forms.FloatField(widget=forms.HiddenInput(), required=False)
@@ -21,6 +25,7 @@ class addStoryForm(forms.ModelForm):
     def save(self, commit=True):
         story = super(addStoryForm, self).save(commit=False)
         story.pub_date = timezone.now()
+        story.uploader = self.user
         story.save()
         x = self.cleaned_data.get('x')
         y = self.cleaned_data.get('y')
