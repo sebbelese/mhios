@@ -9,7 +9,7 @@ from .models import story
 class addStoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
          self.user = kwargs.pop('user',None)
-         super(MyForm, self).__init__(*args, **kwargs)
+         super(addStoryForm, self).__init__(*args, **kwargs)
          
     x = forms.FloatField(widget=forms.HiddenInput(), required=False)
     y = forms.FloatField(widget=forms.HiddenInput(), required=False)
