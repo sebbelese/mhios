@@ -20,29 +20,34 @@ function init_crop(elem) {
 		    viewMode : 2,
 		    background : false,
 		    aspectRatio: 1 / 1,
-		    crop(event) {
-			$("#id_x").val(event.detail.x);
-			$("#id_y").val(event.detail.y);
-			$("#id_height").val(event.detail.height);
-			$("#id_width").val(event.detail.width);
-			$("#id_rotation").val(event.detail.rotate);
-		    },
 		});
 	    }
+
 	}
     }
 }
 
+$( "#formUpload" ).submit(function( event ) {
+    if(cropper){
+	initCrop = cropper.getData();
+	$("#id_x").val(initCrop.x);
+	$("#id_y").val(initCrop.y);
+	$("#id_height").val(initCrop.height);
+	$("#id_width").val(initCrop.width);
+	$("#id_rotation").val(initCrop.rotate);
+    }
+});
 
 $("#id_poster").change(function () {
     init_crop(this);
 });
 
 
-window.onload = function(){
+$(window).on('pageshow', function(){
     var inputElement = document.getElementById("id_poster");
     init_crop(inputElement)
-};
+});
+
     
     
     

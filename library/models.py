@@ -22,10 +22,11 @@ AGE_CHOICES_DICT = dict(AGE_CHOICES)
 
 # Create your models here.
 class story(models.Model):
+    postersPath = 'posters'
     title = models.CharField(_("Title"),max_length = 500)
     pub_date = models.DateTimeField(_('Date published'))
     language = models.CharField(_("Language"),max_length=10, choices=LANGUAGE_CHOICES)
-    poster = models.ImageField(_("Poster"),default='posters/default.png',upload_to='posters')
+    poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath)
     storyFile = models.FileField(_("Story"),upload_to='stories')
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)
@@ -36,5 +37,3 @@ class story(models.Model):
         return self.upvotes.all().count() - self.downvotes.all().count()
     def __str__(self):
         return self.title
-
-    

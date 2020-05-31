@@ -31,7 +31,7 @@
 	<div class="col-12">
 	  {{ form.poster|as_crispy_field }}
 	  <div class="img-container">
-	    <img src="{% get_media_prefix %}/posters/default.png" id="image" class="preview-poster">
+	    <img src=  {{ "assets/defaultPoster.png" | remote_url }} id="image" class="preview-poster">
 	  </div>
 	</div>
       </div>

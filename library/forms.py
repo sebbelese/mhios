@@ -1,6 +1,13 @@
+import os
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.core.files.storage import default_storage as storage
+
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
+import uuid
 
 from PIL import Image
 
@@ -26,20 +33,39 @@ class addStoryForm(forms.ModelForm):
         story = super(addStoryForm, self).save(commit=False)
         story.pub_date = timezone.now()
         story.uploader = self.user
-        story.save()
+
         x = self.cleaned_data.get('x')
         y = self.cleaned_data.get('y')
         w = self.cleaned_data.get('width')
         h = self.cleaned_data.get('height')
         rot = self.cleaned_data.get('rotation')
 
-        image = Image.open(story.poster)
-        if (x and y and w and h and rot):
-            image = image.rotate(-rot, expand=True)
-            image = image.crop((x, y, w+x, h+y))
-        image = image.resize((400, 400), Image.ANTIALIAS)
-        image.save(story.poster.path)
+        if story.poster != "":
+            image = Image.open(story.poster).convert('RGB')
+            if (rot is not None):
+                image = image.rotate(-rot, expand=True)
+            if (x is not None and y is not None and w is not None and h is not None):
+                image = image.crop((x, y, w+x, h+y))
+            image = image.resize((400, 400), Image.ANTIALIAS)
+            imageIO =  BytesIO()
+            image.save(imageIO, format='JPEG')
+            newPosterFname =  'p'+str(uuid.uuid1())+'.jpg'
+            story.poster.name =  newPosterFname
+            imageIO.seek(0)
+            story.poster.file = InMemoryUploadedFile(
+                imageIO,
+                'ImageField',
+                'poster',
+                'image/jpeg',
+                imageIO.tell(),
+                None
+            )        
+        else:
+            with storage.open('assets/defaultPoster.png') as f:
+                data = f.read()
+            story.poster.save('defaultPoster.png', ContentFile(data))
         
+        story.save()
         return story
         
     
