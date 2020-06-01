@@ -61,9 +61,9 @@ class addStoryForm(forms.ModelForm):
                 None
             )        
         else:
-            with storage.open('assets/defaultPoster.png') as f:
+            with storage.open('assets/defaultPoster.jpg') as f:
                 data = f.read()
-            story.poster.save('defaultPoster.png', ContentFile(data))
+            story.poster.save('defaultPoster.jpg', ContentFile(data))
         
         story.save()
         return story
