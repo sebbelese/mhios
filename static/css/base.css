@@ -1,15 +1,9 @@
 /* 0 is clearest, 3 darkest */
-element {
-  --theme-0-color: #ECECEC;
-}
-element {
-  --theme-1-color: #65CCB8;
-}
-element {
-  --theme-2-color: #3B945E;
-}
-element {
-  --theme-3-color: #182628;
+:root {
+    --theme-0-color: #ECECEC;
+    --theme-1-color: #65CCB8;
+    --theme-2-color: #3B945E;
+    --theme-3-color: #182628;
 }
 
 body {
@@ -19,7 +13,7 @@ body {
 }
 /*--- navigation bar ---*/
 .navbar {
-  background:var(--theme-1-color);
+    background: var(--theme-1-color);
 }
 .nav-link,
 .navbar-brand {
