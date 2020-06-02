@@ -39,15 +39,15 @@
   </div>
   <input id="uploadButton" type="submit" class="btn btn-primary" value="{% trans "Upload story" %}"/>
 </form>
-<div id="status">PROGRESS HERE</div>
+<div class="progress">
+  <div id="status" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
 <br><br>
 {% endblock %}
 
 {% block javascript %}
-<!--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js" integrity="sha256-EuV9YMxdV2Es4m9Q11L6t42ajVDj1x+6NZH4U1F+Jvw=" crossorigin="anonymous"></script>
 <script import Cropper from 'cropperjs';></script>
 <script src="{% static '/js/library_crop.js' %}"></script>
--->
 <script src="{% static '/js/library_progress_bar.js' %}"></script>
 {% endblock %}
