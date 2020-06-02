@@ -16,7 +16,7 @@ $(document).ready(function() {
                         console.log(percentComplete);
 			$("#status").css("width", percentComplete+"%");
 			$("#status").attr("aria-valuenow", percentComplete);
-			$("#status").html(percentComplete+"%");
+			$("#status").html(Math.round(percentComplete));
                     }
                 }, false);
                 return xhr;
