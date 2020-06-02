@@ -14,8 +14,8 @@ $(document).ready(function() {
 			console.log(evt.loaded);
 			console.log(evt.total);
                         console.log(percentComplete);
-			$("#progress-bar").css("width", percentComplete+"%");
-			$("#progress-bar").attr("aria-valuenow", percentComplete);
+			$("#status").css("width", percentComplete+"%");
+			$("#status").attr("aria-valuenow", percentComplete);
                     }
                 }, false);
                 return xhr;
