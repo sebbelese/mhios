@@ -16,12 +16,13 @@ $(document).ready(function() {
                         console.log(percentComplete);
 			$("#status").css("width", percentComplete+"%");
 			$("#status").attr("aria-valuenow", percentComplete);
+			$("#status").html(percentComplete+"%");
                     }
                 }, false);
                 return xhr;
             },
             success: function(data) {
-                $("#status").html('UPLOADED!!');
+                $("#status").html('Done');
             },
             cache: false,
             contentType: false,
