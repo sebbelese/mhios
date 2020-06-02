@@ -37,12 +37,10 @@
       </div>
     </div>
   </div>
-  <input id="uploadButton" type="submit" class="btn btn-primary" value="{% trans "Upload story" %}"/>
-</form>
-<div class="progress">
-  <div id="status" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div id="status" class="progress-bar col-12" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<br><br>
+<input id="uploadButton" type="submit" class="btn btn-primary" value="{% trans "Upload story" %}"/>
+</form>
 {% endblock %}
 
 {% block javascript %}
