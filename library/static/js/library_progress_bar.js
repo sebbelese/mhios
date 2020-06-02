@@ -3,7 +3,7 @@ $(document).ready(function() {
         var formData = new FormData($('#formUpload')[0]);
         console.log(formData);
         $.ajax({
-            url: "#",
+            url: "/library",
             type: 'POST',
             data: formData,
             xhr: function() {
