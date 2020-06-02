@@ -16,7 +16,6 @@ $(document).ready(function() {
                         console.log(percentComplete);
 			$("#progress-bar").css("width", percentComplete+"%");
 			$("#progress-bar").attr("aria-valuenow", percentComplete);
-                        $('#status').html('<b> Uploading -> ' + (Math.round(percentComplete * 100)) + '% </b>');
                     }
                 }, false);
                 return xhr;
