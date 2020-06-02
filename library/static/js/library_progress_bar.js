@@ -10,10 +10,12 @@ $(document).ready(function() {
                 var xhr = new window.XMLHttpRequest();
                 xhr.upload.addEventListener("progress", function(evt) {
                     if (evt.lengthComputable) {
-                        var percentComplete = evt.loaded / evt.total;
+                        var percentComplete = evt.loaded / evt.total*100;
 			console.log(evt.loaded);
 			console.log(evt.total);
                         console.log(percentComplete);
+			$("#progress-bar").css("width", percentComplete+"%");
+			$("#progress-bar").attr("aria-valuenow", percentComplete);
                         $('#status').html('<b> Uploading -> ' + (Math.round(percentComplete * 100)) + '% </b>');
                     }
                 }, false);
