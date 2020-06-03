@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
 from django.conf import settings
 
+from . import customstorage
+from storages.backends.dropbox import DropBoxStorage
 
 LANGUAGE_CHOICES= [
     ('fr', _('French')),
@@ -26,7 +28,7 @@ class story(models.Model):
     title = models.CharField(_("Title"),max_length = 500)
     pub_date = models.DateTimeField(_('Date published'))
     language = models.CharField(_("Language"),max_length=10, choices=LANGUAGE_CHOICES)
-    poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath)
+    poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath, storage=customstorage.CustomStorage())
     storyFile = models.FileField(_("Story"),upload_to='stories')
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)

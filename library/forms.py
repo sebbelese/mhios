@@ -8,7 +8,6 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
 import uuid
-
 from PIL import Image
 
 from .models import story
@@ -61,9 +60,7 @@ class addStoryForm(forms.ModelForm):
                 None
             )        
         else:
-            with storage.open('assets/defaultPoster.jpg') as f:
-                data = f.read()
-            story.poster.save('defaultPoster.jpg', ContentFile(data))
+            story.poster.save('../assets/defaultPoster.jpg', None)
         
         story.save()
         return story
