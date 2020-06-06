@@ -35,7 +35,6 @@ function updateProgress(evt)
       // evt.total the total bytes set by the header
        // jQuery UI progress bar to show the progress on screen
        var progress = (evt.loaded / evt.total) * 100;
-       console.log("PROGRESS is",progress)
        $("#uploadstatus").css("width", progress+"%");
        $("#uploadstatus").attr("aria-valuenow", progress);
    } 
@@ -48,7 +47,7 @@ function upload_story(file_data, storyId) {
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	    console.log("UPLOAD OK")
+	    //Upload OK
 	}
     }
     var form_data = new FormData();
