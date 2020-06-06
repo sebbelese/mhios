@@ -41,6 +41,23 @@ function updateProgress(evt)
    } 
 } 
 
+function upload_story(file_data, storyId) {
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    var xhrUp = new XMLHttpRequest();
+    xhrUp.open("POST", 'uploadStory', true);
+    xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
+    xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
+	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	    console.log("UPLOAD OK")
+	}
+    }
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    form_data.append('storyId', storyId);
+    xhrUp.send(form_data);
+    
+}
+
 $( "#formUpload" ).submit(function( event ) {
     event.preventDefault();
     if(cropper){
@@ -55,16 +72,17 @@ $( "#formUpload" ).submit(function( event ) {
 
 
     var xhrAdd = new XMLHttpRequest();
-    xhrAdd.open("POST", '#', true);
+    xhrAdd.open("POST", '#', false); //Synchronous as we want the picture to be uploaded before showing story
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
 
     xhrAdd.upload.onprogress = updateProgress;
     xhrAdd.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	    //OK
-
-	}else{
-	    console.log("FAIL",this.response)
+	    //The story file upload is made async after the story creation to allow the user to continue browsing (only download will be disabled)
+	    data = JSON.parse(xhrAdd.responseText);
+	    var file_data = $('#storyFile').prop('files')[0];
+	    upload_story(file_data, data['storyId']);
+	    window.location.replace("../"+data['storyId'])
 	}
     }
     xhrAdd.send(new FormData(document.querySelector("#formUpload")));// $( "#formUpload" ).serialize());

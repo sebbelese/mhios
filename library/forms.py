@@ -62,7 +62,6 @@ class addStoryForm(forms.ModelForm):
             )        
         else:
             story.poster.save('../assets/defaultPoster.jpg', None)
-        
         story.save()
         return story
         

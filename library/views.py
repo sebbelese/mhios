@@ -87,31 +87,19 @@ def addStory(request):
 
     
 
-#@login_required
-#def uploadStory(request):
-#    if request.method == 'POST':
-#        file = request.FILES['file']
-#        if 'sessionId' not in request.POST: #First chunk
-#            storage = customstorage.CustomStorage()
-#            [savedFilename, sessionId] = storage.saveFirstChunk(story.storiesPath+"/s"+str(uuid.uuid1())+'.zip',file)
-#            finishedUpload = False
-#        else:
-#            savedFilename = request.POST['savedFilename']
-#            sessionId = request.POST['sessionId']
-#            offset = request.POST['offset']
-#            file.seek(int(offset))
-#            storage = customstorage.CustomStorage()
-#            finishedUpload = storage.saveNextChunk(file, sessionId, savedFilename)
-#
-#        progress = storage.getChunkProgress(file)
-#        data = json.dumps({'progress': progress,
-#                           'savedFilename' : savedFilename,
-#                           'finishedUpload' : finishedUpload,
-#                           'sessionId' : sessionId,
-#                           'offset' : file.tell()
-#        })
-#    else:
-#        return HttpResponse("Error invalid input")
-#
-#
-#    return HttpResponse(data, content_type='application/json')
+@login_required
+def uploadStory(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        storyId = request.POST['storyId']
+        storage = customstorage.CustomStorage()
+        savedFilename = storage.save(story.storiesPath+"/s"+storyId+'.zip',file)
+        data = json.dumps({'savedFilename' : savedFilename})
+        currentStory = get_object_or_404(story, pk=storyId)
+        currentStory.downloadReady=True
+        currentStory.save(update_fields=["downloadReady"])
+        return HttpResponse(data, content_type='application/json')
+    else:
+        return HttpResponse("Error invalid input")
+
+
