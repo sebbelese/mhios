@@ -6,10 +6,11 @@ from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 import json
 
+import uuid
 
 from .models import story, LANGUAGE_CHOICES_DICT, AGE_CHOICES_DICT
 from .forms import addStoryForm
-
+from . import customstorage
 
 
 
@@ -76,11 +77,41 @@ def addStory(request):
         currentStoryForm = addStoryForm(request.POST, request.FILES, user=request.user)
         if currentStoryForm.is_valid():
             currentStory = currentStoryForm.save()
-            return redirect('watchStory', storyId=currentStory.id)
+            data = json.dumps({'storyId' : currentStory.id})
+            return HttpResponse(data, content_type='application/json')
         else:
-            print(currentStoryForm.errors)
             return HttpResponse("Error invalid input")
     else:
         form = addStoryForm(initial={'language': get_language()})
         return render(request, 'library/addStory.html', {'form': form})
+
     
+
+@login_required
+def uploadStory(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        if 'sessionId' not in request.POST: #First chunk
+            storage = customstorage.CustomStorage()
+            [savedFilename, sessionId] = storage.saveFirstChunk(story.storiesPath+"/s"+str(uuid.uuid1())+'.zip',file)
+            finishedUpload = False
+        else:
+            savedFilename = request.POST['savedFilename']
+            sessionId = request.POST['sessionId']
+            offset = request.POST['offset']
+            file.seek(int(offset))
+            storage = customstorage.CustomStorage()
+            finishedUpload = storage.saveNextChunk(file, sessionId, savedFilename)
+
+        progress = storage.getChunkProgress(file)
+        data = json.dumps({'progress': progress,
+                           'savedFilename' : savedFilename,
+                           'finishedUpload' : finishedUpload,
+                           'sessionId' : sessionId,
+                           'offset' : file.tell()
+        })
+    else:
+        return HttpResponse("Error invalid input")
+
+
+    return HttpResponse(data, content_type='application/json')

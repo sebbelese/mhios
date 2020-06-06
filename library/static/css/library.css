@@ -45,3 +45,11 @@
     height:535px;
   }
 }
+
+.progress-bar {
+    background-color : var(--theme-1-color);
+}
+
+.progress {
+    background-color : var(--theme-0-color);
+}

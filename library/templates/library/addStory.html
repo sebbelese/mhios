@@ -21,7 +21,7 @@
       {{ form.title|as_crispy_field }}
     </div>
     <div class="col-12 col-md-7">
-      {{ form.storyFile|as_crispy_field }}
+      <input id="storyFile" type="file" />
       {{ form.abstract|as_crispy_field }}
       {{ form.language|as_crispy_field }}
       {{ form.age|as_crispy_field }}
@@ -37,10 +37,10 @@
       </div>
     </div>
   </div>
-  <div class="progress col-12">
-    <div id="status" class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="10" aria-valuemax="100">
-    </div>
+  <div class="progress">
+    <div id="status" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
+  <br>
   <input id="uploadButton" type="submit" class="btn btn-primary" value="{% trans "Upload story" %}"/>
 </form>
 {% endblock %}
@@ -48,6 +48,6 @@
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js" integrity="sha256-EuV9YMxdV2Es4m9Q11L6t42ajVDj1x+6NZH4U1F+Jvw=" crossorigin="anonymous"></script>
 <script import Cropper from 'cropperjs';></script>
-<script src="{% static '/js/library_crop.js' %}"></script>
-<!-- <script src="{% static '/js/library_progress_bar.js' %}"></script> -->
+<script type="text/javascript">  var STATIC_PATH = "{% static '/' %}"; var ADDSTORY_URL = "{{ request.build_absolute_uri }}{{ object.get_absolute_url }}"; </script>
+<script src="{% static '/js/library_upload.js' %}"></script>
 {% endblock %}

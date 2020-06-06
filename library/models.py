@@ -6,6 +6,7 @@ from django.conf import settings
 from . import customstorage
 from storages.backends.dropbox import DropBoxStorage
 
+
 LANGUAGE_CHOICES= [
     ('fr', _('French')),
     ('en', _('English')),
@@ -22,14 +23,16 @@ AGE_CHOICES = [
 LANGUAGE_CHOICES_DICT = dict(LANGUAGE_CHOICES)
 AGE_CHOICES_DICT = dict(AGE_CHOICES) 
 
+
 # Create your models here.
 class story(models.Model):
     postersPath = 'posters'
+    storiesPath = 'stories'
     title = models.CharField(_("Title"),max_length = 500)
     pub_date = models.DateTimeField(_('Date published'))
     language = models.CharField(_("Language"),max_length=10, choices=LANGUAGE_CHOICES)
     poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath, storage=customstorage.CustomStorage())
-    storyFile = models.FileField(_("Story"),upload_to='stories')
+    storyFile = models.FileField(_("Story"),blank=True,upload_to=storiesPath, storage=customstorage.CustomStorage())
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)
     upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='upvotes')
@@ -39,3 +42,5 @@ class story(models.Model):
         return self.upvotes.all().count() - self.downvotes.all().count()
     def __str__(self):
         return self.title
+
+
