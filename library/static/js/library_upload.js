@@ -28,53 +28,6 @@ function init_crop(elem) {
 }
 
 
-/*function upload_chunk(form_data, file_data) {
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
-    form_data.append('file', file_data);
-    $.ajax({
-	url: 'uploadStory', 
-	type: 'POST',
-	data: form_data, 
-	headers:{"X-CSRFToken": csrftoken},
-	cache: false,
-	processData: false,
-	contentType: false,
-	async: false,
-	enctype: 'multipart/form-data',
-	success: function (data) {
-	    console.log(data.progress)
-	    $("#status").css("width", data.progress+"%");
-	    $("#status").attr("aria-valuenow", data.progress);
-	    $("#status").html(data.progress+'%');
-	    if (!data.finishedUpload){
-		var form_data = new FormData();
-		form_data.append('savedFilename', data.savedFilename);
-		form_data.append('sessionId', data.sessionId);
-		form_data.append('offset', data.offset);
-		console.log("pr "+file_data)
-		upload_chunk(form_data, file_data);
-	    }
-	}
-    })
-}*/
-
-if (window.Worker) {
-    worker = new Worker(STATIC_PATH+"js/library_upload_worker.js");
-    worker.addEventListener("message", updateProgressBar);   
-} else {
-    var uploader = document.createElement('script');
-    uploader.src = STATIC_PATH+"js/library_upload_worker.js";
-    document.getElementsByTagName("head")[0].appendChild(uploader);
-}
-
-
-function updateProgressBar(e) {
-    
-    var progress = e.data.value;
-    $("#status").css("width", progress+"%");
-    $("#status").attr("aria-valuenow", progress);
-}
-
 function updateProgress(evt) 
 {
    if (evt.lengthComputable) 
@@ -108,18 +61,7 @@ $( "#formUpload" ).submit(function( event ) {
     xhrAdd.upload.onprogress = updateProgress;
     xhrAdd.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-/*	    var file_data = $('#storyFile').prop('files')[0];
-	    
-	    // If workers are supported, create one by passing it the script url
-	    if (window.Worker) {
-		worker.postMessage({file_data : file_data, csrf_token : csrftoken, uploadstory_url : ADDSTORY_URL+'uploadStory' });
-
-		var form_data = new FormData();
-	    } else {
-		var form_data = new FormData();
-		upload_chunk(form_data, file_data, csrftoken, ADDSTORY_URL+'uploadStory');
-	    }
-*/
+	    //OK
 
 	}else{
 	    console.log("FAIL",this.response)

@@ -49,6 +49,5 @@
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js" integrity="sha256-EuV9YMxdV2Es4m9Q11L6t42ajVDj1x+6NZH4U1F+Jvw=" crossorigin="anonymous"></script>
 <script import Cropper from 'cropperjs';></script>
-<script type="text/javascript">  var STATIC_PATH = "{% static '/' %}"; var ADDSTORY_URL = "{{ request.build_absolute_uri }}{{ object.get_absolute_url }}"; </script>
 <script src="{% static '/js/library_upload.js' %}"></script>
 {% endblock %}
