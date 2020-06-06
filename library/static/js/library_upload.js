@@ -81,7 +81,18 @@ function updateProgressBar(e) {
     $("#status").css("width", progress+"%");
     $("#status").attr("aria-valuenow", progress);
 }
-    
+
+function updateProgress(evt) 
+{
+   if (evt.lengthComputable) 
+   {  // evt.loaded the bytes the browser received
+      // evt.total the total bytes set by the header
+      // jQuery UI progress bar to show the progress on screen
+       var progress = (evt.loaded / evt.total) * 100;
+       $("#uploadstatus").css("width", progress+"%");
+       $("#uploadstatus").attr("aria-valuenow", progress);
+   } 
+} 
 
 $( "#formUpload" ).submit(function( event ) {
     event.preventDefault();
@@ -100,6 +111,8 @@ $( "#formUpload" ).submit(function( event ) {
     xhrAdd.open("POST", '#', false);
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
 
+    xhrAdd.onprogress = updateProgress;
+    
     xhrAdd.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 	    var file_data = $('#storyFile').prop('files')[0];
