@@ -87,31 +87,31 @@ def addStory(request):
 
     
 
-@login_required
-def uploadStory(request):
-    if request.method == 'POST':
-        file = request.FILES['file']
-        if 'sessionId' not in request.POST: #First chunk
-            storage = customstorage.CustomStorage()
-            [savedFilename, sessionId] = storage.saveFirstChunk(story.storiesPath+"/s"+str(uuid.uuid1())+'.zip',file)
-            finishedUpload = False
-        else:
-            savedFilename = request.POST['savedFilename']
-            sessionId = request.POST['sessionId']
-            offset = request.POST['offset']
-            file.seek(int(offset))
-            storage = customstorage.CustomStorage()
-            finishedUpload = storage.saveNextChunk(file, sessionId, savedFilename)
-
-        progress = storage.getChunkProgress(file)
-        data = json.dumps({'progress': progress,
-                           'savedFilename' : savedFilename,
-                           'finishedUpload' : finishedUpload,
-                           'sessionId' : sessionId,
-                           'offset' : file.tell()
-        })
-    else:
-        return HttpResponse("Error invalid input")
-
-
-    return HttpResponse(data, content_type='application/json')
+#@login_required
+#def uploadStory(request):
+#    if request.method == 'POST':
+#        file = request.FILES['file']
+#        if 'sessionId' not in request.POST: #First chunk
+#            storage = customstorage.CustomStorage()
+#            [savedFilename, sessionId] = storage.saveFirstChunk(story.storiesPath+"/s"+str(uuid.uuid1())+'.zip',file)
+#            finishedUpload = False
+#        else:
+#            savedFilename = request.POST['savedFilename']
+#            sessionId = request.POST['sessionId']
+#            offset = request.POST['offset']
+#            file.seek(int(offset))
+#            storage = customstorage.CustomStorage()
+#            finishedUpload = storage.saveNextChunk(file, sessionId, savedFilename)
+#
+#        progress = storage.getChunkProgress(file)
+#        data = json.dumps({'progress': progress,
+#                           'savedFilename' : savedFilename,
+#                           'finishedUpload' : finishedUpload,
+#                           'sessionId' : sessionId,
+#                           'offset' : file.tell()
+#        })
+#    else:
+#        return HttpResponse("Error invalid input")
+#
+#
+#    return HttpResponse(data, content_type='application/json')

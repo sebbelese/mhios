@@ -27,13 +27,6 @@ function init_crop(elem) {
     }
 }
 
-function update_progress(progress){
-	$("#status").css("width", progress+"%");
-	$("#status").attr("aria-valuenow", progress);
-	$("#status").html(progress+'%');
-
-}
-
 
 /*function upload_chunk(form_data, file_data) {
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();
@@ -87,8 +80,9 @@ function updateProgress(evt)
    if (evt.lengthComputable) 
    {  // evt.loaded the bytes the browser received
       // evt.total the total bytes set by the header
-      // jQuery UI progress bar to show the progress on screen
+       // jQuery UI progress bar to show the progress on screen
        var progress = (evt.loaded / evt.total) * 100;
+       console.log("PROGRESS is",progress)
        $("#uploadstatus").css("width", progress+"%");
        $("#uploadstatus").attr("aria-valuenow", progress);
    } 
@@ -108,14 +102,13 @@ $( "#formUpload" ).submit(function( event ) {
 
 
     var xhrAdd = new XMLHttpRequest();
-    xhrAdd.open("POST", '#', false);
+    xhrAdd.open("POST", '#', true);
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
 
-    xhrAdd.onprogress = updateProgress;
-    
+    xhrAdd.upload.onprogress = updateProgress;
     xhrAdd.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	    var file_data = $('#storyFile').prop('files')[0];
+/*	    var file_data = $('#storyFile').prop('files')[0];
 	    
 	    // If workers are supported, create one by passing it the script url
 	    if (window.Worker) {
@@ -126,7 +119,7 @@ $( "#formUpload" ).submit(function( event ) {
 		var form_data = new FormData();
 		upload_chunk(form_data, file_data, csrftoken, ADDSTORY_URL+'uploadStory');
 	    }
-
+*/
 
 	}else{
 	    console.log("FAIL",this.response)

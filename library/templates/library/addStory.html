@@ -21,7 +21,7 @@
       {{ form.title|as_crispy_field }}
     </div>
     <div class="col-12 col-md-7">
-      <input id="storyFile" type="file" />
+      {{ form.storyFile|as_crispy_field }}
       {{ form.abstract|as_crispy_field }}
       {{ form.language|as_crispy_field }}
       {{ form.age|as_crispy_field }}
