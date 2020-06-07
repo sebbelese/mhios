@@ -46,9 +46,8 @@ function upload_story(file_data, storyId) {
     xhrUp.open("POST", 'uploadStory', true);
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
-    xhrUp.upload.onload = function() { //When the upload is finished
-	console.log("Upload done")
-	    //window.location.replace("../"+data['storyId'])
+    xhrUp.upload.onload = function() { //When the upload is finished successfully
+	window.location.replace("../"+data['storyId'])
     }
     var form_data = new FormData();
     form_data.append('file', file_data);
