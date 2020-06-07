@@ -47,7 +47,7 @@ function upload_story(file_data, storyId) {
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
-	if (this.readyState === XMLHttpReqest.DONE && this.status === 200) {
+	if (this.readyState === XMLHttpReqest.HEADERS_RECEIVED && this.status === 200) {
 	    window.location.replace("../"+data['storyId'])
 	}
     }
