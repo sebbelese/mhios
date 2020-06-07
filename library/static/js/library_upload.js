@@ -46,10 +46,9 @@ function upload_story(file_data, storyId) {
     xhrUp.open("POST", 'uploadStory', true);
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
-    xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
-	if (this.readyState === XMLHttpReqest.HEADERS_RECEIVED && this.status === 200) {
-	    window.location.replace("../"+data['storyId'])
-	}
+    xhrUp.upload.onload = function() { //When the upload is finished
+	console.log("Upload done")
+	    //window.location.replace("../"+data['storyId'])
     }
     var form_data = new FormData();
     form_data.append('file', file_data);
