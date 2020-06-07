@@ -49,7 +49,7 @@ function upload_story(file_data, storyId) {
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	    //Upload OK
+	    window.location.replace("../"+data['storyId'])
 	}
     }
     var form_data = new FormData();
@@ -82,7 +82,6 @@ $( "#formUpload" ).submit(function( event ) {
 	    data = JSON.parse(xhrAdd.responseText);
 	    var file_data = $('#storyFile').prop('files')[0];
 	    upload_story(file_data, data['storyId']);
-	    window.location.replace("../"+data['storyId'])
 	}
     }
     xhrAdd.send(new FormData(document.querySelector("#formUpload")));// $( "#formUpload" ).serialize());
