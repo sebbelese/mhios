@@ -45,6 +45,7 @@ function upload_story(file_data, storyId) {
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     var xhrUp = new XMLHttpRequest();
     xhrUp.open("POST", 'uploadStory', true);
+    xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -75,7 +76,6 @@ $( "#formUpload" ).submit(function( event ) {
     xhrAdd.open("POST", '#', true);
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
 
-    xhrAdd.upload.onprogress = updateProgress;
     xhrAdd.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 	    //The story file upload is made async after the story creation to allow the user to continue browsing (only download will be disabled)
