@@ -30,14 +30,15 @@ function init_crop(elem) {
 
 function updateProgress(evt) 
 {
-   if (evt.lengthComputable) 
-   {  // evt.loaded the bytes the browser received
-      // evt.total the total bytes set by the header
-       // jQuery UI progress bar to show the progress on screen
-       var progress = (evt.loaded / evt.total) * 100;
-       $("#uploadstatus").css("width", progress+"%");
-       $("#uploadstatus").attr("aria-valuenow", progress);
-   } 
+    console.log(evt)
+    if (evt.lengthComputable) 
+    {  // evt.loaded the bytes the browser received
+	// evt.total the total bytes set by the header
+	// jQuery UI progress bar to show the progress on screen
+	var progress = (evt.loaded / evt.total) * 100;
+	$("#uploadStatus").css("width", progress+"%");
+	$("#uploadStatus").attr("aria-valuenow", progress);
+    } 
 } 
 
 function upload_story(file_data, storyId) {
