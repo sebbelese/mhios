@@ -30,7 +30,6 @@ function init_crop(elem) {
 
 function updateProgress(evt) 
 {
-    console.log(evt)
     if (evt.lengthComputable) 
     {  // evt.loaded the bytes the browser received
 	// evt.total the total bytes set by the header
@@ -48,7 +47,7 @@ function upload_story(file_data, storyId) {
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
-	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	if (this.readyState === XMLHttpReqest.DONE && this.status === 200) {
 	    window.location.replace("../"+data['storyId'])
 	}
     }

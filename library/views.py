@@ -93,9 +93,11 @@ def uploadStory(request):
         file = request.FILES['file']
         storyId = request.POST['storyId']
         storage = customstorage.CustomStorage()
-        savedFilename = storage.save(story.storiesPath+"/s"+storyId+'.zip',file)
-        data = json.dumps({'savedFilename' : savedFilename})
+        savedFilename = "s"+storyId+'.zip';
+        savedFullFilename = storage.save(story.storiesPath+savedFilename,file)
+        data = json.dumps({'savedFilename' : savedFullFilename})
         currentStory = get_object_or_404(story, pk=storyId)
+        story.storyFile.save(savedFilename, None)
         currentStory.downloadReady=True
         currentStory.save(update_fields=["downloadReady"])
         return HttpResponse(data, content_type='application/json')
