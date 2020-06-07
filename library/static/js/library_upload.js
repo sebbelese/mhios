@@ -43,7 +43,7 @@ function updateProgress(evt)
 function upload_story(file_data, storyId) {
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     var xhrUp = new XMLHttpRequest();
-    xhrUp.open("POST", 'uploadStory', true);
+    xhrUp.open("POST", 'uploadStory', false);
     xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
     xhrUp.onreadystatechange = function() { //Appelle une fonction au changement d'état.
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
