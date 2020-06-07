@@ -71,7 +71,7 @@ $( "#formUpload" ).submit(function( event ) {
 
 
     var xhrAdd = new XMLHttpRequest();
-    xhrAdd.open("POST", '#', false); //Synchronous as we want the picture to be uploaded before showing story
+    xhrAdd.open("POST", '#', true);
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
 
     xhrAdd.upload.onprogress = updateProgress;
