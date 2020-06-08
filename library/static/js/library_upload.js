@@ -49,7 +49,10 @@ function upload_story(file_data, storyId, uploadUrl) {
 	console.log("DONE...")
 	post_upload_story(storyId)
 	console.log()
+    }else{
+	console.log(this.readyState + " " + this.status)
     }
+    
     var form_data = new FormData();
     form_data.append('file', file_data);
     console.log("Uploading...")
