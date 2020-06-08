@@ -12,9 +12,6 @@ from .models import story, LANGUAGE_CHOICES_DICT, AGE_CHOICES_DICT
 from .forms import addStoryForm
 from . import customstorage
 
-
-
-
 @login_required
 def voteStory(request):
     story_id = None
@@ -99,6 +96,6 @@ def postUploadStory(request):
         currentStory.storyFile.save(currentStory.buildStoryFilename(), None)
         currentStory.downloadReady=True
         currentStory.save(update_fields=["downloadReady"])
-        return HttpResponse(data, content_type='application/json')
+        return HttpResponse("Success")
     else:
         return HttpResponse("Error invalid input")

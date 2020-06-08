@@ -47,11 +47,7 @@ function upload_story(file_data, storyId, uploadUrl) {
     xhrUp.setRequestHeader("Content-Type", "application/octet-stream");
     xhrUp.onreadystatechange = function() { //Call when state change
 	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	    console.log("DONE...")
 	    post_upload_story(storyId)
-	    console.log()
-	}else{
-	    console.log(this.readyState + " " + this.status)
 	}
     }
     
@@ -62,7 +58,7 @@ function upload_story(file_data, storyId, uploadUrl) {
     
 }
 
-function post_upload_story(file_data, storyId) {
+function post_upload_story(storyId) {
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     var xhrpUp = new XMLHttpRequest();
     xhrpUp.open("POST", 'postUploadStory', true);
