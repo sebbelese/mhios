@@ -46,6 +46,7 @@ function upload_story(file_data, storyId, uploadUrl) {
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("Content-Type", "application/octet-stream");
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	console.log("DONE...")
 	post_upload_story(storyId)
 	console.log()
     }
