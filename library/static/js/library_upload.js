@@ -45,12 +45,14 @@ function upload_story(file_data, storyId, uploadUrl) {
     xhrUp.open("POST", uploadUrl, true);
     xhrUp.upload.onprogress = updateProgress;
     xhrUp.setRequestHeader("Content-Type", "application/octet-stream");
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	console.log("DONE...")
-	post_upload_story(storyId)
-	console.log()
-    }else{
-	console.log(this.readyState + " " + this.status)
+    xhrUp.onreadystatechange = function() { //Call when state change
+	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	    console.log("DONE...")
+	    post_upload_story(storyId)
+	    console.log()
+	}else{
+	    console.log(this.readyState + " " + this.status)
+	}
     }
     
     var form_data = new FormData();
@@ -62,16 +64,18 @@ function upload_story(file_data, storyId, uploadUrl) {
 
 function post_upload_story(file_data, storyId) {
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();
-    var xhrUp = new XMLHttpRequest();
-    xhrUp.open("POST", 'postUploadStory', true);
-    xhrUp.upload.onprogress = updateProgress;
-    xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-	window.location.replace("../"+data['storyId'])
+    var xhrpUp = new XMLHttpRequest();
+    xhrpUp.open("POST", 'postUploadStory', true);
+    xhrpUp.upload.onprogress = updateProgress;
+    xhrpUp.setRequestHeader("X-CSRFToken", csrftoken);
+    xhrpUp.onreadystatechange = function() { //Call when state change
+	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	    window.location.replace("../"+data['storyId'])
+	}
     }
     var form_data = new FormData();
     form_data.append('storyId', storyId);
-    xhrUp.send(form_data);
+    xhrpUp.send(form_data);
     
 }
 
