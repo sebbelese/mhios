@@ -77,7 +77,11 @@ def addStory(request):
         currentStoryForm = addStoryForm(request.POST, request.FILES, user=request.user)
         if currentStoryForm.is_valid():
             currentStory = currentStoryForm.save()
-            data = json.dumps({'storyId' : currentStory.id})
+            storyId = currentStory.id
+            storage = customstorage.CustomStorage()
+            [savedFullFilename, uploadUrl] = storage.getUploadLink(story.storiesPath+'/'+currentStory.buildStoryFilename())
+            print(uploadUrl.link)
+            data = json.dumps({'storyId' : storyId, 'uploadUrl' : uploadUrl.link})
             return HttpResponse(data, content_type='application/json')
         else:
             return HttpResponse("Error invalid input")
@@ -88,22 +92,13 @@ def addStory(request):
     
 
 @login_required
-def uploadStory(request):
+def postUploadStory(request):
     if request.method == 'POST':
-        file = request.FILES['file']
         storyId = request.POST['storyId']
-        storage = customstorage.CustomStorage()
-        savedFilename = "s"+storyId+'.zip';
-        print("Uploading",savedFilename)
-        savedFullFilename = storage.save(story.storiesPath+'/'+savedFilename,file)
-        print("Done")
-        data = json.dumps({'savedFilename' : savedFullFilename})
         currentStory = get_object_or_404(story, pk=storyId)
-        currentStory.storyFile.save(savedFilename, None)
+        currentStory.storyFile.save(currentStory.buildStoryFilename(), None)
         currentStory.downloadReady=True
         currentStory.save(update_fields=["downloadReady"])
         return HttpResponse(data, content_type='application/json')
     else:
         return HttpResponse("Error invalid input")
-
-

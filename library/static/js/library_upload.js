@@ -40,17 +40,32 @@ function updateProgress(evt)
     } 
 } 
 
-function upload_story(file_data, storyId) {
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+function upload_story(file_data, storyId, uploadUrl) {
     var xhrUp = new XMLHttpRequest();
-    xhrUp.open("POST", 'uploadStory', true);
+    xhrUp.open("POST", uploadUrl, true);
     xhrUp.upload.onprogress = updateProgress;
-    xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
-    xhrUp.upload.onload = function() { //When the upload is finished successfully
-	window.location.replace("../"+data['storyId'])
+    xhrUp.setRequestHeader("Content-Type", "application/octet-stream");
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	post_upload_story(storyId)
+	console.log()
     }
     var form_data = new FormData();
     form_data.append('file', file_data);
+    console.log("Uploading...")
+    xhrUp.send(form_data);
+    
+}
+
+function post_upload_story(file_data, storyId) {
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    var xhrUp = new XMLHttpRequest();
+    xhrUp.open("POST", 'postUploadStory', true);
+    xhrUp.upload.onprogress = updateProgress;
+    xhrUp.setRequestHeader("X-CSRFToken", csrftoken);
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	window.location.replace("../"+data['storyId'])
+    }
+    var form_data = new FormData();
     form_data.append('storyId', storyId);
     xhrUp.send(form_data);
     
@@ -78,7 +93,7 @@ $( "#formUpload" ).submit(function( event ) {
 	    //The story file upload is made async after the story creation to allow the user to continue browsing (only download will be disabled)
 	    data = JSON.parse(xhrAdd.responseText);
 	    var file_data = $('#storyFile').prop('files')[0];
-	    upload_story(file_data, data['storyId']);
+	    upload_story(file_data, data['storyId'], data['uploadUrl']);
 	}
     }
     xhrAdd.send(new FormData(document.querySelector("#formUpload")));// $( "#formUpload" ).serialize());

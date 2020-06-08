@@ -2,7 +2,6 @@ import os
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from django.core.files.storage import default_storage as storage
 
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile

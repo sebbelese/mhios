@@ -26,6 +26,8 @@ AGE_CHOICES_DICT = dict(AGE_CHOICES)
 
 # Create your models here.
 class story(models.Model):
+    def buildStoryFilename(self):
+        return "s"+str(self.id)+'.zip';
     postersPath = 'posters'
     storiesPath = 'stories'
     title = models.CharField(_("Title"),max_length = 500)
