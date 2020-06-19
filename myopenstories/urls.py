@@ -21,6 +21,7 @@ from django.contrib.staticfiles.urls import static
 from . import settings
 
 urlpatterns = i18n_patterns(
+    path('reader/', include('reader.urls')),
     path('library/', include('library.urls')),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),

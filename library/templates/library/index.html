@@ -52,7 +52,7 @@
 		  {% endif %}
 		  >+</button>
 	</div>
-	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} </div>
+	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <a href={{ story.storyFile.url }}>download</a> </div>
       </div>
     </div>
   </div>

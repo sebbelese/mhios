@@ -14,6 +14,7 @@ import MenuNodeModel from "../components/diagram/models/MenuNodeModel";
 import StoryNodeModel from "../components/diagram/models/StoryNodeModel";
 import PackDiagramModel from "../components/diagram/models/PackDiagramModel";
 
+module.exports = readFromArchive
 
 export function readFromArchive(file) {
     // Read zip archive
