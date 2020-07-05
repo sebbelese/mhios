@@ -33,6 +33,7 @@ function init_crop(elem) {
 }
 
 $("#id_poster").change(function () {
+    jQuery('#id_thumbnailFromZip').val("");
     init_crop(this);
     posterChanged = true;
 });
@@ -54,9 +55,11 @@ function load_poster_from_zip(elem) {
 	var zip = new JSZip();
 	zip.loadAsync( elem.files[0] ).then(function(zip) {
 	    if (zip.files["thumbnail.png"]){
-		zip.file("thumbnail.png").async("blob").then((thumb) => {
-		    console.log("THUMB");
-		    init_crop_with_file(thumb);
+		zip.file("thumbnail.png").async("base64").then((thumb_b64) => {
+		    zip.file("thumbnail.png").async("blob").then((thumb_blob) => {
+			init_crop_with_file(thumb_blob);
+			jQuery('#id_thumbnailFromZip').val(thumb_b64);
+		    });
 		});
 	    }
 	});
@@ -121,7 +124,12 @@ function upload_story(file_data, storyId, uploadUrl, nbRetries) {
 		    resolve("Uploaded successfully");
 		}else{
 		    if (nbRetries > 0){
-			upload_story(file_data, storyId, uploadUrl, nbRetries-1);
+			console.log("Fail: retry");
+			upload_story(file_data, storyId, uploadUrl, nbRetries-1).then((value) => {
+			    resolve(value);
+			}).catch((value) => {
+			    reject(value);
+			});
 		    }else{
 			reject("Could not upload file. Status "+this.status);
 		    }

@@ -8,6 +8,8 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
 import uuid
 from PIL import Image
+import io
+import base64
 import json
 
 from .models import story
@@ -22,6 +24,8 @@ class addStoryForm(forms.ModelForm):
     width = forms.FloatField(widget=forms.HiddenInput(), required=False)
     height = forms.FloatField(widget=forms.HiddenInput(), required=False)
     rotation = forms.FloatField(widget=forms.HiddenInput(), required=False)
+
+    thumbnailFromZip = forms.CharField(widget=forms.HiddenInput(), required=False, initial="")
     
     class Meta:
         model = story
@@ -39,9 +43,17 @@ class addStoryForm(forms.ModelForm):
         w = self.cleaned_data.get('width')
         h = self.cleaned_data.get('height')
         rot = self.cleaned_data.get('rotation')
-
+        imageThumb = self.cleaned_data.get('thumbnailFromZip')
+        
+        image = None
+        if imageThumb != "":
+            image = io.BytesIO(base64.b64decode(imageThumb))
         if story.poster != "":
-            image = Image.open(story.poster).convert('RGB')
+            image = story.poster
+            
+        if image is not None:
+            image = Image.open(image)
+            image = image.convert('RGB')
             if (rot is not None):
                 image = image.rotate(-rot, expand=True)
             if (x is not None and y is not None and w is not None and h is not None):
@@ -50,16 +62,16 @@ class addStoryForm(forms.ModelForm):
             imageIO =  BytesIO()
             image.save(imageIO, format='JPEG')
             newPosterFname =  'p'+str(uuid.uuid1())+'.jpg'
-            story.poster.name =  newPosterFname
             imageIO.seek(0)
-            story.poster.file = InMemoryUploadedFile(
-                imageIO,
-                'ImageField',
-                'poster',
-                'image/jpeg',
-                imageIO.tell(),
-                None
-            )        
+            imageFile = InMemoryUploadedFile(
+                    imageIO,
+                    'ImageField',
+                    'poster',
+                    'image/jpeg',
+                    imageIO.tell(),
+                    None
+                )
+            story.poster.save(newPosterFname, imageFile)
         else:
             story.poster.save('../assets/defaultPoster.jpg', None)
         story.save()
