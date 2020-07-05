@@ -26,16 +26,14 @@ AGE_CHOICES_DICT = dict(AGE_CHOICES)
 
 # Create your models here.
 class story(models.Model):
-    def buildStoryFilename(self):
-        return "s"+str(self.id)+'.zip';
+    def buildStoryDirname(self):
+        return "s"+str(self.id);
     postersPath = 'posters'
     storiesPath = 'stories'
     title = models.CharField(_("Title"),max_length = 500)
     pub_date = models.DateTimeField(_('Date published'))
     language = models.CharField(_("Language"),max_length=10, choices=LANGUAGE_CHOICES)
     poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath, storage=customstorage.CustomStorage())
-    storyFile = models.FileField(_("Story"),blank=True,upload_to=storiesPath, storage=customstorage.CustomStorage())
-    downloadReady = models.BooleanField(default=False)
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)
     upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='upvotes')

@@ -8,6 +8,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
 import uuid
 from PIL import Image
+import json
 
 from .models import story
 
@@ -24,9 +25,9 @@ class addStoryForm(forms.ModelForm):
     
     class Meta:
         model = story
-        fields = ('title','abstract','age','storyFile','language','poster', 'x', 'y', 'width', 'height','rotation')
+        fields = ('title','abstract','age','language','poster', 'x', 'y', 'width', 'height','rotation')
         labels = {"poster": str(_("Poster"))+" ("+str(_("Optional"))+")"}
-        
+
     def save(self, commit=True):
 
         story = super(addStoryForm, self).save(commit=False)
