@@ -48,7 +48,7 @@ class addStoryForm(forms.ModelForm):
         image = None
         if imageThumb != "":
             image = io.BytesIO(base64.b64decode(imageThumb))
-        if story.poster != "":
+        if story.poster != "": #They should not both exist, but story.poster has priority over thumbnailFromZip
             image = story.poster
             
         if image is not None:
