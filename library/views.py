@@ -75,11 +75,19 @@ def uploadStoryFile(request):
         currentStory = get_object_or_404(story, pk=story_id)
         upFile = story.storiesPath+'/'+currentStory.buildStoryDirname()+'/'+filename
         storage = customstorage.CustomStorage()
-        print("Getting link "+upFile)
         [savedFullFilename, uploadUrl] = storage.getUploadLink(upFile)
-        print("Got links ", uploadUrl)
         data = json.dumps({'uploadUrl' : uploadUrl.link})
         return HttpResponse(data, content_type='application/json')
+    else:
+        return HttpResponse("Error invalid input")
+
+def uploadStoryDone(request):
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+        currentStory = get_object_or_404(story, pk=story_id)
+        currentStory.uploadReady = True
+        currentStory.save(update_fields=["uploadReady"])
+        return HttpResponse("")
     else:
         return HttpResponse("Error invalid input")
 

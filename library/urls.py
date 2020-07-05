@@ -9,5 +9,6 @@ urlpatterns = [
     path('voteStory', views.voteStory, name='voteStory'),
     path('addStory/',views.addStory, name='addStory'),
     path('addStory/uploadStoryFile',views.uploadStoryFile, name='uploadStoryFile'),
+    path('addStory/uploadStoryDone',views.uploadStoryDone, name='uploadStoryDone'),
     path('i18n/', include('django.conf.urls.i18n')),
 ]

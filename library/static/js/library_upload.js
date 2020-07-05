@@ -195,8 +195,10 @@ $( "#formUpload" ).submit(function( event ) {
 				}));
 			});
 			
-			Promise.all(promises).then((value)=>{//Wait for all the temporary links were obtained
-			    window.location.replace("../"+storyId);
+			Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
+			    $.get('uploadStoryDone', {story_id: storyId}).then(function(){
+				window.location.replace("../"+storyId);	    
+			    })
 			}).catch(function(err) {
 			    alert("ERROR: cannot create story: "+err.message);
 			});
