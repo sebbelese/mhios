@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from library.models import story
 
 def index(request):
-    currentStory = get_object_or_404(story, pk=244)
+    currentStory = get_object_or_404(story, pk=326)
     context = {
         'story': currentStory,
     }

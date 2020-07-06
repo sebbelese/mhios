@@ -68,19 +68,24 @@ def watchStory(request, storyId):
     }
     return render(request, 'library/watchStory.html', context)
 
+@login_required
 def uploadStoryFile(request):
     if request.method == 'GET':
         story_id = request.GET['story_id']
-        filename = request.GET['filename']
         currentStory = get_object_or_404(story, pk=story_id)
-        upFile = story.storiesPath+'/'+currentStory.buildStoryDirname()+'/'+filename
-        storage = customstorage.CustomStorage()
-        [savedFullFilename, uploadUrl] = storage.getUploadLink(upFile)
-        data = json.dumps({'uploadUrl' : uploadUrl.link})
-        return HttpResponse(data, content_type='application/json')
+        if currentStory.uploadReady == False:
+            filename = request.GET['filename']
+            upFile = story.storiesPath+'/'+currentStory.buildStoryDirname()+'/'+filename
+            storage = customstorage.CustomStorage()
+            [savedFullFilename, uploadUrl] = storage.getUploadLink(upFile)
+            data = json.dumps({'uploadUrl' : uploadUrl.link})
+            return HttpResponse(data, content_type='application/json')
+        else:
+            return HttpResponse("Error: forbidden")
     else:
-        return HttpResponse("Error invalid input")
+        return HttpResponse("Error: invalid input")
 
+@login_required
 def uploadStoryDone(request):
     if request.method == 'GET':
         story_id = request.GET['story_id']
