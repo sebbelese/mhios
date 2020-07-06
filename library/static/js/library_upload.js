@@ -51,18 +51,19 @@ function load_poster_from_zip(elem) {
     var file;
     if (elem.files && elem.files[0]){
 
-	
-	var zip = new JSZip();
-	zip.loadAsync( elem.files[0] ).then(function(zip) {
-	    if (zip.files["thumbnail.png"]){
-		zip.file("thumbnail.png").async("base64").then((thumb_b64) => {
-		    zip.file("thumbnail.png").async("blob").then((thumb_blob) => {
-			init_crop_with_file(thumb_blob);
-			jQuery('#id_thumbnailFromZip').val(thumb_b64);
+	if (elem.files[0].type == "application/zip"){
+	    var zip = new JSZip();
+	    zip.loadAsync( elem.files[0] ).then(function(zip) {
+		if (zip.files["thumbnail.png"]){
+		    zip.file("thumbnail.png").async("base64").then((thumb_b64) => {
+			zip.file("thumbnail.png").async("blob").then((thumb_blob) => {
+			    init_crop_with_file(thumb_blob);
+			    jQuery('#id_thumbnailFromZip').val(thumb_b64);
+			});
 		    });
-		});
-	    }
-	});
+		}
+	    });
+	}
     }
 }
 
@@ -176,12 +177,17 @@ $( "#formUpload" ).submit(function( event ) {
 	    //When the server has answered (story was created on server, but not uploaded)
 	    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 		storyId = JSON.parse(xhrAdd.responseText)['storyId'];
-
+		
 	
 		var zip = new JSZip();
 		zip.loadAsync( files_data )
 		    .then(function(zip) {
 
+			if (!zip.files["story.json"]){
+			    alert("ERROR: zip file is not a valid story file");
+			    return;
+			}
+			
 			nbFilesInZip = Object.keys(zip.files).length;
 			
 			$("#id_initDone").val(false); //Story is initialized along with the first zip upload. We don't want to do it twice
@@ -209,6 +215,7 @@ $( "#formUpload" ).submit(function( event ) {
 			    })
 			}).catch(function(err) {
 			    alert("ERROR: cannot create story: "+err.message);
+			    return;
 			});
 
 			
