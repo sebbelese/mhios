@@ -1,56 +1,50 @@
 
-//const domContainer = document.querySelector('#reader_container');
-//const e = React.createElement;
+function getUrl(storyid, path){
+    return $.get('getFileUrl', {story_id: storyid, filename : path}).then(function(data){
+	var downloadUrl =  data['downloadUrl'];
+	console.log("upurl"+downloadUrl);
+	return downloadUrl;
+    });
+}
 
-import "./unzipper.js";
-import "./requestPack.js";
 function playStory(){
+//    var metapromise = zip.file("story.json").async("string");
 
-    console.log(unzipper.Open.url)
-    console.log(request)
-    const directory = unzipper.Open.url(request,storyUrl);
-    //console.log(directory.files);
-    
-    /*JSZipUtils.getBinaryContent(storyUrl, function (err, data) {
-	if(err) {
-	    console.log("ERROR: "+err);
-	    throw err; // or handle the error
-	}
+    getUrl(story_Id, "story.json").then((url) => {
+	console.log("url is"+url)
 
-	JSZip.loadAsync(data).then(function (zip) {
-	    var metapromise = zip.file("story.json").async("string");
-	    console.log(metapromise);
-	    metapromise.then((meta) => {
-		var story = JSON.parse(meta);
-		console.log(story.stageNodes);
-		var coverNodes = story.stageNodes.filter( node => node.type == "cover");
-		if (coverNodes==undefined || coverNodes.length == 0){
-		    coverNodes = story.stageNodes.filter( node => node.squareOne == true);
-		}
-		if(coverNodes==undefined || coverNodes.length != 1){
-		    console.log("ERROR: story should have a single cover node"+coverNodes);
-		    throw err; // or handle the error
-		}
-		var coverNode = coverNodes[0];
-		console.log(coverNode);
-		console.log(coverNode.audio)
-		var audiopromise = zip.file("assets/"+coverNode.audio).async("blob");
-		
-		audiopromise.then((audio) => {
-		    console.log(audio)
-		    var audioUrl = URL.createObjectURL( audio );
-		    var sound = new Howl({
-			src: audioUrl,
-			format: coverNode.audio.split('.').pop().toLowerCase(),
-		    });
-		    sound.play();
-		    console.log("plaayed");
-		});
-		
-	    });
-	    
+	jQuery.getJSON(url).fail(function(jqXHR, status, error){
+	    console.log("other error: "+status + " "+error)
+		//some other error
 	});
-    });*/
+	$.getJSON(url).then((story) => {
+	    console.log(story.stageNodes);
+	    var coverNodes = story.stageNodes.filter( node => node.type == "cover");
+	    if (coverNodes==undefined || coverNodes.length == 0){
+		coverNodes = story.stageNodes.filter( node => node.squareOne == true);
+	    }
+	    if(coverNodes==undefined || coverNodes.length != 1){
+		console.log("ERROR: story should have a single cover node"+coverNodes);
+		throw err; // or handle the error
+	    }
+	    var coverNode = coverNodes[0];
+	    //console.log(coverNode);
+	    //console.log(coverNode.audio)
+	    //var audiopromise = zip.file("assets/"+coverNode.audio).async("blob");
+
+	    getUrl(story_Id, "assets/"+coverNode.audio).then((audioUrl) => {
+		var sound = new Howl({
+		    src: audioUrl,
+		    format: coverNode.audio.split('.').pop().toLowerCase(),
+		});
+		sound.play();
+		console.log("played");
+	    });
+	}).catch( function(e) { 
+	    alert("Error reading story: "+JSON.stringify(e));
+	});
+	
+    });
 }
 
 document.getElementById ("btnPlay").addEventListener ("click", playStory);

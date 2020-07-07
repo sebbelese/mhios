@@ -4,7 +4,6 @@ from django.utils.translation import get_language
 from django.conf import settings
 
 from . import customstorage
-from storages.backends.dropbox import DropBoxStorage
 
 
 LANGUAGE_CHOICES= [

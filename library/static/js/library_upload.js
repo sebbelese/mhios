@@ -3,6 +3,8 @@
 var cropper;
 var posterChanged;
 
+var uploadInError;
+
 function init_crop_with_file(file){
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -115,31 +117,34 @@ function updateProgress(uploadUrl, evt)
 
 function upload_story(file_data, storyId, uploadUrl, nbRetries) {
     return new Promise((resolve, reject) => {
-	var xhrUp = new XMLHttpRequest();
-	xhrUp.open("POST", uploadUrl, true);
-	xhrUp.upload.addEventListener("progress", updateProgress.bind(null, uploadUrl), false);
-	xhrUp.setRequestHeader("Content-Type", "application/octet-stream");
-	xhrUp.onreadystatechange = function() { //Call when state change
-	    if (this.readyState === XMLHttpRequest.DONE){
-		if (this.status === 200) {
-		    resolve("Uploaded successfully");
-		}else{
-		    if (nbRetries > 0){
-			console.log("Fail: retry");
-			upload_story(file_data, storyId, uploadUrl, nbRetries-1).then((value) => {
-			    resolve(value);
-			}).catch((value) => {
-			    reject(value);
-			});
+	if (uploadInError == false){
+	    var xhrUp = new XMLHttpRequest();
+	    xhrUp.open("POST", uploadUrl, true);
+	    xhrUp.upload.addEventListener("progress", updateProgress.bind(null, uploadUrl), false);
+	    xhrUp.setRequestHeader("Content-Type", 'application/octet-stream');
+	    xhrUp.onreadystatechange = function() { //Call when state change
+		if (this.readyState === XMLHttpRequest.DONE){
+		    if (this.status === 200) {
+			resolve("Uploaded successfully");
 		    }else{
-			reject("Could not upload file. Status "+this.status);
+			if (nbRetries > 0){
+			    console.log("Fail: retry ");
+			    console.log(nbRetries-1);
+			    upload_story(file_data, storyId, uploadUrl, nbRetries-1).then((value) => {
+				resolve(value);
+			    }).catch((value) => {
+				reject(value);
+			    });
+			}else{
+			    reject("Could not upload file. Status "+this.status);
+			}
 		    }
 		}
 	    }
+	    xhrUp.send(file_data);
+	}else{
+	    reject("Some uploads failed");
 	}
-	var form_data = new FormData();
-	form_data.append('file', file_data);
-	xhrUp.send(form_data);
     });
     
 }
@@ -147,6 +152,7 @@ function upload_story(file_data, storyId, uploadUrl, nbRetries) {
 
 
 $( "#formUpload" ).submit(function( event ) {
+    uploadInError = false;
     event.preventDefault();
     if(cropper){
 	initCrop = cropper.getData();
@@ -214,6 +220,7 @@ $( "#formUpload" ).submit(function( event ) {
 				window.location.replace("../"+storyId);	    
 			    })
 			}).catch(function(err) {
+			    uploadInError = true;
 			    alert("ERROR: cannot create story: "+err.message);
 			    return;
 			});
