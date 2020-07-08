@@ -7,9 +7,8 @@ from library import customstorage
 import json
 
 def index(request):
-    currentStory = get_object_or_404(story, pk=674)
     context = {
-        'story': currentStory,
+        'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()])
     }
     return render(request, 'reader/index.html', context)
 

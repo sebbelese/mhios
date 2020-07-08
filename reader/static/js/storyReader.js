@@ -1,45 +1,177 @@
 
-function getUrl(storyid, path){
-    return $.get('getFileUrl', {story_id: storyid, filename : path}).then(function(data){
+var soundInstance;
+var storyMeta;
+var nodeOnOK;
+var indexOnOK;
+var optionId;
+var currentActionNode;
+var storyIdx;
+var atHome;
+var allowHome = true;
+var nodeOnHome = "";
+var indexOnHome;
+var allowPause;
+var paused;
+
+function init () {
+    if (soundInstance != null){
+	soundInstance.stop();
+    }
+    soundInstance = null;
+    storyMeta = null;
+    nodeOnOK = "";
+    document.getElementById("btnOK").disabled = true;
+    indexOnOK = null;
+    optionId = 0;
+    currentActionNode = null;
+    document.getElementById("btnLeft").disabled = false;
+    document.getElementById("btnRight").disabled = false;
+    storyIdx = 0;
+    atHome = true;
+    allowHome = false;
+    document.getElementById("btnHome").disabled = !allowHome;
+    nodeOnHome = "";
+    indexOnHome = null;
+    allowPause = true;
+    document.getElementById("btnPause").disabled = !allowPause;
+    paused = false;
+}
+
+function getUrl(path){
+    return $.get('getFileUrl', {story_id: storiesId[storyIdx], filename : path}).then(function(data){
 	var downloadUrl =  data['downloadUrl'];
 	console.log("upurl"+downloadUrl);
 	return downloadUrl;
     });
 }
 
-function playStory(){
+function playActionNode(){
+    var choice;
+    if (optionId == null){
+	optionId = Math.floor(Math.random() * (currentActionNode.options.length + 1));
+    }
+    choice = optionId % currentActionNode.options.length;
+    while (choice < 0) {
+	choice += currentActionNode.options.length;
+    }
+    var nodeToRead = currentActionNode.options[choice];
+    var nodes = storyMeta.stageNodes.filter( node => node.uuid == nodeToRead);
+    if(nodes==undefined || nodes.length != 1){
+	alert("ERROR: cannot find stage node "+nodeToRead);		
+    }
+    playStageNode(nodes[0]);
+}
+
+function onOk(){
+    atHome = false;
+    console.log("OK")
+    if (nodeOnOK != "") {
+	var nodes = storyMeta.actionNodes.filter( node => node.id == nodeOnOK);
+	if(nodes==undefined || nodes.length != 1){
+	    alert("ERROR: cannot find action node "+nodeOnOK);		
+	}
+	currentActionNode = nodes[0];
+	optionId = indexOnOK;
+	playActionNode();
+    }
+}
+
+function onHome() {
+    if (allowHome){
+	if (nodeOnHome == ""){
+	    init();
+	    startStory();
+	}else{
+	    var nodes = storyMeta.actionNodes.filter( node => node.id == nodeOnHome);
+	    if(nodes==undefined || nodes.length != 1){
+		alert("ERROR: cannot find action node "+nodeOnOK);		
+	    }
+	    currentActionNode = nodes[0];
+	    optionId = indexOnHome;
+	    playActionNode();
+	}
+    }
+}
+
+function playStageNode(node){
+    allowHome = node.controlSettings.home;
+    document.getElementById("btnHome").disabled = !allowHome;
+    if (allowHome && node.homeTransition){
+	nodeOnHome = node.homeTransition.actionNode;
+	if (node.homeTransition.optionIndex < 0){
+	    indexOnHome = null;
+	}else{
+	    indexOnHome = node.homeTransition.optionIndex;
+	}
+    }else{			
+	nodeOnHome = "";
+    }
+    allowPause = node.controlSettings.pause;
+    document.getElementById("btnPause").disabled = !allowPause;
+    if (node.controlSettings.wheel == false){
+	currentActionNode = null;
+	document.getElementById("btnLeft").disabled = true;
+	document.getElementById("btnRight").disabled = true;
+    }else{
+	document.getElementById("btnLeft").disabled = false;
+	document.getElementById("btnRight").disabled = false;
+    }
+    document.getElementById("btnOK").disabled = !node.controlSettings.ok;
+    if (node.controlSettings.ok || node.controlSettings.autoplay){
+	nodeOnOK = node.okTransition.actionNode;
+	if (node.okTransition.optionIndex < 0){
+	    indexOnOK = null;
+	}else{
+	    indexOnOK = node.okTransition.optionIndex;
+	}
+    }else{			
+	nodeOnOK = "";
+    }
+    if (node.image != null){
+	getUrl("assets/"+node.image).then((imgUrl) => {
+	    $("#nodeImage").attr("src", imgUrl);
+	});
+    }else{
+	$("#nodeImage").attr("src", "//:0");
+    }
+    getUrl("assets/"+node.audio).then((audioUrl) => {
+	if (soundInstance != null){
+	    soundInstance.stop();
+	}
+	paused = false;
+	soundInstance = new Howl({
+	    src: audioUrl,
+	    html5: true, //This is needed for streaming rather than downloading
+	    format: node.audio.split('.').pop().toLowerCase(),
+	    autoplay: true
+	});
+	console.log("played");
+	soundInstance.on('end', function(){
+	    if (node.controlSettings.autoplay){
+		onOk();
+	    }
+	});
+    });
+}
+
+
+
+function startStory(){
+    
 //    var metapromise = zip.file("story.json").async("string");
 
-    getUrl(story_Id, "story.json").then((url) => {
+    getUrl("story.json").then((url) => {
 	console.log("url is"+url)
-
-	jQuery.getJSON(url).fail(function(jqXHR, status, error){
-	    console.log("other error: "+status + " "+error)
-		//some other error
-	});
 	$.getJSON(url).then((story) => {
-	    console.log(story.stageNodes);
-	    var coverNodes = story.stageNodes.filter( node => node.type == "cover");
-	    if (coverNodes==undefined || coverNodes.length == 0){
-		coverNodes = story.stageNodes.filter( node => node.squareOne == true);
-	    }
+	    storyMeta = story;
+	    console.log(storyMeta.stageNodes);
+	    var coverNodes = storyMeta.stageNodes.filter( node => node.squareOne == true);
 	    if(coverNodes==undefined || coverNodes.length != 1){
-		console.log("ERROR: story should have a single cover node"+coverNodes);
+		alert("ERROR: story should have a single cover node"+coverNodes);
 		throw err; // or handle the error
 	    }
 	    var coverNode = coverNodes[0];
-	    //console.log(coverNode);
-	    //console.log(coverNode.audio)
-	    //var audiopromise = zip.file("assets/"+coverNode.audio).async("blob");
-
-	    getUrl(story_Id, "assets/"+coverNode.audio).then((audioUrl) => {
-		var sound = new Howl({
-		    src: audioUrl,
-		    format: coverNode.audio.split('.').pop().toLowerCase(),
-		});
-		sound.play();
-		console.log("played");
-	    });
+	    playStageNode(coverNode)
 	}).catch( function(e) { 
 	    alert("Error reading story: "+JSON.stringify(e));
 	});
@@ -47,66 +179,55 @@ function playStory(){
     });
 }
 
-document.getElementById ("btnPlay").addEventListener ("click", playStory);
+function onLeft(){
+    if (currentActionNode != null){
+	optionId = optionId - 1;
+	playActionNode();
+    }
+    if (atHome == true){
+	storyIdx = storyIdx - 1;
+	if (storyIdx < 0){
+	    storyIdx = storyIdx + storiesId.length;
+	}
+	startStory();
+    }
+}
+
+function onRight(){
+    if (currentActionNode != null){
+	optionId = optionId + 1;
+	playActionNode();
+    }
+    if (atHome == true){
+	storyIdx = (storyIdx + 1)%storiesId.length;
+	startStory();
+    }
+}
 
 
 
-//IN HTML
-//<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-//<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-//import  './studioEditorPackViewer.js';
-//import  './studioreaderpack.js';
-//import  './studioactions.js';
-
-/*const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key, value) => {
-  if (typeof value === "object" && value !== null) {
-  if (seen.has(value)) {
-  return;
-  }
-  seen.add(value);
-  }
-  return value;
-  };
-  };*/
 
 
+function onPause() {
+    if (allowPause && soundInstance != null){
+	if (paused){
+	    soundInstance.play();
+	    paused = false;
+	} else {
+	    soundInstance.pause();
+	    paused = true;
 
-/*var disp = actionLoadPackInEditor(data, "");
-  console.log(disp);*/
+	}
+
+    }
+}
+
+document.getElementById ("btnHome").addEventListener ("click", onHome);
+document.getElementById ("btnOK").addEventListener ("click", onOk);
+document.getElementById ("btnLeft").addEventListener ("click", onLeft);
+document.getElementById ("btnRight").addEventListener ("click", onRight);
+document.getElementById ("btnPause").addEventListener ("click", onPause);
 
 
-/*readFromArchive(data)
-  .then(loadedModel => {
-  var a = studioActions;
-  console.log(a);
-  // Set loaded model in editor
-  studioActions.setEditorDiagram(loadedModel);
-  // Show editor
-  studioActions.showEditor();
-  studioActions.showViewer();
-  })
-  .catch(e => {
-  console.error('failed to load story pack', e);
-  });*/
 
-/*
-  readFromArchive(data).then(model => {
-  console.log("success"+JSON.stringify(model, getCircularReplacer()));
-  console.log("success2",model);
-  //	model.viewer.options.translucent = 'translucent';
-  //	model.viewer.options.overlay = false;
-  //	model.viewer.options.autoplay = true;
-  var viewer=new EditorPackViewer(model);
-  //	console.log("viewer"+JSON.stringify(viewer, getCircularReplacer()));
-  viewer.onOK
-  ReactDOM.render(e(EditorPackViewer), domContainer);
-  console.log("OK done")
-  })
-  .catch(e => {
-  console.error('failed to load story pack', e);
-  })
-*/
-
+$(window).on('pageshow', onHome);
