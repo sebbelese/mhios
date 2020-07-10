@@ -1,0 +1,22 @@
+body {
+    background: var(--theme-1-color);
+}
+
+.readerButton, .readerButton:active, .readerButton:focus {
+    border:none;
+    background-color:transparent;
+    outline:none;
+}
+
+
+
+.readerButton>svg>path{ 
+  fill: var(--theme-3-color);
+}
+.readerButton[disabled]>svg>path{
+  fill: var(--theme-1-color);
+}
+
+.readerImage{
+    filter: url(#colorize);
+}

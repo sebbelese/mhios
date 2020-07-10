@@ -116,6 +116,7 @@ function playStageNode(node){
 	document.getElementById("btnLeft").disabled = false;
 	document.getElementById("btnRight").disabled = false;
     }
+
     document.getElementById("btnOK").disabled = !node.controlSettings.ok;
     if (node.controlSettings.ok || node.controlSettings.autoplay){
 	nodeOnOK = node.okTransition.actionNode;
@@ -132,7 +133,7 @@ function playStageNode(node){
 	    $("#nodeImage").attr("src", imgUrl);
 	});
     }else{
-	$("#nodeImage").attr("src", "//:0");
+	$("#nodeImage").attr("src", emptyBlackImage);
     }
     getUrl("assets/"+node.audio).then((audioUrl) => {
 	if (soundInstance != null){
