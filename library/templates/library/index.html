@@ -53,7 +53,17 @@
 		  {% endif %}
 		  >+</button>
 	</div>
-	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <a href={{ story.storyFile.url }}>download</a> </div>
+	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <a href={{ story.storyFile.url }}>download</a>
+	  <button class="toUserLib" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" type="button"
+		  {% if not user.is_authenticated %}
+		  disabled
+		  {% endif %}
+		  {% if user in story.inUserLibrary.all  %}
+		  style="background-color:green"
+		  {% else %}
+		  style="background-color:red"
+		  {% endif %}
+		  >UserLibrary</button>
       </div>
     </div>
   </div>
@@ -68,6 +78,7 @@
 
 {% block javascript %}
 <script src="{% static '/js/library_vote.js' %}"></script>
+<script src="{% static '/js/library_userLib.js' %}"></script>
 {% endblock javascript %}
   
   

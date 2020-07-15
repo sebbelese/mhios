@@ -39,6 +39,7 @@ class story(models.Model):
     downvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='downvotes')
     uploader = models.ForeignKey('accounts.User', null=True, blank=True, on_delete=models.SET_NULL)
     uploadReady = models.BooleanField(default=False)
+    inUserLibrary = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='inUserLibrary')
     def score(self):
         return self.upvotes.all().count() - self.downvotes.all().count()
     def __str__(self):

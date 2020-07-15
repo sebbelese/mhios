@@ -7,9 +7,14 @@ from library import customstorage
 import json
 
 def index(request):
-    context = {
-        'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()])
-    }
+    if request.user.is_authenticated:
+        context = {
+            'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()])
+        }
+    else:
+        context = {
+            'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()])
+        }
     return render(request, 'reader/index.html', context)
 
 def getFileUrl(request):

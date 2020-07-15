@@ -2,21 +2,62 @@ body {
     background: var(--theme-1-color);
 }
 
+
 .readerButton, .readerButton:active, .readerButton:focus {
     border:none;
     background-color:transparent;
     outline:none;
+    padding: 0;
+    border: 0;
+    margin: 0;
 }
 
+.readerContainer
+{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    text-align: center;
+    height:100%;
+}
+
+.btnColSmall
+{
+    word-spacing: 5vw;
+}
+
+.nodeImage
+{
+    filter: url(#colorize);
+    max-width: 66vh;
+    width: 50vw;
+    max-height: 57vh;
+    height: 38vw;
+}
+
+.btnSvgLR{
+    width: auto;
+    max-height: 57vh;
+    height: 38vw;
+}
+
+
+.vspace{
+    max-height: 7.5vh;
+    height: 5vw;
+}
+
+.btnSvgSmall{
+    max-height: 15vh;
+    height: 10vw;
+}
 
 
 .readerButton>svg>path{ 
-  fill: var(--theme-3-color);
-}
-.readerButton[disabled]>svg>path{
-  fill: var(--theme-1-color);
+    fill: var(--theme-3-color);
 }
 
-.readerImage{
-    filter: url(#colorize);
+.readerButton[disabled]>svg>path{
+    fill: var(--theme-1-color);
 }
+

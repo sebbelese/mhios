@@ -45,9 +45,27 @@ def voteStory(request):
                 'score': currentStory.score(),
                 'isButtonUp': isButtonUp,
                 'isButtonDown': isButtonDown,
-            })
-            
+            })            
     return HttpResponse(data, content_type='application/json')
+
+
+@login_required
+def toUserLibrary(request):
+    story_id = None
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+        currentStory = get_object_or_404(story, pk=story_id)
+        if request.user in currentStory.inUserLibrary.all():
+            currentStory.inUserLibrary.remove(request.user)
+            added = False;
+        else:
+            currentStory.inUserLibrary.add(request.user)
+            added = True;
+        data = json.dumps({
+            'added': added,
+        })            
+    return HttpResponse(data, content_type='application/json')
+
 
 def index(request):
     latest_stories_list = story.objects.order_by('-pub_date')
