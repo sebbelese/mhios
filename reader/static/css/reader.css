@@ -57,7 +57,16 @@ body {
     fill: var(--theme-3-color);
 }
 
+.readerButtonSwitch[disabled]{
+    width : 0;
+}
+
+.readerButtonSwitch[disabled]>svg{
+    width : 0;
+}
+
 .readerButton[disabled]>svg>path{
     fill: var(--theme-1-color);
 }
+
 

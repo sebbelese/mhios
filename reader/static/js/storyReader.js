@@ -14,6 +14,9 @@ var allowPause;
 var paused;
 
 function init () {
+    console.log("inhome",isUserLibrary)
+    document.getElementById("btnGlobalLibrary").disabled = !isUserLibrary;
+    document.getElementById("btnUserLibrary").disabled = isUserLibrary;
     if (soundInstance != null){
 	soundInstance.stop();
     }
@@ -32,12 +35,13 @@ function init () {
     document.getElementById("btnHome").disabled = !allowHome;
     nodeOnHome = "";
     indexOnHome = null;
-    allowPause = true;
+    allowPause = false;
     document.getElementById("btnPause").disabled = !allowPause;
     paused = false;
 }
 
 function getUrl(path){
+    console.log("is"+storiesId)
     return $.get('getFileUrl', {story_id: storiesId[storyIdx], filename : path}).then(function(data){
 	var downloadUrl =  data['downloadUrl'];
 	console.log("upurl"+downloadUrl);
@@ -63,6 +67,8 @@ function playActionNode(){
 }
 
 function onOk(){
+    document.getElementById("btnGlobalLibrary").disabled = true;
+    document.getElementById("btnUserLibrary").disabled = true;
     atHome = false;
     console.log("OK")
     if (nodeOnOK != "") {
@@ -77,6 +83,7 @@ function onOk(){
 }
 
 function onHome() {
+    console.log("inhome0",isUserLibrary)
     if (allowHome){
 	if (nodeOnHome == ""){
 	    init();
@@ -223,11 +230,35 @@ function onPause() {
     }
 }
 
+
+function switchLibrary(toUserLibrary){
+    
+    $.get('switchLibrary', {is_user_library: toUserLibrary}, function(data){
+	console.log("set to ",toUserLibrary);
+	console.log("eheh");
+	console.log("DATA"+JSON.stringify(data));
+	isUserLibrary =  data.isUserLibrary
+	storiesId = JSON.parse(data['storiesId']);
+	allowHome = true;
+	onHome();
+    });
+}
+
+function onUserLibrary(){
+    switchLibrary(true);
+}
+
+function onGlobalLibrary(){
+    switchLibrary(false);
+}
+
 document.getElementById ("btnHome").addEventListener ("click", onHome);
 document.getElementById ("btnOK").addEventListener ("click", onOk);
 document.getElementById ("btnLeft").addEventListener ("click", onLeft);
 document.getElementById ("btnRight").addEventListener ("click", onRight);
 document.getElementById ("btnPause").addEventListener ("click", onPause);
+document.getElementById ("btnUserLibrary").addEventListener ("click", onUserLibrary);
+document.getElementById ("btnGlobalLibrary").addEventListener ("click", onGlobalLibrary);
 
 
 
