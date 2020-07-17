@@ -15,8 +15,42 @@
 {% endblock %}
 
 {% block body %}
-{% if latest_stories_list %}
-{% for story in latest_stories_list %}
+
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% trans "Sort by" %}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="?sort=score&age={{ageChoice}}&language={{languageChoice}}">{% trans "Score" %}</a>
+    <a class="dropdown-item" href="?sort=age&age={{ageChoice}}&language={{languageChoice}}">{% trans "Age category" %}</a>
+    <a class="dropdown-item" href="?sort=pub_date&age={{ageChoice}}&language={{languageChoice}}">{% trans "Most recent" %}</a>
+    <a class="dropdown-item" href="?sort=title&age={{ageChoice}}&language={{languageChoice}}">{% trans "Title" %}</a>
+    <a class="dropdown-item" href="?sort=uploader&age={{ageChoice}}&language={{languageChoice}}">{% trans "Author" %}</a>
+  </div>
+</div>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% trans "Language" %}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for language in languageDict %}
+    <a class="dropdown-item" href="?sort={{sortChoice}}&age={{ageChoice}}&language={{language}}"> {{ languageDict|get_item:language }}</a>
+    {% endfor %}
+  </div>
+</div>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% trans "Age" %}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for age in ageDict %}
+    <a class="dropdown-item" href="?sort={{sortChoice}}&age={{age}}&language={{language}}"> {{ ageDict|get_item:age }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+{% if stories_list %}
+{% for story in stories_list %}
 {% if story.uploadReady %}
 <div class="row story-line no-gutters">
   <div class="col-2">
@@ -71,8 +105,25 @@
 {% endif %}
 {% endfor %}
 {% else %}
-<p>No story is available.</p>
+<p>{% trans "No story is available that matches your criteria" %}</p>
 {% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if stories_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ stories_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ stories_list.number }} of {{ stories_list.paginator.num_pages }}.
+        </span>
+
+        {% if stories_list.has_next %}
+            <a href="?page={{ stories_list.next_page_number }}">next</a>
+            <a href="?page={{ stories_list.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
 
 

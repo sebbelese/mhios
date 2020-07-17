@@ -4,8 +4,9 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
-import json
+from django.core.paginator import Paginator
 
+import json
 import uuid
 
 from .models import story, LANGUAGE_CHOICES_DICT, AGE_CHOICES_DICT
@@ -68,11 +69,40 @@ def toUserLibrary(request):
 
 
 def index(request):
-    latest_stories_list = story.objects.order_by('-pub_date')
+    stories_list = story.objects.order_by('-pub_date')
+    langChoice = ""
+    ageChoice = ""
+    sortChoice = ""
+    if request.method == 'GET':
+        if 'language' in request.GET and request.GET.get('language') != "":
+            langChoice = request.GET.get('language')
+            stories_list = stories_list.filter(language=langChoice)
+        if 'age' in request.GET and request.GET.get('age') != "":
+            ageChoice = request.GET.get('age')
+            stories_list = stories_list.filter(age=ageChoice)
+        if 'sort' in request.GET and request.GET.get('sort') != "":
+            sortChoice = request.GET.get('sort')
+            if sortChoice == 'title' or sortChoice == 'age' or sortChoice == 'upoader': 
+                stories_list = stories_list.order_by(request.GET.get('sort'))
+            elif sortChoice == 'pub_date':
+                stories_list = stories_list.order_by('-pub_date')
+            elif sortChoice == 'score':
+                stories_list = sorted(stories_list, key= lambda st: -st.score())
+        if 'page' in request.GET:
+            page_number = request.GET.get('page')
+        else:
+            page_number = 1
+    paginator = Paginator(stories_list, 10)
+
+    stories_list = paginator.get_page(page_number)
+
     context = {
-        'latest_stories_list': latest_stories_list,
+        'stories_list': stories_list,
         'languageDict': LANGUAGE_CHOICES_DICT,
-        'ageDict': AGE_CHOICES_DICT
+        'ageDict': AGE_CHOICES_DICT,
+        'langChoice': langChoice,
+        'ageChoice': ageChoice,
+        'sortChoice': sortChoice,
     }
     return render(request, 'library/index.html', context)
 
