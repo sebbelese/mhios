@@ -69,10 +69,10 @@ def toUserLibrary(request):
 
 
 def index(request):
-    stories_list = story.objects.order_by('-pub_date')
     langChoice = ""
     ageChoice = ""
-    sortChoice = ""
+    sortChoice = "pub_date"
+    stories_list = story.objects.order_by('-'+sortChoice)
     if request.method == 'GET':
         if 'language' in request.GET and request.GET.get('language') != "":
             langChoice = request.GET.get('language')

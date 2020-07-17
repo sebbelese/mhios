@@ -21,11 +21,11 @@
     {% trans "Sort by" %}
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="?sort=score&age={{ageChoice}}&language={{languageChoice}}">{% trans "Score" %}</a>
-    <a class="dropdown-item" href="?sort=age&age={{ageChoice}}&language={{languageChoice}}">{% trans "Age category" %}</a>
-    <a class="dropdown-item" href="?sort=pub_date&age={{ageChoice}}&language={{languageChoice}}">{% trans "Most recent" %}</a>
-    <a class="dropdown-item" href="?sort=title&age={{ageChoice}}&language={{languageChoice}}">{% trans "Title" %}</a>
-    <a class="dropdown-item" href="?sort=uploader&age={{ageChoice}}&language={{languageChoice}}">{% trans "Author" %}</a>
+    <a class="dropdown-item {% ifequal sortChoice 'score'%} active {% endifequal %}" href="?sort=score&age={{ageChoice}}&language={{languageChoice}}">{% trans "Score" %}</a>
+    <a class="dropdown-item {% ifequal sortChoice 'age'%} active {% endifequal %}" href="?sort=age&age={{ageChoice}}&language={{languageChoice}}">{% trans "Age category" %}</a>
+    <a class="dropdown-item {% ifequal sortChoice 'pub_date'%} active {% endifequal %}" href="?sort=pub_date&age={{ageChoice}}&language={{languageChoice}}">{% trans "Most recent" %}</a>
+    <a class="dropdown-item {% ifequal sortChoice 'title'%} active {% endifequal %}" href="?sort=title&age={{ageChoice}}&language={{languageChoice}}">{% trans "Title" %}</a>
+    <a class="dropdown-item {% ifequal sortChoice 'uploader'%} active {% endifequal %}" href="?sort=uploader&age={{ageChoice}}&language={{languageChoice}}">{% trans "Author" %}</a>
   </div>
 </div>
 <div class="dropdown">
@@ -34,8 +34,9 @@
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     {% for language in languageDict %}
-    <a class="dropdown-item" href="?sort={{sortChoice}}&age={{ageChoice}}&language={{language}}"> {{ languageDict|get_item:language }}</a>
+    <a class="dropdown-item {% ifequal language langChoice %} active {% endifequal %}" href="?sort={{sortChoice}}&age={{ageChoice}}&language={{language}}"> {{ languageDict|get_item:language }}</a>
     {% endfor %}
+    <a class="dropdown-item {% ifequal langChoice '' %} active {% endifequal %}" href="?sort={{sortChoice}}&age={{ageChoice}}"> {% trans "All" %}</a>
   </div>
 </div>
 <div class="dropdown">
@@ -44,8 +45,9 @@
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     {% for age in ageDict %}
-    <a class="dropdown-item" href="?sort={{sortChoice}}&age={{age}}&language={{language}}"> {{ ageDict|get_item:age }}</a>
+    <a class="dropdown-item {% ifequal age ageChoice %} active {% endifequal %}" href="?sort={{sortChoice}}&age={{age}}&language={{langChoice}}"> {{ ageDict|get_item:age }}</a>
     {% endfor %}
+    <a class="dropdown-item {% ifequal ageChoice '' %} active {% endifequal %}" href="?sort={{sortChoice}}&language={{langChoice}}"> {% trans "All" %}</a>
   </div>
 </div>
 
