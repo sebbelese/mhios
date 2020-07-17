@@ -7,8 +7,26 @@
 }
 
 .dropdown-toggle {
-    margin-top:7px;
+    margin-top:9px;
     margin-bottom:3px;
+}
+
+.pagination{
+    margin-top:7px;
+    margin-bottom:5px;
+}
+
+.pageChoice{
+    word-spacing: 4px;
+}
+
+.pageChoice>a>svg {
+    width: auto;
+    height: 16px;
+}
+
+.pageChoice>a>svg>path{ 
+    fill: var(--theme-3-color);
 }
 
 .story-line {

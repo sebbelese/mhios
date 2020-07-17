@@ -97,6 +97,7 @@
 		  style="background-color:red"
 		  {% endif %}
 		  >UserLibrary</button>
+	</div>
       </div>
     </div>
   </div>
@@ -106,22 +107,40 @@
 {% else %}
 <p>{% trans "No story is available that matches your criteria" %}</p>
 {% endif %}
-<div class="pagination">
-    <span class="step-links">
-        {% if stories_list.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ stories_list.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ stories_list.number }} of {{ stories_list.paginator.num_pages }}.
-        </span>
-
-        {% if stories_list.has_next %}
-            <a href="?page={{ stories_list.next_page_number }}">next</a>
-            <a href="?page={{ stories_list.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+<div class="pagination row">
+  <div class="col-4 pageChoice" style="text-align:left;">
+      {% if stories_list.has_previous %}
+      <a href="?page=1"><!--
+	--><svg  xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 230 240" xmlns="http://www.w3.org/2000/svg" version="1.0" width="230" height="240">
+	  <path d="M 120 240 a 1 1 0 0 1 0 -240" />
+	  <path d="M 230 240 a 1 1 0 0 1 0 -240" />
+	</svg><!--
+      --></a>
+      <a href="?page={{ stories_list.previous_page_number }}"><!--
+	--><svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg" version="1.0" width="120" height="240">
+	  <path d="M 120 240 a 1 1 0 0 1 0 -240" />
+	</svg><!--
+      --></a>
+      {% endif %}
+  </div>
+  <div class="col-4" style="text-align:center;">
+    {{ stories_list.number }} / {{ stories_list.paginator.num_pages }}
+  </div>
+  <div class="col-4 pageChoice" style="text-align:right;">
+      {% if stories_list.has_next %}
+      <a  href="?page={{ stories_list.next_page_number }}"><!--
+	--><svg  xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg" version="1.0" width="120" height="240">
+	  <path d="M 0 240 a 1 1 0 0 0 0 -240" />
+	</svg><!--
+      --></a>
+      <a  href="?page={{ stories_list.paginator.num_pages }}"><!--
+	--><svg  xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 230 240" xmlns="http://www.w3.org/2000/svg" version="1.0" width="230" height="240">
+	  <path d="M 0 240 a 1 1 0 0 0 0 -240" />
+	  <path d="M 110 240 a 1 1 0 0 0 0 -240" />
+	</svg><!--
+      --></a>
+      {% endif %}
+  </div>
 </div>
 {% endblock %}
 
