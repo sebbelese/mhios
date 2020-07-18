@@ -29,6 +29,36 @@
     fill: var(--theme-3-color);
 }
 
+.vote {
+    border:none;
+    background-color:transparent;
+    outline:none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.vote>span {
+    font-size: 1.2em;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: var(--theme-1-color);
+    background: var(--theme-0-color);
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+}
+
+.vote.selected>span {
+    color: var(--theme-0-color);
+    background: var(--theme-1-color);
+}
+
+
 .story-line {
     background: #ffffff;
     margin-top:7px;

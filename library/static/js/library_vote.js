@@ -6,14 +6,14 @@ $(document).ready(function() {
 	$.get('voteStory', {story_id: storyid, vote : vote}, function(data){
 	    $('#scoreStory'+storyid).html(data.score);
 	    if (data.isButtonUp){
-		$('#upvoteStory'+storyid).css("background-color", "green");
+		$('#upvoteStory'+storyid).addClass("selected");
 	    }else{
-		$('#upvoteStory'+storyid).css("background-color", "blue");
+		$('#upvoteStory'+storyid).removeClass("selected");
 	    }
 	    if (data.isButtonDown){
-		$('#downvoteStory'+storyid).css("background-color", "green");
+		$('#downvoteStory'+storyid).addClass("selected");
 	    }else{
-		$('#downvoteStory'+storyid).css("background-color", "blue");
+		$('#downvoteStory'+storyid).removeClass("selected");
 	    }
 	});
     });
