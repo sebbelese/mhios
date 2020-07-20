@@ -64,17 +64,9 @@
 	<div class="col-sm-3 col-6">  {{ languageDict|get_item:story.language }} </div>
 	<div class="col-sm-3 col-6">  {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %} </div>
 	<div class="col-sm-3 col-6">  
-	  <button class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" type="button"
-		  {% if not user.is_authenticated %}
-		  disabled
-		  {% endif %}
-		  ><span>-</span></button><!--
-	  --><b id="scoreStory{{ story.id }}">{{ story.score }}</b><!--
-	  --><button class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}" type="button"
-		  {% if not user.is_authenticated %}
-		  disabled
-		  {% endif %}
-		  ><span>+</span></button>
+	  <button class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}><span>-</span> </button><!--
+	  --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
+	  --><button class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}> <span>+</span></button>
 	</div>
 	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <a href={{ story.storyFile.url }}>download</a>
 	  <button class="toUserLib" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" type="button"

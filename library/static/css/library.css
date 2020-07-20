@@ -47,10 +47,14 @@
     background: var(--theme-0-color);
     display: inline-block;
     font-weight: bold;
-    line-height: 1.6em;
-    margin-right: 15px;
+    line-height: 1.4em;
     text-align: center;
-    width: 1.6em; 
+    width: 1.4em;
+}
+
+.score {
+    font-weight: bold;
+    margin: 4px;
 }
 
 .vote.selected>span {
