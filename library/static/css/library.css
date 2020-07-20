@@ -115,3 +115,23 @@
 .progress {
     background-color : var(--theme-0-color);
 }
+
+
+/* User lib button */
+
+.toUserLib {
+    border:none;
+    background-color:transparent;
+    outline:none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.toUserLib>svg{
+    width:30px;
+}
+
+.toUserLib.selected>svg{
+    fill: var(--theme-1-color);
+}
