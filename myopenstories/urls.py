@@ -19,12 +19,14 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import activate
 from django.contrib.staticfiles.urls import static
 from . import settings
+from machina import urls as machina_urls
 
 urlpatterns = i18n_patterns(
     path('reader/', include('reader.urls')),
     path('library/', include('library.urls')),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
+    path('forum/', include(machina_urls)),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
