@@ -12,6 +12,9 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    def get_nickname(self):
+        return self.username
+    
     def __str__(self):
         return self.email
     
