@@ -10,6 +10,7 @@ body {
   padding: 0;
   margin: 0;
   background: var(--theme-0-color);
+  color: theme-3-color;
 }
 /*--- navigation bar ---*/
 .navbar {
@@ -40,5 +41,20 @@ a:hover {
     text-decoration: none;
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: var(--theme-2-color);
+    border-color: var(--theme-2-color);
+}
+
+.btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
+    background-color: var(--theme-1-color);
+    border-color: var(--theme-1-color);
+}
+
+.btn-warning, .btn-warning:hover, .btn-warning:active, .btn-warning:visited {
+    background-color: var(--theme-2-color);
+    border-color: var(--theme-2-color);
+    color: white;
+}
 
 
