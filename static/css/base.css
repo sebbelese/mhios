@@ -51,6 +51,11 @@ a:hover {
     border-color: var(--theme-1-color);
 }
 
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: var(--theme-1-color);
+    border-color: var(--theme-1-color);
+}
+
 .btn-warning, .btn-warning:hover, .btn-warning:active, .btn-warning:visited {
     background-color: var(--theme-2-color);
     border-color: var(--theme-2-color);
