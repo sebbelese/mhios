@@ -21,12 +21,17 @@ from django.contrib.staticfiles.urls import static
 from . import settings
 from machina import urls as machina_urls
 
+from . import views
+
+
 urlpatterns = i18n_patterns(
-    path('reader/', include('reader.urls')),
-    path('library/', include('library.urls')),
+    path('', views.index, name='index'),
+    path('reader/', include(('reader.urls','reader'))),
+    path('library/', include(('library.urls','library'))),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
-    path('forum/', include(machina_urls)),
+    path('forum/', include((machina_urls))),
+    path('i18n/', include('django.conf.urls.i18n')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

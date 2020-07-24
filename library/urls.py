@@ -1,7 +1,9 @@
-from django.urls import include, path
+from django.urls import  path
 
 
 from . import views
+
+app_name = 'library'
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -11,5 +13,4 @@ urlpatterns = [
     path('addStory/uploadStoryFile',views.uploadStoryFile, name='uploadStoryFile'),
     path('addStory/uploadStoryDone',views.uploadStoryDone, name='uploadStoryDone'),
     path('toUserLibrary',views.toUserLibrary, name='toUserLibrary'),
-    path('i18n/', include('django.conf.urls.i18n')),
 ]
