@@ -24,6 +24,9 @@ class CustomStorage(DropBoxStorage):
         """
         name = self.get_available_name(name, max_length=max_length)
         return [name, self._getUploadLink(name)]
+    
+    def getFilesList(self, path):
+        return self.client.files_list_folder(path=path)
 
         
     def _getUploadLink(self, name):

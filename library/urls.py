@@ -12,5 +12,6 @@ urlpatterns = [
     path('addStory/',views.addStory, name='addStory'),
     path('addStory/uploadStoryFile',views.uploadStoryFile, name='uploadStoryFile'),
     path('addStory/uploadStoryDone',views.uploadStoryDone, name='uploadStoryDone'),
+    path('getStoryFilesList', views.getStoryFilesList, name='getStoryFilesList'),
     path('toUserLibrary',views.toUserLibrary, name='toUserLibrary'),
 ]

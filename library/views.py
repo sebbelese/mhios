@@ -144,6 +144,18 @@ def uploadStoryDone(request):
         return HttpResponse("Error invalid input")
 
 
+def getStoryFilesList(request):
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+        currentStory = get_object_or_404(story, pk=story_id)
+        if currentStory is not None and currentStory.uploadReady == True:
+            currentStory.save(update_fields=["uploadReady"])
+            return HttpResponse("")
+        else:
+            return HttpResponse(data, content_type='application/json')
+    else:
+        return HttpResponse("Error invalid input")
+
 @login_required
 def addStory(request):
     if request.method == "POST":
