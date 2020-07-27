@@ -21,8 +21,8 @@
       <img class="first-slide img-fluid" src="{% static 'media/carousel_0.jpg' %}" alt="First slide">
       <div class="container">
         <div class="carousel-caption text-left">
-          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'library:index' %}" role="button">Browse the library</a></p>
-	  <h2>Designed by anyone. Free to anyone.</h2>
+          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'library:index' %}" role="button">{% trans "Browse the library" %}</a></p>
+	  <h2>{% trans "Designed by anyone. Free to anyone." %}</h2>
         </div>
       </div>
     </div>
@@ -30,8 +30,8 @@
       <img class="second-slide img-fluid" src="{% static 'media/carousel_1.jpg' %}" alt="Second slide">
       <div class="container">
         <div class="carousel-caption text-left">
-          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'reader:index' %}" role="button">Go to interactive teller</a></p>
-	  <h2>Build your own adventures.</h2>
+          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'reader:index' %}" role="button">{% trans "Go to interactive teller" %}</a></p>
+	  <h2>{% trans "Build your own adventures." %}</h2>
         </div>
       </div>
     </div>
@@ -39,8 +39,8 @@
       <img class="second-slide img-fluid" src="{% static 'media/carousel_2.jpg' %}" alt="Third slide">
       <div class="container">
         <div class="carousel-caption text-left">
-          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href={% url 'signup' %} role="button">Sign up today</a></p>
-	  <h2>Stash favourite stories to find them easily.</h2>
+          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href={% url 'signup' %} role="button">{% trans "Sign up today" %}</a></p>
+	  <h2>{% trans "Stash favourite stories to find them easily." %}</h2>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@
       <img class="second-slide img-fluid" src="{% static 'media/carousel_3.jpg' %}" alt="Fourth slide">
       <div class="container">
         <div class="carousel-caption text-left">
-          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'reader:index' %}" role="button">Read me a story</a></p>
-	  <h2>Enjoy interactive stories with our reader.</h2>
+          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="{% url 'reader:index' %}" role="button">{% trans "Listen to a story" %}</a></p>
+	  <h2>{% trans "Enjoy interactive stories with our reader." %}</h2>
         </div>
       </div>
     </div>
@@ -57,19 +57,19 @@
       <img class="third-slide img-fluid" src="{% static 'media/carousel_4.jpg' %}" alt="Fifth slide">
       <div class="container">
         <div class="carousel-caption text-right">
-          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="forum" role="button">Explore the forum</a></p>
-	  <h2>Discuss anything from stories to unicorns.</h2>
+          <p class="d-none d-sm-block"><a class="btn btn-lg btn-primary" href="forum" role="button">{% trans "Explore the forum" %}</a></p>
+	  <h2>{% trans "Discuss anything from stories to unicorns." %}</h2>
         </div>
       </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="sr-only">{% trans "Previous" %}</span>
   </a>
   <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="sr-only">{% trans "Next" %}</span>
   </a>
 </div>
 <br/>
@@ -84,28 +84,28 @@
     <div class="col-lg-4">
       <img class="rounded-circle" src="{% static 'media/library_poster.jpg' %}" alt="Generic placeholder image" width="140" height="140">
       <h2>{% trans "Open library" %}</h2>
-      <p>Designed to encourage the sharing of interactive stories created by the community for the community, myopenstories is an open repository for stories in the <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* format, a set of tools to read and create interactive stories with possibility to transfer from and to the <a href="https://www.lunii.fr"> lunii</a>* story teller device.</p>
-      <p>Registration is not necessary to browse or download the stories. Registered users can upload their own stories and vote for their favourite stories.</p>
-      <p><a class="btn btn-secondary" href="{% url 'library:index' %}" role="button">Explore library &raquo;</a></p>
+      <p>{% trans "Designed to encourage the sharing of interactive stories created by the community for the community, myopenstories is an open repository for stories in the" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* {% trans "format, a set of tools to read and create interactive stories with possibility to transfer from and to the" %} <a href="https://www.lunii.fr"> lunii</a>* {% trans "story teller device." %}</p>
+      <p>{% trans "Registration is not necessary to browse or download the stories. Registered users can upload their own stories and vote for their favourite stories." %}</p>
+      <p><a class="btn btn-secondary" href="{% url 'library:index' %}" role="button">{% trans "Explore library" %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="rounded-circle" src="{% static 'media/reader_poster.jpg' %}" alt="Generic placeholder image" width="140" height="140">
       <h2>{% trans "Story teller" %}</h2>
-      <p>myopenstories includes an interactive story teller which can be used to read interactively any story available in the library.</p>
-      <p> Registration is not necessary to listen to the stories. To facilitate access to your favourite stories, register freely to create your online personal library and stash your private selection. </p>
-      <p><a class="btn btn-secondary" href="{% url 'reader:index' %}" role="button">Bring stories to life &raquo;</a></p>
+      <p>{% trans "myopenstories includes an interactive story teller which can be used to read interactively any story available in the library." %}</p>
+      <p> {% trans "Registration is not necessary to listen to the stories. To facilitate access to your favourite stories, register freely to create your online personal library and stash your private selection." %} </p>
+      <p><a class="btn btn-secondary" href="{% url 'reader:index' %}" role="button">{% trans "Bring stories to life" %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="rounded-circle" src="{% static 'media/forum_poster.jpg' %}" alt="Generic placeholder image" width="140" height="140">
       <h2>{% trans "Discussion forum" %}</h2>
-      <p>The discussion forum is the right place to discuss stories, the use of <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* or <a href="https://www.lunii.fr"> lunii</a>* devices, suggestions and improvements for this website, or anything else you think relevant.</p>
-      <p><a class="btn btn-secondary" href="forum" role="button">Enjoy discussions &raquo;</a></p>
+      <p>{% trans "The discussion forum is the right place to discuss stories, the use of" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* {% trans or %} <a href="https://www.lunii.fr"> lunii</a>* {% trans "devices, suggestions and improvements for this website, or anything else you think relevant." %}</p>
+      <p><a class="btn btn-secondary" href="forum" role="button">{% trans "Enjoy discussions" %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
 </div><!-- /.container -->
 <!-- FOOTER -->
 <footer class="container">
-  <p * class="float-right"><a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  <p>*myopenstories is not affiliated with <a href="https://marian-m12l.github.io/studio-website">STUdio</a> or <a href="https://www.lunii.fr"> lunii</a> in any way  &middot;</p>
+  <p * class="float-right"><a href="#">{% trans "Privacy" %}</a></p>
+  <p>*{% trans "myopenstories is not affiliated with" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a> {% trans "or" %} <a href="https://www.lunii.fr"> lunii</a> {% trans "in any way" %}</p>
 </footer>
 {% endblock %}
