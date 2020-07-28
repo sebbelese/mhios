@@ -91,9 +91,8 @@ var nbRetriesUpload=10;
 function updateProgress(uploadUrl, evt) 
 {
     if (evt.lengthComputable) 
-    {  // evt.loaded the bytes the browser received
-	// evt.total the total bytes set by the header
-	// jQuery UI progress bar to show the progress on screen
+    {
+	// evt.loaded the bytes the browser received
 	loadedPerFile[uploadUrl] = evt.loaded;
 
 	if (nbFilesInZip >= 0){

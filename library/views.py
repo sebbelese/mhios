@@ -152,7 +152,6 @@ def getStoryFilesListAndSize(request):
             storage = customstorage.CustomStorage()
             upDir = story.storiesPath+'/'+currentStory.buildStoryDirname()
             filesListAndSize = storage.getFilesListAndSize(upDir)
-            print(filesListAndSize)
             data = json.dumps({
                 'filesListAndSize': filesListAndSize,
             })            
