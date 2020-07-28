@@ -68,7 +68,7 @@
 																																    --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
 																																										   --><button class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}> <span>+</span></button>
 	</div>
-	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <button data-storyid="{{story.id}}" class="downloadLink" type="button" ><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <button data-storyid="{{story.id}}" class="downloadLink" title="{%trans 'Download story' %}" type="button" ><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 45.812 45.812" style="enable-background:new 0 0 45.812 45.812;"
 	 xml:space="preserve">
 		<path d="M21.407,34.002c0.367,0.37,0.944,0.573,1.521,0.573c0.515,0,1.153-0.203,1.52-0.572l11.399-11.481
@@ -78,7 +78,7 @@
 		<path d="M42.443,19.372c-1.623,0-2.947,1.315-2.947,2.938v16.392c0,0.678-0.521,1.217-1.203,1.217H7.471
 			c-0.68,0-1.239-0.539-1.239-1.217V22.309c0-1.622-1.282-2.938-2.905-2.938c-1.622,0-2.905,1.315-2.905,2.938v16.392
 			c0,3.918,3.131,7.111,7.05,7.111h30.821c3.92,0,7.098-3.193,7.098-7.111V22.309C45.391,20.687,44.064,19.372,42.443,19.372z"/></svg></button>
-	  <button class="toUserLib {% if user in story.inUserLibrary.all  %} selected {% endif %}" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" type="button"
+	  <button class="toUserLib {% if user in story.inUserLibrary.all  %} selected {% endif %}" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" title="{% if user in story.inUserLibrary.all  %} {% trans 'Remove from personal library' %} {% else %}{% trans 'Add to personal library' %}{% endif %}" type="button"
 		  {% if not user.is_authenticated %}
 		  disabled
 		  {% endif %}
