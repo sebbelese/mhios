@@ -68,14 +68,23 @@
 																																    --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
 																																										   --><button class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}> <span>+</span></button>
 	</div>
-	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <a data-storyid="{{story.id}}" class="downloadLink" href="javascript:void(0);" >{% trans "download" %}</a>
+	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <button data-storyid="{{story.id}}" class="downloadLink" type="button" ><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 45.812 45.812" style="enable-background:new 0 0 45.812 45.812;"
+	 xml:space="preserve">
+		<path d="M21.407,34.002c0.367,0.37,0.944,0.573,1.521,0.573c0.515,0,1.153-0.203,1.52-0.572l11.399-11.481
+			c0.561-0.563,0.726-1.408,0.418-2.139c-0.307-0.731-1.022-1.207-1.815-1.206l-3.72,0.03l0.054-16.288
+			C30.777,1.306,29.469,0,27.854,0h-9.855c-1.612,0-2.922,1.306-2.929,2.919l0.054,16.284l-3.719-0.027
+			c-0.794-0.002-1.512,0.474-1.816,1.206c-0.308,0.73-0.144,1.577,0.417,2.139L21.407,34.002z"/>
+		<path d="M42.443,19.372c-1.623,0-2.947,1.315-2.947,2.938v16.392c0,0.678-0.521,1.217-1.203,1.217H7.471
+			c-0.68,0-1.239-0.539-1.239-1.217V22.309c0-1.622-1.282-2.938-2.905-2.938c-1.622,0-2.905,1.315-2.905,2.938v16.392
+			c0,3.918,3.131,7.111,7.05,7.111h30.821c3.92,0,7.098-3.193,7.098-7.111V22.309C45.391,20.687,44.064,19.372,42.443,19.372z"/></svg></button>
 	  <button class="toUserLib {% if user in story.inUserLibrary.all  %} selected {% endif %}" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" type="button"
 		  {% if not user.is_authenticated %}
 		  disabled
 		  {% endif %}
 		  ><!--
 		     --><svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			     viewBox="-180 -180 1119.5 1119.5">
+			     viewBox="0 0 1000 1000">
 	      <path d="M748.65,794c0.1-15-5.6-29.2-16.2-40c-10.6-10.7-24.8-16.6-39.8-16.6H72.85v112.1h618.7
 		       C722.75,849.5,748.35,824.6,748.65,794z"/>
 	      <path d="M838.65,793.8c0.2-79.3-63.1-144.2-141.8-146.399H43.65c-13.8,0-25,11.199-25,25v10c0,13.8,11.2,25,25,25h649
@@ -96,8 +105,7 @@
 		    --></button>
 	</div>
 	<div id="downloadStatusDiv{{story.id}}" class="col-sm-12 col-12" hidden>
-	  <br/>
-	  <div class="progress">
+	  <div class="progress progress-library">
 	    <div id="downloadStatus{{story.id}}" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 	  </div>
 	</div>

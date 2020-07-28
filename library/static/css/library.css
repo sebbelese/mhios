@@ -116,10 +116,14 @@
     background-color : var(--theme-0-color);
 }
 
+.progress-library {
+    margin-top: 5px;
+}
+
 
 /* User lib button */
 
-.toUserLib {
+.toUserLib, .downloadLink {
     border:none;
     background-color:transparent;
     outline:none;
@@ -128,7 +132,7 @@
     margin: 0;
 }
 
-.toUserLib>svg{
+.toUserLib>svg, .downloadLink>svg{
     width:30px;
 }
 
