@@ -144,15 +144,39 @@ def uploadStoryDone(request):
         return HttpResponse("Error invalid input")
 
 
-def getStoryFilesList(request):
+def getStoryFilesListAndSize(request):
     if request.method == 'GET':
         story_id = request.GET['story_id']
         currentStory = get_object_or_404(story, pk=story_id)
         if currentStory is not None and currentStory.uploadReady == True:
-            currentStory.save(update_fields=["uploadReady"])
-            return HttpResponse("")
-        else:
+            storage = customstorage.CustomStorage()
+            upDir = story.storiesPath+'/'+currentStory.buildStoryDirname()
+            filesListAndSize = storage.getFilesListAndSize(upDir)
+            print(filesListAndSize)
+            data = json.dumps({
+                'filesListAndSize': filesListAndSize,
+            })            
             return HttpResponse(data, content_type='application/json')
+        else:
+            return HttpResponse("Error invalid story")
+    else:
+        return HttpResponse("Error invalid input")
+
+def getStoryFileLink(request):
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+        currentStory = get_object_or_404(story, pk=story_id)
+        if currentStory is not None and currentStory.uploadReady == True:
+            storage = customstorage.CustomStorage()
+            path = request.GET['path']
+            link = storage.url(path)
+            data = json.dumps({
+                'link': link,
+                'inPath': path[len(story.storiesPath)+1+len(currentStory.buildStoryDirname())+1:],
+            })            
+            return HttpResponse(data, content_type='application/json')
+        else:
+            return HttpResponse("Error invalid story")
     else:
         return HttpResponse("Error invalid input")
 

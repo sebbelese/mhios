@@ -3,7 +3,7 @@ from storages.backends.dropbox import DropBoxStorage
 from storages.utils import setting
 
 from dropbox.files import (
-    CommitInfo, WriteMode
+    CommitInfo, WriteMode, FileMetadata
 )
 
 _DEFAULT_MODE = 'add'
@@ -25,8 +25,16 @@ class CustomStorage(DropBoxStorage):
         name = self.get_available_name(name, max_length=max_length)
         return [name, self._getUploadLink(name)]
     
-    def getFilesList(self, path):
-        return self.client.files_list_folder(path=path)
+    def getFilesListAndSize(self, path):
+        res = self.client.files_list_folder(path=self._full_path(path), recursive=True)
+        fList = res.entries
+        print(res)
+        while (res.has_more):
+            res = self.client.files_list_folder_continue(res.cursor)
+            fList += res.entries
+        cleanList = []
+        return [[f.path_lower[len(self.root_path)+1:], f.size] for f in fList if isinstance(f, FileMetadata)]
+            
 
         
     def _getUploadLink(self, name):
