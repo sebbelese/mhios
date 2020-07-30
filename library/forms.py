@@ -29,7 +29,7 @@ class addStoryForm(forms.ModelForm):
     
     class Meta:
         model = story
-        fields = ('title','abstract','age','language','poster', 'x', 'y', 'width', 'height','rotation')
+        fields = ('title','abstract','age','licensing','language','poster', 'x', 'y', 'width', 'height','rotation')
         labels = {"poster": str(_("Poster"))+" ("+str(_("Optional"))+")"}
 
     def save(self, commit=True):

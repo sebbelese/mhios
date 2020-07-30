@@ -19,8 +19,18 @@ AGE_CHOICES = [
     ('10to99',_('10 y/o and +'))
     ]
 
+LICENSE_CHOICES = [
+    ('CC-0',_('Creative Commons Zero (Public Domain)')),
+    ('CC-BY',_('Creative Commons Attribution')),
+    ('CC-BY-SA',_('Creative Commons Attribution-ShareAlike')),
+    ('CC-BY-ND',_('Creative Commons Attribution-NoDerivs')),
+    ('CC-BY-NC',_('Creative Commons Attribution-NonCommercial')),
+    ('CC-BY-NC-SA',_('Creative Commons Attribution-NonCommercial-ShareAlike')),
+    ('CC-BY-NC-ND',_('Creative Commons Attribution-NonCommercial-NoDerivs')),
+    ]
+
 LANGUAGE_CHOICES_DICT = dict(LANGUAGE_CHOICES)
-AGE_CHOICES_DICT = dict(AGE_CHOICES) 
+AGE_CHOICES_DICT = dict(AGE_CHOICES)
 
 
 # Create your models here.
@@ -35,6 +45,7 @@ class story(models.Model):
     poster = models.ImageField(_("Poster"),blank=True,upload_to=postersPath, storage=customstorage.CustomStorage())
     abstract = models.TextField(_("Abstract"))
     age = models.CharField(_("Age"), max_length=15, choices=AGE_CHOICES)
+    licensing = models.CharField(_("License"), max_length=60, choices=LICENSE_CHOICES, default="CC-BY")
     upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='upvotes')
     downvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='downvotes')
     uploader = models.ForeignKey('accounts.User', null=True, blank=True, on_delete=models.SET_NULL)

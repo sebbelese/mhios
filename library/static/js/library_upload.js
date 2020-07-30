@@ -182,7 +182,6 @@ $( "#formUpload" ).submit(function( event ) {
 	    //When the server has answered (story was created on server, but not uploaded)
 	    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 		storyId = JSON.parse(xhrAdd.responseText)['storyId'];
-		
 	
 		var zip = new JSZip();
 		zip.loadAsync( files_data )
@@ -200,19 +199,30 @@ $( "#formUpload" ).submit(function( event ) {
 			//Loop in files in zip
 			zip.forEach(function(file){
 			    promises.push($.get('uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
-				    
-				    
-				    //Unzip
-				    return zip.files[file].async('blob').then(function (fileData) {
-					if (fileData.size > 0){
-					    var uploadUrl =  data['uploadUrl'];
-					    totalPerFile[uploadUrl] = fileData.size;
-					    //UPLOAD HERE
-					    return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
-					}
-				    });
-				}));
+				
+				
+				//Unzip
+				return zip.files[file].async('blob').then(function (fileData) {
+				    if (fileData.size > 0){
+					var uploadUrl =  data['uploadUrl'];
+					totalPerFile[uploadUrl] = fileData.size;
+					//UPLOAD HERE
+					return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
+				    }
+				});
+			    }));
 			});
+			//We update the license file
+			promises.push($.get('uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
+			    licText = JSON.parse(xhrAdd.responseText)['license'];
+			    var licBlob = new Blob([licText], {
+				type: 'text/plain'
+			    });
+			    var uploadUrl =  dataLic['uploadUrl'];
+			    totalPerFile[uploadUrl] = licBlob.size;
+			    return upload_story(licBlob, storyId, uploadUrl, nbRetriesUpload);
+			}));
+				    
 			
 			Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
 			    $.get('uploadStoryDone', {story_id: storyId}).then(function(){

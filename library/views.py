@@ -5,6 +5,7 @@ from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
+
 import json
 import uuid
 
@@ -186,7 +187,16 @@ def addStory(request):
         if currentStoryForm.is_valid():
             currentStory = currentStoryForm.save()
             storyId = currentStory.id
-            data = json.dumps({'storyId' : storyId})
+            #We prepare the license file
+            licFin = open('static/licenses/'+currentStory.licensing+'.txt', "rt")
+            licText = licFin.read()
+            licFin.close()
+            licText = licText.replace('<WORK>', '"'+currentStory.title+'"')
+            licText = licText.replace('<AUTHOR(S)>', currentStory.uploader.username)
+            data = json.dumps({
+                'storyId' : storyId,
+                'license' : licText,
+            })
             return HttpResponse(data, content_type='application/json')
         else:
             return HttpResponse("Error invalid input")
