@@ -16,7 +16,7 @@
 
 {% block body %}
 
-<div class="row">
+<div class="row no-gutters">
   <div class="dropdown col-12">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {% trans "Sort by" %}
@@ -64,9 +64,9 @@
 	<div class="col-sm-3 col-6">  {{ languageDict|get_item:story.language }} </div>
 	<div class="col-sm-3 col-6">  {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %} </div>
 	<div class="col-sm-3 col-6">  
-	  <button class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}><span>-</span> </button><!--
+	  <button {% if user.is_authenticated %} class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"><span>-</span> </button><!--
 																																    --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
-																																										   --><button class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}" type="button" {% if not user.is_authenticated %} disabled {% endif %}> <span>+</span></button>
+																																										   --><button {% if user.is_authenticated %} class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}"  {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"> <span>+</span></button>
 	</div>
 	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %} <button data-storyid="{{story.id}}" class="downloadLink" title="{%trans 'Download story' %}" type="button" ><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 45.812 45.812" style="enable-background:new 0 0 45.812 45.812;"
@@ -78,11 +78,7 @@
 		<path d="M42.443,19.372c-1.623,0-2.947,1.315-2.947,2.938v16.392c0,0.678-0.521,1.217-1.203,1.217H7.471
 			c-0.68,0-1.239-0.539-1.239-1.217V22.309c0-1.622-1.282-2.938-2.905-2.938c-1.622,0-2.905,1.315-2.905,2.938v16.392
 			c0,3.918,3.131,7.111,7.05,7.111h30.821c3.92,0,7.098-3.193,7.098-7.111V22.309C45.391,20.687,44.064,19.372,42.443,19.372z"/></svg></button>
-	  <button class="toUserLib {% if user in story.inUserLibrary.all  %} selected {% endif %}" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" title="{% if user in story.inUserLibrary.all  %} {% trans 'Remove from personal library' %} {% else %}{% trans 'Add to personal library' %}{% endif %}" type="button"
-		  {% if not user.is_authenticated %}
-		  disabled
-		  {% endif %}
-		  ><!--
+	  <button {% if user.is_authenticated %} class="toUserLib {% if user in story.inUserLibrary.all  %} selected {% endif %}" id="toUserLib{{story.id}}" data-storyid="{{story.id}}" title="{% if user in story.inUserLibrary.all  %} {% trans 'Remove from personal library' %} {% else %}{% trans 'Add to personal library' %}{% endif %}" {% else %} class="toUserLib"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"><!--
 		     --><svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 			     viewBox="0 0 1000 1000">
 	      <path d="M748.65,794c0.1-15-5.6-29.2-16.2-40c-10.6-10.7-24.8-16.6-39.8-16.6H72.85v112.1h618.7
@@ -118,7 +114,7 @@
 {% else %}
 <p>{% trans "No story is available that matches your criteria" %}</p>
 {% endif %}
-<div class="pagination row">
+<div class="pagination row no-gutters">
   <div class="col-4 pageChoice" style="text-align:left;">
     {% if stories_list.has_previous %}
     <a href="?page=1"><!--

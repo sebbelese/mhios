@@ -4,6 +4,7 @@
 
 .dropdown {
     text-align: center;
+    padding:0px;
 }
 
 .dropdown-toggle {
@@ -139,3 +140,4 @@
 .toUserLib.selected>svg{
     fill: var(--theme-1-color);
 }
+
