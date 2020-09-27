@@ -14,7 +14,7 @@ LANGUAGE_CHOICES= [
 
 AGE_CHOICES = [
     ('3to4',_('3 to 4 y/o')),
-    ('5to7',_('5 to 7 y/o')),
+    ('5to6',_('5 to 6 y/o')),
     ('7to9',_('7 to 9 y/o')),
     ('10to99',_('10 y/o and +'))
     ]

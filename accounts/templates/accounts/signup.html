@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block body %}
-
-
-  <h2>Sign up</h2>
+<br>
+<div class="container">
+  <h2>{% trans "Sign up" %}</h2>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -21,4 +21,5 @@
     {% endfor %}
     <button type="submit"> {% trans "Sign up" %} </button>
   </form>
+</div>
 {% endblock %}
