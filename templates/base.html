@@ -1,6 +1,7 @@
 {% load static %}
 {% load i18n %}
 
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -27,17 +28,17 @@
             </button>
 	  </div>
 	  <div class="modal-body">
-            Log in or register freely to use advanced features
+            {% trans "Log in or register freely to use advanced features" %}
 	    <ul>
-	      <li>Vote for your favourites stories</li>
-	      <li>Upload and share your own creations</li>
-	      <li>Create your online personal library and stash your private selection</li>
+	      <li>{% trans "Vote for your favourites stories" %}</li>
+	      <li>{% trans "Upload and share your own creations" %}</li>
+	      <li>{% trans "Create your online personal library and stash your private selection" %}</li>
 	    </ul>
 	  </div>
 	  <div class="modal-footer">
-            <a href="{% url "login" %}"><button type="button" class="btn btn-primary">Log In</button></a>
-	    <a href="{% url "signup" %}"><button type="button" class="btn btn-primary">Sign Up</button></a>
-	    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="{% url "login" %}"><button type="button" class="btn btn-primary">{% trans "Log in" %}</button></a>
+	    <a href="{% url "signup" %}"><button type="button" class="btn btn-primary">{% trans "Sign up" %}</button></a>
+	    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
 	  </div>
 	</div>
       </div>
@@ -52,21 +53,79 @@
 	<div class="collapse navbar-collapse" id="main-navigation">
 	  <ul class="navbar-nav">
 	    <li class="nav-item">
+	      {% get_current_language as LANGUAGE_CODE %}
+	      <form action="{% url 'set_language' %}" id="set-language-form" method="post">{% csrf_token %}
+		<input type="hidden" name="language" value={% if LANGUAGE_CODE == "fr" %} "en" {% else %} "fr" {% endif %} />
+		<a href="" title="{% if LANGUAGE_CODE == "fr" %} English {% else %} Français {% endif %}" class="nav-link" id="set-language-submit-link">{% if LANGUAGE_CODE == "fr" %}<!--
+		--><svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="s">
+	<path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg><!--
+	-->{% else %}<!--
+--><svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600"><rect width="900" height="600" fill="#ED2939"/><rect width="600" height="600" fill="#fff"/><rect width="300" height="600" fill="#002395"/></svg><!--
+-->{% endif %}</a>
+	      </form>
+	    </li>
+	    <li>
+	      <a class="nav-link" title="{% trans "Library" %}" href="{% url 'library:index' %}"><!--
+		 --><svg class="navicon {% if request.path == "/"|add:LANGUAGE_CODE|add:"/library/" %}activenav{% endif %}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 297 297" style="enable-background:new 0 0 297 297;" xml:space="preserve">
+<path d="M271.519,297c5.546,0,10.043-4.497,10.043-10.043V10.042C281.562,4.496,277.065,0,271.519,0H25.481
+	c-5.546,0-10.043,4.496-10.043,10.042v276.915c0,5.546,4.497,10.043,10.043,10.043H271.519z M230.724,184.607h-10.672v-41.45h10.672
+	V184.607z M261.477,112.387v72.221h-10.668v-51.492c0-5.547-4.497-10.043-10.042-10.043H210.01c-5.546,0-10.043,4.496-10.043,10.043
+	v51.492h-23.228l12.259-49.059c1.345-5.38-1.928-10.833-7.31-12.178c-5.374-1.337-10.831,1.928-12.177,7.31l-13.476,53.927h-10.054
+	l12.26-49.058c1.346-5.381-1.927-10.833-7.308-12.177c-5.382-1.345-10.832,1.926-12.177,7.307l-13.476,53.928H35.523v-72.221
+	H261.477z M76.948,92.302H66.276V50.853h10.672V92.302z M261.477,20.084v72.218h-89.758l-13.477-53.927
+	c-1.346-5.381-6.8-8.657-12.178-7.307c-5.38,1.344-8.652,6.796-7.307,12.177l12.26,49.057h-10.054L127.49,38.376
+	c-1.346-5.382-6.8-8.651-12.177-7.309c-5.382,1.345-8.653,6.796-7.31,12.177l12.257,49.058H97.033V40.811
+	c0-5.546-4.497-10.043-10.043-10.043H56.233c-5.546,0-10.042,4.497-10.042,10.043v51.491H35.523V20.084H261.477z M35.523,245.5
+	l7.85,31.415h-7.85V245.5z M92.324,276.915h-10.67v-41.452h10.67V276.915z M148.401,276.915h-10.672v-41.452h10.672V276.915z
+	 M261.477,204.692v72.223h-92.991V225.42c0-5.546-4.496-10.042-10.042-10.042h-30.756c-5.546,0-10.042,4.496-10.042,10.042v51.495
+	h-5.236V225.42c0-5.546-4.496-10.042-10.042-10.042H71.612c-5.546,0-10.043,4.496-10.043,10.042v41.465l-10.969-43.898
+	c-1.346-5.383-6.801-8.656-12.178-7.309c-1.055,0.264-2.025,0.689-2.9,1.237v-12.222H261.477z"/>
+	    </svg><!--
+		    --></a>
+	    </li>
+	    <li>
+	      <a class="nav-link" title="{% trans "Story teller" %}" href="{% url 'reader:index' %}"><!--
+								    --><svg class="navicon {% if request.path == "/"|add:LANGUAGE_CODE|add:"/reader/" %}activenav{% endif %}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400">
+		<path d="M297.465,63.213H95.538c-6.784,0-12.303-5.52-12.303-12.305c0-6.784,5.519-12.307,12.303-12.307h220.226
+			c10.643,0,19.302-8.657,19.302-19.3C335.065,8.659,326.406,0,315.764,0H95.538c-28.07,0-50.903,22.838-50.903,50.907V342.1
+			c0,31.927,25.975,57.9,57.9,57.9h194.93c31.926,0,57.9-25.976,57.9-57.9V121.112C355.365,89.189,329.391,63.213,297.465,63.213z
+			 M279.553,269.3c0,15.711-12.355,29.618-29.902,31.835c-18.514,2.336-35.226-9.291-37.334-25.972
+			c-2.1-16.681,11.201-32.091,29.711-34.427c5.326-0.677,10.505-0.188,15.227,1.241v-65.477h-69.386v107.377
+			c0,16.075-12.021,30.391-29.869,32.644c-18.512,2.336-35.228-9.291-37.33-25.972c-2.105-16.681,11.195-32.097,29.71-34.429
+			c5.314-0.67,10.475-0.188,15.185,1.23v-92c0-6.159,4.996-11.147,11.155-11.147h91.688c6.158,0,11.148,4.988,11.148,11.147
+			L279.553,269.3L279.553,269.3z"/>
+</svg><!--
+
+								    --></a>
+	    </li>
+	    <li>
+	      <a class="nav-link" title="{% trans "Discussion forum" %}" href="/{{ LANGUAGE_CODE }}/forum"><!--
+		--><svg class="navicon {% if request.path == "/"|add:LANGUAGE_CODE|add:"/forum/" %}activenav{% endif %}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		<path d="M372.199,42.485H41.759C18.733,42.485,0,61.23,0,84.272v267.199c0,23.042,18.733,41.788,41.759,41.788H89.84
+			l-22.709,48.779c-6.537,14.043,8.311,28.247,21.976,21.584l144.281-70.363h138.812c23.026,0,41.759-18.746,41.759-41.788V84.272
+			C413.957,61.23,395.225,42.485,372.199,42.485z M327.898,305.021H86.06c-9.024,0-16.34-7.316-16.34-16.34
+			c0-9.024,7.316-16.34,16.34-16.34h241.838c9.024,0,16.34,7.316,16.34,16.34C344.238,297.705,336.922,305.021,327.898,305.021z
+			 M327.898,234.212H86.06c-9.024,0-16.34-7.316-16.34-16.34c0-9.024,7.316-16.34,16.34-16.34h241.838
+			c9.024,0,16.34,7.316,16.34,16.34C344.238,226.896,336.922,234.212,327.898,234.212z M327.898,163.404H86.06
+			c-9.024,0-16.34-7.316-16.34-16.34s7.316-16.34,16.34-16.34h241.838c9.024,0,16.34,7.316,16.34,16.34
+			S336.922,163.404,327.898,163.404z"/>
+		<path d="M470.267,118.74h-18.181c-3.008,0-5.447,2.439-5.447,5.447v227.284c0,41.062-33.393,74.469-74.439,74.469H242.188
+			c-0.827,0-1.644,0.188-2.388,0.551l-45.216,22.052c-3.362,1.639-4.117,6.109-1.471,8.752c7.556,7.545,17.978,12.22,29.474,12.22
+			h247.659C493.307,469.514,512,450.821,512,427.76V160.538C512,137.49,493.278,118.74,470.267,118.74z"/>
+	  </svg><!--    
+--></a>
+	    </li>
+	    <li class="nav-item">
               {% if user.is_authenticated %}
 	      <a class="nav-link" href="{% url "logout" %}" >{% trans "Log Out" %}</a>
 	      {% else %}
-	      <a class="nav-link" href="{% url "login" %}" >{% trans "Log In" %}</a>
+	      <a class="nav-link" href="{% url "login" %}" >{% trans "Log in" %}</a>
 	    <li class="nav-item">
 	    </li>
 	      <a class="nav-link" href="{% url "signup" %}" >{% trans "Sign up" %}</a>
               {% endif %}
-	    </li>
-	    <li class="nav-item">
-	      {% get_current_language as LANGUAGE_CODE %}
-	      <form action="{% url 'set_language' %}" id="set-language-form" method="post">{% csrf_token %}
-		<input type="hidden" name="language" value={% if LANGUAGE_CODE == "fr" %} "en" {% else %} "fr" {% endif %} />
-		<a href="" class="nav-link" id="set-language-submit-link">{% if LANGUAGE_CODE == "fr" %}English{% else %}Français{% endif %}</a>
-	      </form>
 	    </li>
 	    {% block navbar %}
             {% endblock %}

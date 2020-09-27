@@ -84,3 +84,17 @@ a:hover {
 }
 
 
+.flag {
+    width: 40;
+    height: 20;
+}
+
+.activenav>path{ 
+    fill: white;
+    opacity : 0.5;
+}
+
+.navicon {
+    width: 25;
+    height: 25;
+}

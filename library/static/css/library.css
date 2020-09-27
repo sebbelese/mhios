@@ -141,3 +141,8 @@
     fill: var(--theme-1-color);
 }
 
+#addstoryicon {
+    width: 40;
+    height: 40;
+}
+
