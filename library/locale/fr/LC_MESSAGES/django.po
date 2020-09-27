@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-27 21:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: library/forms.py:33 library/models.py:45
+#: library/templates/library/watchStory.html:8
+msgid "Poster"
+msgstr "Vignette"
+
+#: library/forms.py:33
+msgid "Optional"
+msgstr "Facultatif"
+
+#: library/models.py:10
+msgid "French"
+msgstr "Français"
+
+#: library/models.py:11
+msgid "English"
+msgstr "Anglais"
+
+#: library/models.py:12
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: library/models.py:16
+msgid "3 to 4 y/o"
+msgstr "3 à 4 ans"
+
+#: library/models.py:17
+msgid "5 to 6 y/o"
+msgstr "5 à 6 ans"
+
+#: library/models.py:18
+msgid "7 to 9 y/o"
+msgstr "7 à 9 ans"
+
+#: library/models.py:19
+msgid "10 y/o and +"
+msgstr "10 ans et +"
+
+#: library/models.py:23
+msgid "Creative Commons Zero (Public Domain)"
+msgstr "Creative Commons Zero (Domaine Public)"
+
+#: library/models.py:24
+msgid "Creative Commons Attribution"
+msgstr ""
+
+#: library/models.py:25
+msgid "Creative Commons Attribution-ShareAlike"
+msgstr ""
+
+#: library/models.py:26
+msgid "Creative Commons Attribution-NoDerivs"
+msgstr ""
+
+#: library/models.py:27
+msgid "Creative Commons Attribution-NonCommercial"
+msgstr ""
+
+#: library/models.py:28
+msgid "Creative Commons Attribution-NonCommercial-ShareAlike"
+msgstr ""
+
+#: library/models.py:29
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs"
+msgstr ""
+
+#: library/models.py:42 library/templates/library/index.html:29
+msgid "Title"
+msgstr "Titre"
+
+#: library/models.py:43
+msgid "Date published"
+msgstr "Date de publication"
+
+#: library/models.py:44 library/templates/library/index.html:35
+#: library/templates/library/watchStory.html:6
+msgid "Language"
+msgstr "Langue"
+
+#: library/models.py:46
+msgid "Abstract"
+msgstr "Résumé"
+
+#: library/models.py:47 library/templates/library/index.html:46
+msgid "Age"
+msgstr "Age"
+
+#: library/models.py:48
+msgid "License"
+msgstr "Licence"
+
+#: library/templates/library/addStory.html:43
+msgid ""
+"By clicking the <i>Upload story</i> button, I certify that I have the right "
+"to post the story on this website under the associated license."
+msgstr ""
+"En cliquant <i>Télécharger</i> , je certifie détenir les droits nécessaires "
+"afin de poster l'histoire sur ce site sous la licence associée."
+
+#: library/templates/library/addStory.html:49
+msgid "Upload story"
+msgstr "Télécharger"
+
+#: library/templates/library/index.html:13
+msgid "Add story"
+msgstr "Ajouter une histoire"
+
+#: library/templates/library/index.html:23
+msgid "Sort by"
+msgstr "Trier par"
+
+#: library/templates/library/index.html:26
+msgid "Score"
+msgstr "Score"
+
+#: library/templates/library/index.html:27
+msgid "Age category"
+msgstr "Catégorie d'âge"
+
+#: library/templates/library/index.html:28
+msgid "Most recent"
+msgstr "Plus récents"
+
+#: library/templates/library/index.html:30
+msgid "Author"
+msgstr "Auteur"
+
+#: library/templates/library/index.html:41
+#: library/templates/library/index.html:52
+msgid "All"
+msgstr "Tout"
+
+#: library/templates/library/index.html:77
+msgid "by"
+msgstr "par"
+
+#: library/templates/library/index.html:77
+msgid "a deleted user"
+msgstr "un ancien utilisateur"
+
+#: library/templates/library/index.html:77
+msgid "Download story"
+msgstr "Télécharger"
+
+#: library/templates/library/index.html:87
+msgid "Remove from personal library"
+msgstr "Retirer de ma librairie personnelle"
+
+#: library/templates/library/index.html:87
+msgid "Add to personal library"
+msgstr "Ajouter à ma librairie personnelle"
+
+#: library/templates/library/index.html:121
+msgid "No story is available that matches your criteria"
+msgstr "Aucune histoire ne correspond aux critères choisis"
