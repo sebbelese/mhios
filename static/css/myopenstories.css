@@ -1,0 +1,12 @@
+.mhiosmaj {
+    color: var(--theme-2-color);
+}
+
+.mhiosfade {
+    opacity: 0.3;
+}
+
+.mhiosblock {
+    white-space:nowrap;
+}
+

@@ -17,7 +17,7 @@ body {
   padding: 0;
   margin: 0;
   background: var(--theme-0-color);
-  color: theme-3-color;
+  color: var(--theme-3-color);
 }
 
 .full-width {
@@ -97,4 +97,12 @@ a:hover {
 .navicon {
     width: 25;
     height: 25;
+}
+
+.logo {
+    color: var(--theme-0-color);
+    font-size: 1.8rem;
+}
+.logocenter {
+    color: var(--theme-3-color);
 }

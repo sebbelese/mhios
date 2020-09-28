@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-27 21:49+0200\n"
+"POT-Creation-Date: 2020-09-28 21:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs"
 msgstr ""
 
-#: library/models.py:42 library/templates/library/index.html:29
+#: library/models.py:42 library/templates/library/index.html:30
 msgid "Title"
 msgstr "Titre"
 
@@ -91,7 +91,7 @@ msgstr "Titre"
 msgid "Date published"
 msgstr "Date de publication"
 
-#: library/models.py:44 library/templates/library/index.html:35
+#: library/models.py:44 library/templates/library/index.html:36
 #: library/templates/library/watchStory.html:6
 msgid "Language"
 msgstr "Langue"
@@ -100,7 +100,7 @@ msgstr "Langue"
 msgid "Abstract"
 msgstr "Résumé"
 
-#: library/models.py:47 library/templates/library/index.html:46
+#: library/models.py:47 library/templates/library/index.html:47
 msgid "Age"
 msgstr "Age"
 
@@ -120,55 +120,55 @@ msgstr ""
 msgid "Upload story"
 msgstr "Télécharger"
 
-#: library/templates/library/index.html:13
+#: library/templates/library/index.html:15
 msgid "Add story"
 msgstr "Ajouter une histoire"
 
-#: library/templates/library/index.html:23
+#: library/templates/library/index.html:24
 msgid "Sort by"
 msgstr "Trier par"
 
-#: library/templates/library/index.html:26
+#: library/templates/library/index.html:27
 msgid "Score"
 msgstr "Score"
 
-#: library/templates/library/index.html:27
+#: library/templates/library/index.html:28
 msgid "Age category"
 msgstr "Catégorie d'âge"
 
-#: library/templates/library/index.html:28
+#: library/templates/library/index.html:29
 msgid "Most recent"
 msgstr "Plus récents"
 
-#: library/templates/library/index.html:30
+#: library/templates/library/index.html:31
 msgid "Author"
 msgstr "Auteur"
 
-#: library/templates/library/index.html:41
-#: library/templates/library/index.html:52
+#: library/templates/library/index.html:42
+#: library/templates/library/index.html:53
 msgid "All"
 msgstr "Tout"
 
-#: library/templates/library/index.html:77
+#: library/templates/library/index.html:78
 msgid "by"
 msgstr "par"
 
-#: library/templates/library/index.html:77
+#: library/templates/library/index.html:78
 msgid "a deleted user"
 msgstr "un ancien utilisateur"
 
-#: library/templates/library/index.html:77
+#: library/templates/library/index.html:78
 msgid "Download story"
 msgstr "Télécharger"
 
-#: library/templates/library/index.html:87
+#: library/templates/library/index.html:88
 msgid "Remove from personal library"
 msgstr "Retirer de ma librairie personnelle"
 
-#: library/templates/library/index.html:87
+#: library/templates/library/index.html:88
 msgid "Add to personal library"
 msgstr "Ajouter à ma librairie personnelle"
 
-#: library/templates/library/index.html:121
+#: library/templates/library/index.html:122
 msgid "No story is available that matches your criteria"
 msgstr "Aucune histoire ne correspond aux critères choisis"

@@ -14,7 +14,6 @@ var allowPause;
 var paused;
 
 function init () {
-    console.log("inhome",isUserLibrary)
     document.getElementById("btnGlobalLibrary").disabled = !isUserLibrary;
     document.getElementById("btnUserLibrary").disabled = isUserLibrary;
     if (soundInstance != null){
@@ -41,10 +40,8 @@ function init () {
 }
 
 function getUrl(path){
-    console.log("is"+storiesId)
     return $.get('getFileUrl', {story_id: storiesId[storyIdx], filename : path}).then(function(data){
 	var downloadUrl =  data['downloadUrl'];
-	console.log("upurl"+downloadUrl);
 	return downloadUrl;
     });
 }
@@ -70,7 +67,6 @@ function onOk(){
     document.getElementById("btnGlobalLibrary").disabled = true;
     document.getElementById("btnUserLibrary").disabled = true;
     atHome = false;
-    console.log("OK")
     if (nodeOnOK != "") {
 	var nodes = storyMeta.actionNodes.filter( node => node.id == nodeOnOK);
 	if(nodes==undefined || nodes.length != 1){
@@ -83,7 +79,6 @@ function onOk(){
 }
 
 function onHome() {
-    console.log("inhome0",isUserLibrary)
     if (allowHome){
 	if (nodeOnHome == ""){
 	    init();
@@ -153,7 +148,6 @@ function playStageNode(node){
 	    format: node.audio.split('.').pop().toLowerCase(),
 	    autoplay: true
 	});
-	console.log("played");
 	soundInstance.on('end', function(){
 	    if (node.controlSettings.autoplay){
 		onOk();
@@ -169,10 +163,8 @@ function startStory(){
 //    var metapromise = zip.file("story.json").async("string");
 
     getUrl("story.json").then((url) => {
-	console.log("url is"+url)
 	$.getJSON(url).then((story) => {
 	    storyMeta = story;
-	    console.log(storyMeta.stageNodes);
 	    var coverNodes = storyMeta.stageNodes.filter( node => node.squareOne == true);
 	    if(coverNodes==undefined || coverNodes.length != 1){
 		alert("ERROR: story should have a single cover node"+coverNodes);
@@ -234,9 +226,6 @@ function onPause() {
 function switchLibrary(toUserLibrary){
     
     $.get('switchLibrary', {is_user_library: toUserLibrary}, function(data){
-	console.log("set to ",toUserLibrary);
-	console.log("eheh");
-	console.log("DATA"+JSON.stringify(data));
 	isUserLibrary =  data.isUserLibrary
 	storiesId = JSON.parse(data['storiesId']);
 	allowHome = true;

@@ -4,7 +4,7 @@
 
 {% block head %}
 <link href="carousel.css" rel="stylesheet">
-<link href="{% static 'css/myopenstories.css' %}">
+<link href="{% static 'css/myopenstories.css' %}" rel="stylesheet" >
 {% endblock %}
 
 {% block body %}
@@ -76,22 +76,25 @@
 <!-- Marketing messaging and featurettes
      ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
-
+<div class="container marketing text-center">
+  <h1>
+    <span class="mhiosblock"> <span class="mhiosmaj">M</span>es <span class="mhiosmaj">H</span>istoires</span> <span class="mhiosblock"><span class="mhiosmaj">I</span>nteractive<span class="mhiosfade">s</span></span> <span class="mhiosblock"><span class="mhiosmaj">O</span>pen <span class="mhiosmaj">S</span>tories</span>
+  </h1>
+</div>
 <div class="container marketing">
-
   <!-- Three columns of text below the carousel -->
   <div class="row">
     <div class="col-lg-4">
       <img class="rounded-circle" src="{% static 'media/library_poster.jpg' %}" alt="Generic placeholder image" width="140" height="140">
       <h2>{% trans "Open library" %}</h2>
-      <p>{% trans "Designed to encourage the sharing of interactive stories created by the community for the community, myopenstories is an open repository for stories in the" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* {% trans "format, a set of tools to read and create interactive stories with possibility to transfer from and to the" %} <a href="https://www.lunii.fr"> lunii</a>*{% trans " story teller device." %}</p>
+      <p>{% trans "Designed to encourage the sharing of interactive stories created by the community for the community, mhios is an open repository for stories in the" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a>* {% trans "format, a set of tools to read and create interactive stories with possibility to transfer from and to the" %} <a href="https://www.lunii.fr"> lunii</a>*{% trans " story teller device." %}</p>
       <p>{% trans "Registration is not necessary to browse or download the stories. Registered users can upload their own stories and vote for their favourite stories." %}</p>
       <p><a class="btn btn-secondary" href="{% url 'library:index' %}" role="button">{% trans "Explore library" %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="rounded-circle" src="{% static 'media/reader_poster.jpg' %}" alt="Generic placeholder image" width="140" height="140">
       <h2>{% trans "Story teller" %}</h2>
-      <p>{% trans "myopenstories includes an interactive story teller which can be used to read interactively any story available in the library." %}</p>
+      <p>{% trans "mhios includes an interactive story teller which can be used to read interactively any story available in the library." %}</p>
       <p> {% trans "Registration is not necessary to listen to the stories. To facilitate access to your favourite stories, register freely to create your online personal library and stash your private selection." %} </p>
       <p><a class="btn btn-secondary" href="{% url 'reader:index' %}" role="button">{% trans "Bring stories to life" %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
@@ -106,6 +109,6 @@
 <!-- FOOTER -->
 <footer class="container">
   <p * class="float-right"><a href="#">{% trans "Privacy" %}</a></p>
-  <p>*{% trans "myopenstories is not affiliated with" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a> {% trans "or" %} <a href="https://www.lunii.fr"> lunii</a> {% trans "in any way" %}</p>
+  <p>*{% trans "mhios is not affiliated with" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a> {% trans "or" %} <a href="https://www.lunii.fr"> lunii</a> {% trans "in any way" %}</p>
 </footer>
 {% endblock %}
