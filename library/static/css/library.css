@@ -124,7 +124,7 @@
 
 /* User lib button */
 
-.toUserLib, .downloadLink {
+.toUserLib, .downloadLink, .play {
     border:none;
     background-color:transparent;
     outline:none;
@@ -133,7 +133,7 @@
     margin: 0;
 }
 
-.toUserLib>svg, .downloadLink>svg{
+.toUserLib>svg, .downloadLink>svg, .play>svg{
     width:30px;
 }
 

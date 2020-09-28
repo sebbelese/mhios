@@ -8,17 +8,30 @@ from library import customstorage
 import json
 
 def index(request):
-    if request.user.is_authenticated:
-        context = {
-            'isUserLibrary' : True,
-            'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()])
-        }
+    if request.method == "GET" and 'startStoryId' in request.GET:
+        storyId = int(request.GET.get('startStoryId'))
     else:
-        context = {
-            'isUserLibrary' : False,
-            'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()])
-        }
+        storyId = -1
+
+    startStoryIdx = -1
+    if storyId < 0 and request.user.is_authenticated: #No specific story selected and authenticated user: default is user library
+        isUserLib = True
+        storiesList = [ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]
+    else: #Specific story selected or unauthenticated user: default is global library
+        isUserLib = False
+        storiesList = [ story_instance.id for story_instance in story.objects.all()]
+        if storyId >= 0: #A story is selected
+            startStoryIdx = storiesList.index(storyId)
+
+        
+    context = {
+        'isUserLibrary' : isUserLib,
+        'storiesId' : json.dumps(storiesList),
+        'startStoryId' : startStoryIdx
+    }
     return render(request, 'reader/index.html', context)
+
+
 
 @login_required
 def switchLibrary(request):
@@ -29,12 +42,14 @@ def switchLibrary(request):
         if isUserLibrary:
             data = json.dumps({
                 'isUserLibrary' : True,
-                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()])
+                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]),
+                'startStoryId' : -1
             })
         else:
             data = json.dumps({
                 'isUserLibrary' : False,
-                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()])
+                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()]),
+                'startStoryId' : -1
             })
         print(data)
         return HttpResponse(data, content_type='application/json')

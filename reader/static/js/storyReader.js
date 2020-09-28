@@ -28,7 +28,12 @@ function init () {
     currentActionNode = null;
     document.getElementById("btnLeft").disabled = false;
     document.getElementById("btnRight").disabled = false;
-    storyIdx = 0;
+    if (storyIdStart >= 0){
+	storyIdx = storyIdStart;
+	storyIdStart = -1;
+    }else{
+	storyIdx = 0;
+    }
     atHome = true;
     allowHome = false;
     document.getElementById("btnHome").disabled = !allowHome;
