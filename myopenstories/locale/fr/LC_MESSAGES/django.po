@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-28 22:17+0200\n"
+"POT-Creation-Date: 2020-09-29 22:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,15 +41,11 @@ msgstr ""
 "Créez votre bibliothèque personnelle pour garder une accès facile à votre "
 "sélection"
 
-#: templates/base.html:39 templates/base.html:124
-#, fuzzy
-#| msgid "Log In"
+#: templates/base.html:39 templates/base.html:126
 msgid "Log in"
 msgstr "Connexion"
 
-#: templates/base.html:40 templates/base.html:127
-#, fuzzy
-#| msgid "Sign up today"
+#: templates/base.html:40 templates/base.html:129
 msgid "Sign up"
 msgstr "Inscrivez vous"
 
@@ -57,19 +53,19 @@ msgstr "Inscrivez vous"
 msgid "Close"
 msgstr "Fermer"
 
-#: templates/base.html:68
+#: templates/base.html:70
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: templates/base.html:88 myopenstories/templates/myopenstories/index.html:96
+#: templates/base.html:90 myopenstories/templates/myopenstories/index.html:95
 msgid "Story teller"
 msgstr "Boîte à histoire"
 
-#: templates/base.html:103 myopenstories/templates/myopenstories/index.html:103
+#: templates/base.html:105 myopenstories/templates/myopenstories/index.html:102
 msgid "Discussion forum"
 msgstr "Forum de discussion"
 
-#: templates/base.html:122
+#: templates/base.html:124
 msgid "Log Out"
 msgstr "Déconnexion"
 
@@ -93,72 +89,67 @@ msgstr "Mes sujets"
 msgid "Moderation queue"
 msgstr "File de modération"
 
-#: myopenstories/settings.py:148
+#: myopenstories/settings.py:151
 msgid "English"
 msgstr "Anglais"
 
-#: myopenstories/settings.py:149
+#: myopenstories/settings.py:152
 msgid "French"
 msgstr "Français"
 
-#: myopenstories/templates/myopenstories/index.html:24
+#: myopenstories/templates/myopenstories/index.html:23
 msgid "Browse the library"
 msgstr "Explorez la bibliothèque"
 
-#: myopenstories/templates/myopenstories/index.html:25
+#: myopenstories/templates/myopenstories/index.html:24
 msgid "Designed by anyone. Free to anyone."
 msgstr "Créé par tous. Gratuit pour tous."
 
-#: myopenstories/templates/myopenstories/index.html:33
+#: myopenstories/templates/myopenstories/index.html:32
 msgid "Go to interactive teller"
 msgstr "Vers la boîte à histoires"
 
-#: myopenstories/templates/myopenstories/index.html:34
+#: myopenstories/templates/myopenstories/index.html:33
 msgid "Build your own adventures."
 msgstr "Construisez vos propres aventures"
 
-#: myopenstories/templates/myopenstories/index.html:42
+#: myopenstories/templates/myopenstories/index.html:41
 msgid "Sign up today"
 msgstr "Inscrivez vous"
 
-#: myopenstories/templates/myopenstories/index.html:43
+#: myopenstories/templates/myopenstories/index.html:42
 msgid "Stash favourite stories to find them easily."
 msgstr "Collectez vos histoires favorites pour les retrouver facilement"
 
-#: myopenstories/templates/myopenstories/index.html:51
+#: myopenstories/templates/myopenstories/index.html:50
 msgid "Listen to a story"
 msgstr "Ecouter une histoire"
 
-#: myopenstories/templates/myopenstories/index.html:52
+#: myopenstories/templates/myopenstories/index.html:51
 msgid "Enjoy interactive stories with our reader."
 msgstr "Profitez d'une histoire interactive avec notre boîte à histoire"
 
-#: myopenstories/templates/myopenstories/index.html:60
+#: myopenstories/templates/myopenstories/index.html:59
 msgid "Explore the forum"
 msgstr "Explorez le forum"
 
-#: myopenstories/templates/myopenstories/index.html:61
+#: myopenstories/templates/myopenstories/index.html:60
 msgid "Discuss anything from stories to unicorns."
 msgstr "Discutez d'histoires... ou de licornes"
 
-#: myopenstories/templates/myopenstories/index.html:68
+#: myopenstories/templates/myopenstories/index.html:67
 msgid "Previous"
 msgstr "Précédent"
 
-#: myopenstories/templates/myopenstories/index.html:72
+#: myopenstories/templates/myopenstories/index.html:71
 msgid "Next"
 msgstr "Suivant"
 
-#: myopenstories/templates/myopenstories/index.html:89
+#: myopenstories/templates/myopenstories/index.html:88
 msgid "Open library"
 msgstr "Bibliothèque libre"
 
-#: myopenstories/templates/myopenstories/index.html:90
-#, fuzzy
-#| msgid ""
-#| "Designed to encourage the sharing of interactive stories created by the "
-#| "community for the community, myopenstories is an open repository for "
-#| "stories in the"
+#: myopenstories/templates/myopenstories/index.html:89
 msgid ""
 "Designed to encourage the sharing of interactive stories created by the "
 "community for the community, mhios is an open repository for stories in the"
@@ -167,7 +158,7 @@ msgstr ""
 "lacommunauté pour la communauté, myopenstories est une bibliothèque ouverte "
 "pourdes histoires au format"
 
-#: myopenstories/templates/myopenstories/index.html:90
+#: myopenstories/templates/myopenstories/index.html:89
 msgid ""
 "format, a set of tools to read and create interactive stories with "
 "possibility to transfer from and to the"
@@ -175,13 +166,11 @@ msgstr ""
 "un ensemble d'outils pour lire et créer des histoires interactives,avec des "
 "possibilités de transfert de et vers la boîte à histoires"
 
-#: myopenstories/templates/myopenstories/index.html:90
-#, fuzzy
-#| msgid "story teller device."
+#: myopenstories/templates/myopenstories/index.html:89
 msgid " story teller device."
 msgstr "."
 
-#: myopenstories/templates/myopenstories/index.html:91
+#: myopenstories/templates/myopenstories/index.html:90
 msgid ""
 "Registration is not necessary to browse or download the stories. Registered "
 "users can upload their own stories and vote for their favourite stories."
@@ -190,11 +179,11 @@ msgstr ""
 "histoires.Les utilisateurs enregitrés peuvent partager leurs propres "
 "créations ou voter pour leurs histoires favorites."
 
-#: myopenstories/templates/myopenstories/index.html:92
+#: myopenstories/templates/myopenstories/index.html:91
 msgid "Explore library"
 msgstr "Explorez la bibliothèque"
 
-#: myopenstories/templates/myopenstories/index.html:97
+#: myopenstories/templates/myopenstories/index.html:96
 msgid ""
 "mhios includes an interactive story teller which can be used to read "
 "interactively any story available in the library."
@@ -202,7 +191,7 @@ msgstr ""
 "mhios inclut une boîte à histoires permettant de lire de manièreinteractive "
 "toutes les histoires disponibles dans la bibliothèque"
 
-#: myopenstories/templates/myopenstories/index.html:98
+#: myopenstories/templates/myopenstories/index.html:97
 msgid ""
 "Registration is not necessary to listen to the stories. To facilitate access "
 "to your favourite stories, register freely to create your online personal "
@@ -213,21 +202,21 @@ msgstr ""
 "afin de créer votre propre bibliothèque personnelle et y collecter vos "
 "histoires préférées"
 
-#: myopenstories/templates/myopenstories/index.html:99
+#: myopenstories/templates/myopenstories/index.html:98
 msgid "Bring stories to life"
 msgstr "Donnez vie aux histoires"
 
-#: myopenstories/templates/myopenstories/index.html:104
+#: myopenstories/templates/myopenstories/index.html:103
 msgid "The discussion forum is the right place to discuss stories, the use of"
 msgstr ""
 "Le forum est l'entroit idéal pour discuter des histoires, de l'utilisation de"
 
-#: myopenstories/templates/myopenstories/index.html:104
-#: myopenstories/templates/myopenstories/index.html:112
+#: myopenstories/templates/myopenstories/index.html:103
+#: myopenstories/templates/myopenstories/index.html:111
 msgid "or"
 msgstr "ou"
 
-#: myopenstories/templates/myopenstories/index.html:104
+#: myopenstories/templates/myopenstories/index.html:103
 msgid ""
 "devices, suggestions and improvements for this website, or anything else you "
 "think relevant."
@@ -235,18 +224,73 @@ msgstr ""
 ", de suggestions et d'améliorations pour ce site, ou quoi que ce soit que "
 "vous jugiez opportun."
 
-#: myopenstories/templates/myopenstories/index.html:105
+#: myopenstories/templates/myopenstories/index.html:104
 msgid "Enjoy discussions"
 msgstr "Lancez la discussion"
 
-#: myopenstories/templates/myopenstories/index.html:111
-msgid "Privacy"
-msgstr "Vie privée"
+#: myopenstories/templates/myopenstories/index.html:110
+msgid "Privacy/Legal"
+msgstr "Vie privée/Légal"
 
-#: myopenstories/templates/myopenstories/index.html:112
+#: myopenstories/templates/myopenstories/index.html:111
 msgid "mhios is not affiliated with"
 msgstr "mhios n'est affilié à"
 
-#: myopenstories/templates/myopenstories/index.html:112
+#: myopenstories/templates/myopenstories/index.html:111
 msgid "in any way"
 msgstr "en aucune façon"
+
+#: myopenstories/templates/myopenstories/legal.html:6
+msgid "Legal information"
+msgstr "Informations légales"
+
+#: myopenstories/templates/myopenstories/legal.html:8
+msgid "Website owner/Publication manager/Development"
+msgstr "Propriétaire/Responsable publication/Développement"
+
+#: myopenstories/templates/myopenstories/legal.html:9
+msgid "Hosting"
+msgstr "Hébergement"
+
+#: myopenstories/templates/myopenstories/legal.html:10
+msgid "Privacy"
+msgstr "Vie privée"
+
+#: myopenstories/templates/myopenstories/legal.html:11
+msgid "During the user registration,"
+msgstr "Lors de votre enregistrement,"
+
+#: myopenstories/templates/myopenstories/legal.html:11
+msgid ""
+"collects your email address in order to facilitate the login and password "
+"recovery processes. No other use of your email address is made by us. You "
+"address is not shared publicly on the website and not shared with any other "
+"third parties."
+msgstr ""
+"collecte votre adress email afin de faciliter les processus de connexion et "
+"de récupération du mot de passe. Aucune autre utilisation n'est faite de "
+"votre adresse email. Votre adresse n'est pas partagée publiquement ou "
+"transmise à des parties tierces."
+
+#: myopenstories/templates/myopenstories/legal.html:13
+msgid ""
+"Our site saves small pieces of text information (cookies) on your device in "
+"order to deliver better content and for statistical purposes. You can "
+"disable the usage of cookies by changing the settings of your browser. By "
+"browsing our website without changing the browser settings you grant us "
+"permission to store that information on your device."
+msgstr ""
+"Notre site sauvegarde des traceurs textes (cookies) sur votre appareil afin "
+"de vous garantir de meilleurs contenus et à des fins de collectes "
+"statistiques.Vous pouvez désactiver l'usage des cookies en changeant les "
+"paramètres de votre navigateur. En poursuivant votre navigation sur notre "
+"site sans changer vos paramètres de navigateur vous nous accordez la "
+"permission de conserver des informations sur votre appareil. "
+
+#: myopenstories/templates/myopenstories/legal.html:15
+msgid ""
+"Please contact privacy@mhios.com for any question on our use of your "
+"personal data."
+msgstr ""
+"Vous pouvez contacter privacy@mhios.com pour toute question ou requête sur "
+"l'utilisation de vos données personnelles."

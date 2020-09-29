@@ -26,6 +26,7 @@ from . import views
 
 urlpatterns = i18n_patterns(
     path('', views.index, name='index'),
+    path('legal', views.legal, name='legal'),
     path('reader/', include(('reader.urls','reader'))),
     path('library/', include(('library.urls','library'))),
     path('accounts/', include('accounts.urls')),

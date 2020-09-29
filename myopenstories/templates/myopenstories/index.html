@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block head %}
-<link href="carousel.css" rel="stylesheet">
 <link href="{% static 'css/myopenstories.css' %}" rel="stylesheet" >
 {% endblock %}
 
@@ -108,7 +107,7 @@
 </div><!-- /.container -->
 <!-- FOOTER -->
 <footer class="container">
-  <p * class="float-right"><a href="#">{% trans "Privacy" %}</a></p>
+  <p * class="float-right"><a href="legal">{% trans "Privacy/Legal" %}</a></p>
   <p>*{% trans "mhios is not affiliated with" %} <a href="https://marian-m12l.github.io/studio-website">STUdio</a> {% trans "or" %} <a href="https://www.lunii.fr"> lunii</a> {% trans "in any way" %}</p>
 </footer>
 {% endblock %}

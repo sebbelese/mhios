@@ -8,3 +8,5 @@ gunicorn==20.0.4
 django-storages==1.9.1
 dropbox==10.2.0	
 django-haystack==3.0b1
+django-cookie-law==2.0.3
+

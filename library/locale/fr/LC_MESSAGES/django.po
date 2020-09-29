@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-28 22:17+0200\n"
+"POT-Creation-Date: 2020-09-29 22:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,34 +169,38 @@ msgstr "par"
 msgid "a deleted user"
 msgstr "un ancien utilisateur"
 
-#: library/templates/library/index.html:78
+#: library/templates/library/index.html:79
+msgid "Play in the story teller"
+msgstr ""
+
+#: library/templates/library/index.html:86
 msgid "Download story"
 msgstr "Télécharger"
 
-#: library/templates/library/index.html:88
+#: library/templates/library/index.html:96
 msgid "Remove from personal library"
 msgstr "Retirer de ma librairie personnelle"
 
-#: library/templates/library/index.html:88
+#: library/templates/library/index.html:96
 msgid "Add to personal library"
 msgstr "Ajouter à ma librairie personnelle"
 
-#: library/templates/library/index.html:122
+#: library/templates/library/index.html:130
 msgid "No story is available that matches your criteria"
 msgstr "Aucune histoire ne correspond aux critères choisis"
 
-#: library/templates/library/index.html:127
+#: library/templates/library/index.html:135
 msgid "First page"
 msgstr "Première page"
 
-#: library/templates/library/index.html:133
+#: library/templates/library/index.html:141
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: library/templates/library/index.html:145
+#: library/templates/library/index.html:153
 msgid "Next page"
 msgstr "Page suivante"
 
-#: library/templates/library/index.html:150
+#: library/templates/library/index.html:158
 msgid "Last page"
 msgstr "Dernière page"
