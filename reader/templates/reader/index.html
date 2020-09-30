@@ -43,7 +43,7 @@
 		 c11.601,14.8,18.4,33.5,18.2,53.7c-0.2,19.5-7,37.4-18.2,51.7c-16,20.4-41.1,33.5-68.899,33.5H96.65z"/>
       </svg>
     </button><!-- This comment to remove space between buttons	       
---><button  class="readerButton readerButtonSwitch" {% if user.is_authenticated %} id="btnUserLibrary" title="{% trans 'Switch to personal library' %}" disabled {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %}>
+--><button  class="readerButton readerButtonSwitch" id="btnUserLibrary" {% if user.is_authenticated %}  title="{% trans 'Switch to personal library' %}" disabled {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %}>
       <svg xmlns="http://www.w3.org/2000/svg" class="btnSvgSmall" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 95 95" >
 	<path d="M83.034,44.719c0.94-5.371-0.068-10.837-2.902-15.559c-3.119-5.197-8.075-8.868-13.956-10.336  c-1.805-0.451-3.657-0.68-5.506-0.68c-8.409,0-16.053,4.631-19.982,11.951c-1.879-1.284-4.1-1.975-6.421-1.975  c-3.09,0-5.983,1.214-8.147,3.419c-1.808,1.842-2.936,4.263-3.206,6.81c-9.064,0.543-16.441,8.08-16.66,17.267  c-0.113,4.732,1.624,9.226,4.89,12.65c3.267,3.426,7.671,5.374,12.405,5.487l56.547,0.005c8.088,0,14.667-6.579,14.667-14.667  C94.763,51.995,89.827,46.085,83.034,44.719z M80.096,70.759H23.969l-0.351-0.005"/>
       </svg>
