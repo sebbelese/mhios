@@ -13,6 +13,7 @@ var indexOnHome;
 var allowPause;
 var paused;
 
+
 function init () {
     document.getElementById("btnGlobalLibrary").disabled = !isUserLibrary;
     document.getElementById("btnUserLibrary").disabled = isUserLibrary;
