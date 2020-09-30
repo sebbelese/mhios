@@ -246,23 +246,51 @@ function onGlobalLibrary(){
     switchLibrary(false);
 }
 
+function toggleFullScreen() {
+    var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+        (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+        (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+        (document.msFullscreenElement && document.msFullscreenElement !== null);
 
-function toggleFullScreen(){
-    var docelem = document.getElementById ("wholeReader");
-    if (docelem.requestFullscreen) {
-        docelem.requestFullscreen();
+    var docElm = document.getElementById ("wholeReader");
+    if (!isInFullScreen) {
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        } else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        } else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        } else if (docElm.msRequestFullscreen) {
+            docElm.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
     }
-    else if (docelem.mozRequestFullScreen) {
-        docelem.mozRequestFullScreen();
-    }
-    else if (docelem.webkitRequestFullscreen) {
-        docelem.webkitRequestFullscreen();
-    }
-    else if (docelem.msRequestFullscreen) {
-        docelem.msRequestFullscreen();
-    }
-    screen.orientation.lock("landscape-primary");
 }
+
+document.addEventListener('fullscreenchange', (event) => {
+    var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+        (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+        (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+        (document.msFullscreenElement && document.msFullscreenElement !== null);
+    
+    if (isInFullScreen) {
+	document.getElementById("readerFirstRow").style.marginTop = "15px";
+	document.getElementById("fromFullScreen").style.display = "inline";
+	document.getElementById("toFullScreen").style.display = "none";
+    } else {
+	document.getElementById("fromFullScreen").style.display = "none";
+	document.getElementById("toFullScreen").style.display = "inline";
+    }
+});
 
 document.getElementById ("btnHome").addEventListener ("click", onHome);
 document.getElementById ("btnOK").addEventListener ("click", onOk);
