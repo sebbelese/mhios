@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 22:04+0200\n"
+"POT-Creation-Date: 2020-09-30 13:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -240,27 +240,27 @@ msgstr "mhios n'est affilié à"
 msgid "in any way"
 msgstr "en aucune façon"
 
-#: myopenstories/templates/myopenstories/legal.html:6
+#: myopenstories/templates/myopenstories/legal.html:7
 msgid "Legal information"
 msgstr "Informations légales"
 
-#: myopenstories/templates/myopenstories/legal.html:8
+#: myopenstories/templates/myopenstories/legal.html:9
 msgid "Website owner/Publication manager/Development"
 msgstr "Propriétaire/Responsable publication/Développement"
 
-#: myopenstories/templates/myopenstories/legal.html:9
+#: myopenstories/templates/myopenstories/legal.html:10
 msgid "Hosting"
 msgstr "Hébergement"
 
-#: myopenstories/templates/myopenstories/legal.html:10
+#: myopenstories/templates/myopenstories/legal.html:11
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: myopenstories/templates/myopenstories/legal.html:11
+#: myopenstories/templates/myopenstories/legal.html:12
 msgid "During the user registration,"
 msgstr "Lors de votre enregistrement,"
 
-#: myopenstories/templates/myopenstories/legal.html:11
+#: myopenstories/templates/myopenstories/legal.html:12
 msgid ""
 "collects your email address in order to facilitate the login and password "
 "recovery processes. No other use of your email address is made by us. You "
@@ -272,7 +272,7 @@ msgstr ""
 "votre adresse email. Votre adresse n'est pas partagée publiquement ou "
 "transmise à des parties tierces."
 
-#: myopenstories/templates/myopenstories/legal.html:13
+#: myopenstories/templates/myopenstories/legal.html:14
 msgid ""
 "Our site saves small pieces of text information (cookies) on your device in "
 "order to deliver better content and for statistical purposes. You can "
@@ -287,7 +287,7 @@ msgstr ""
 "site sans changer vos paramètres de navigateur vous nous accordez la "
 "permission de conserver des informations sur votre appareil. "
 
-#: myopenstories/templates/myopenstories/legal.html:15
+#: myopenstories/templates/myopenstories/legal.html:16
 msgid ""
 "Please contact privacy@mhios.com for any question on our use of your "
 "personal data."
