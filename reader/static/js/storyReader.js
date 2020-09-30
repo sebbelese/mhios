@@ -13,10 +13,32 @@ var indexOnHome;
 var allowPause;
 var paused;
 
+var nbSwitchButtons = 1;
+
+function setDisableButtonSwitch(elementId, doDisable){
+    var elem = document.getElementById(elementId);
+    var oldState = elem.disabled;
+    if (oldState != doDisable){
+	if (nbSwitchButtons == 0){
+	    //We change the class of the home button such that it is invisible but still takes its space
+	    document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
+	}
+	elem.disabled = doDisable;
+	if (doDisable){
+	    nbSwitchButtons = nbSwitchButtons - 1;
+	}else{
+	    nbSwitchButtons = nbSwitchButtons + 1;
+	}
+	if (nbSwitchButtons == 0){
+	    //We change the class of the home button such that it is invisible but still takes its space
+	    document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
+	}
+    }
+}
 
 function init () {
-    document.getElementById("btnGlobalLibrary").disabled = !isUserLibrary;
-    document.getElementById("btnUserLibrary").disabled = isUserLibrary;
+    setDisableButtonSwitch("btnGlobalLibrary", !isUserLibrary)
+    setDisableButtonSwitch("btnUserLibrary", isUserLibrary)
     if (soundInstance != null){
 	soundInstance.stop();
     }
@@ -37,7 +59,8 @@ function init () {
     }
     atHome = true;
     allowHome = false;
-    document.getElementById("btnHome").disabled = !allowHome;
+    setDisableButtonSwitch("btnHome", !allowHome);
+    
     nodeOnHome = "";
     indexOnHome = null;
     allowPause = false;
@@ -70,8 +93,8 @@ function playActionNode(){
 }
 
 function onOk(){
-    document.getElementById("btnGlobalLibrary").disabled = true;
-    document.getElementById("btnUserLibrary").disabled = true;
+    setDisableButtonSwitch("btnGlobalLibrary", true);
+    setDisableButtonSwitch("btnUserLibrary", true);
     atHome = false;
     if (nodeOnOK != "") {
 	var nodes = storyMeta.actionNodes.filter( node => node.id == nodeOnOK);
@@ -103,7 +126,8 @@ function onHome() {
 
 function playStageNode(node){
     allowHome = node.controlSettings.home;
-    document.getElementById("btnHome").disabled = !allowHome;
+    setDisableButtonSwitch("btnHome", !allowHome);
+
     if (allowHome && node.homeTransition){
 	nodeOnHome = node.homeTransition.actionNode;
 	if (node.homeTransition.optionIndex < 0){
