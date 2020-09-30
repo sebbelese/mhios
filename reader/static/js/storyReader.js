@@ -286,9 +286,11 @@ document.addEventListener('fullscreenchange', (event) => {
 	document.getElementById("readerFirstRow").style.marginTop = "15px";
 	document.getElementById("fromFullScreen").style.display = "inline";
 	document.getElementById("toFullScreen").style.display = "none";
+	screen.orientation.lock("landscape-primary");
     } else {
 	document.getElementById("fromFullScreen").style.display = "none";
 	document.getElementById("toFullScreen").style.display = "inline";
+	screen.orientation.lock("natural");
     }
 });
 
