@@ -1,7 +1,10 @@
 body {
-    background: var(--theme-1-color);
+   background: var(--theme-1-color);
 }
 
+#wholeReader {
+    background-color: var(--theme-1-color);
+}
 
 .readerButton, .readerButton:active, .readerButton:focus {
     border:none;

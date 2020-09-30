@@ -246,6 +246,24 @@ function onGlobalLibrary(){
     switchLibrary(false);
 }
 
+
+function toggleFullScreen(){
+    var docelem = document.getElementById ("wholeReader");
+    if (docelem.requestFullscreen) {
+        docelem.requestFullscreen();
+    }
+    else if (docelem.mozRequestFullScreen) {
+        docelem.mozRequestFullScreen();
+    }
+    else if (docelem.webkitRequestFullscreen) {
+        docelem.webkitRequestFullscreen();
+    }
+    else if (docelem.msRequestFullscreen) {
+        docelem.msRequestFullscreen();
+    }
+    screen.orientation.lock("landscape-primary");
+}
+
 document.getElementById ("btnHome").addEventListener ("click", onHome);
 document.getElementById ("btnOK").addEventListener ("click", onOk);
 document.getElementById ("btnLeft").addEventListener ("click", onLeft);
@@ -253,6 +271,7 @@ document.getElementById ("btnRight").addEventListener ("click", onRight);
 document.getElementById ("btnPause").addEventListener ("click", onPause);
 document.getElementById ("btnUserLibrary").addEventListener ("click", onUserLibrary);
 document.getElementById ("btnGlobalLibrary").addEventListener ("click", onGlobalLibrary);
+document.getElementById ("btnFullScreen").addEventListener ("click", toggleFullScreen);
 
 
 
