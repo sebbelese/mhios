@@ -57,7 +57,6 @@ function init () {
     }else{
 	storyIdx = 0;
     }
-    console.log(storyIdx)
     atHome = true;
     allowHome = false;
     setDisableButtonSwitch("btnHome", !allowHome);
@@ -70,9 +69,6 @@ function init () {
 }
 
 function getUrl(path){
-    console.log('getUrl');
-    console.log(storiesId);
-    console.log(storiesId[storyIdx]);
     return $.get('getFileUrl', {story_id: storiesId[storyIdx], filename : path}).then(function(data){
 	var downloadUrl =  data['downloadUrl'];
 	return downloadUrl;
