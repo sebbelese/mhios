@@ -57,6 +57,7 @@ function init () {
     }else{
 	storyIdx = 0;
     }
+    console.log(storyIdx)
     atHome = true;
     allowHome = false;
     setDisableButtonSwitch("btnHome", !allowHome);
