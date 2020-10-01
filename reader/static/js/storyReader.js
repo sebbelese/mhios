@@ -57,6 +57,7 @@ function init () {
     }else{
 	storyIdx = 0;
     }
+    storiesId = JSON.parse(data['storiesId']);
     console.log(storyIdx)
     atHome = true;
     allowHome = false;
