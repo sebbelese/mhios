@@ -14,7 +14,7 @@ def index(request):
         storyId = -1
 
     startStoryIdx = -1
-    if storyId < 0 and request.user.is_authenticated: #No specific story selected and authenticated user: default is user library
+    if storyId < 0 and request.user.is_authenticated and story_instance.inUserLibrary.all().size>0: #No specific story selected and authenticated user with non empty library: default is user library
         isUserLib = True
         storiesList = [ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]
     else: #Specific story selected or unauthenticated user: default is global library
