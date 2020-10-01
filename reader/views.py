@@ -25,7 +25,6 @@ def index(request):
         storiesList = [ story_instance.id for story_instance in story.objects.all()]
         if storyId >= 0: #A story is selected
             startStoryIdx = storiesList.index(storyId)
-    print()
         
     context = {
         'isUserLibrary' : isUserLib,
@@ -41,19 +40,21 @@ def switchLibrary(request):
     if request.method == 'GET':
         print(type(request.GET['is_user_library']), request.GET['is_user_library'])
         isUserLibrary = request.GET['is_user_library'] == "true"
-        print(isUserLibrary)
-        if isUserLibrary:
-            data = json.dumps({
-                'isUserLibrary' : True,
-                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]),
-                'startStoryId' : -1
-            })
-        else:
-            data = json.dumps({
-                'isUserLibrary' : False,
-                'storiesId' : json.dumps([ story_instance.id for story_instance in story.objects.all()]),
-                'startStoryId' : -1
-            })
+
+
+        
+        if isUserLibrary: #Authenticated user with non empty library: default is user library
+            storiesList = [ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]
+            if len(storiesList) == 0:
+                isUserLibrary = False
+        if not isUserLibrary: #Unauthenticated user or user with empty list:  default is global library
+            storiesList = [ story_instance.id for story_instance in story.objects.all()]
+        
+        data = json.dumps({
+            'isUserLibrary' : isUserLibrary,
+            'storiesId' : json.dumps(storiesList),
+            'startStoryId' : -1
+        })
         print(data)
         return HttpResponse(data, content_type='application/json')
     else:

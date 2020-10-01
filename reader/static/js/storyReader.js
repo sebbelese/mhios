@@ -17,21 +17,23 @@ var nbSwitchButtons = 1;
 
 function setDisableButtonSwitch(elementId, doDisable){
     var elem = document.getElementById(elementId);
-    var oldState = elem.disabled;
-    if (oldState != doDisable){
-	if (nbSwitchButtons == 0){
-	    //We change the class of the home button such that it is invisible but still takes its space
-	    document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
-	}
-	elem.disabled = doDisable;
-	if (doDisable){
-	    nbSwitchButtons = nbSwitchButtons - 1;
-	}else{
-	    nbSwitchButtons = nbSwitchButtons + 1;
-	}
-	if (nbSwitchButtons == 0){
-	    //We change the class of the home button such that it is invisible but still takes its space
-	    document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
+    if (elem){
+	var oldState = elem.disabled;
+	if (oldState != doDisable){
+	    if (nbSwitchButtons == 0){
+		//We change the class of the home button such that it is invisible but still takes its space
+		document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
+	    }
+	    elem.disabled = doDisable;
+	    if (doDisable){
+		nbSwitchButtons = nbSwitchButtons - 1;
+	    }else{
+		nbSwitchButtons = nbSwitchButtons + 1;
+	    }
+	    if (nbSwitchButtons == 0){
+		//We change the class of the home button such that it is invisible but still takes its space
+		document.getElementById("btnHome").classList.toggle('readerButtonSwitch');
+	    }
 	}
     }
 }
@@ -324,10 +326,12 @@ document.getElementById ("btnOK").addEventListener ("click", onOk);
 document.getElementById ("btnLeft").addEventListener ("click", onLeft);
 document.getElementById ("btnRight").addEventListener ("click", onRight);
 document.getElementById ("btnPause").addEventListener ("click", onPause);
-document.getElementById ("btnUserLibrary").addEventListener ("click", onUserLibrary);
 document.getElementById ("btnGlobalLibrary").addEventListener ("click", onGlobalLibrary);
 document.getElementById ("btnFullScreen").addEventListener ("click", toggleFullScreen);
-
+var btnUserLib = document.getElementById ("btnUserLibrary")
+if (btnUserLib){
+    btnUserLib.addEventListener ("click", onUserLibrary);
+}
 
 
 $(window).on('pageshow', onHome);
