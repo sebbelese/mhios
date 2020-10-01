@@ -55,7 +55,6 @@ def switchLibrary(request):
             'storiesId' : json.dumps(storiesList),
             'startStoryId' : -1
         })
-        print(data)
         return HttpResponse(data, content_type='application/json')
     else:
         return HttpResponse("Error invalid input")
