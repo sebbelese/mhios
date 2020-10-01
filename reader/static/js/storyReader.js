@@ -256,13 +256,16 @@ function onPause() {
 
 
 function switchLibrary(toUserLibrary){
-    
+    var isUserLibraryOld = isUserLibrary;
     $.get('switchLibrary', {is_user_library: toUserLibrary}, function(data){
 	isUserLibrary =  data.isUserLibrary
 	storiesId = JSON.parse(data['storiesId']);
 	allowHome = true;
 	onHome();
     });
+    if (isUserLibraryOld == isUserLibrary) {
+	$("#emptyuserlibModal").modal();
+    }
 }
 
 function onUserLibrary(){

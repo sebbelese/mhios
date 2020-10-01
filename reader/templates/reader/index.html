@@ -10,6 +10,26 @@
 
 
 {% block body %}
+<!-- Modal asking user to login/register-->
+<div class="modal fade" id="emptyuserlibModal" tabindex="-1" role="dialog" aria-labelledby="emptyuserlibModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emptyuserlibModalLabel">{% trans "User library empty" %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% trans "Your private selection of stories is empty. Go to the library to add stories to your personal library." %}
+      </div>
+      <div class="modal-footer">
+        <a href="{% url "library:index" %}"><button type="button" class="btn btn-primary">{% trans "Library" %}</button></a>
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="wholeReader">
 <div id="readerFirstRow" class = "row">
   <div class="col-12 readerContainer btnColSmall">
