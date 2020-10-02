@@ -262,10 +262,11 @@ function switchLibrary(toUserLibrary){
 	storiesId = JSON.parse(data['storiesId']);
 	allowHome = true;
 	onHome();
+    }).then(function(data){
+	if (isUserLibraryOld == isUserLibrary) {
+	    $("#emptyuserlibModal").modal();
+	}
     });
-    if (isUserLibraryOld == isUserLibrary) {
-	$("#emptyuserlibModal").modal();
-    }
 }
 
 function onUserLibrary(){
