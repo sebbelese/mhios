@@ -12,6 +12,5 @@ def get_item(dictionary, key):
 @register.filter
 @stringfilter
 def remote_url(str):
-    print("looking for",str)
     return storage.url(str)
 

@@ -131,10 +131,11 @@
     padding: 0;
     border: 0;
     margin: 0;
+    margin-left: 5;
 }
 
 .toUserLib>svg, .downloadLink>svg, .play>svg{
-    width:30px;
+    width:25px;
 }
 
 .toUserLib.selected>svg{

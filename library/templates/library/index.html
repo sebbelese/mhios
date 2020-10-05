@@ -68,14 +68,18 @@
 	<div class="col-sm-12 col-12">  <a title="{% trans 'View story details' %}" class="story-title" href={% url "library:watchStory" storyId=story.id %}>{{ story.title }}</a> </div>
 	<div class="col-sm-12 col-12">  {{ story.abstract }}  </div>
 	<div class="col-sm-3 col-6">  {{ ageDict|get_item:story.age }} </div>
-	<div class="col-sm-3 col-6">  {{ languageDict|get_item:story.language }} </div>
-	<div class="col-sm-3 col-6">  {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %} </div>
-	<div class="col-sm-3 col-6">  
+	<div class="col-sm-3 col-6">  <div class="d-flex justify-content-end justify-content-sm-start">{{ languageDict|get_item:story.language }} </div></div>
+	<div class="col-sm-4 col-6">  {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %} </div>
+	<div class="col-sm-2 col-6">
+	  <div class="d-flex justify-content-end">
 	  <button title="{% trans 'Downvote' %}" {% if user.is_authenticated %} class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"><span>-</span> </button><!--
 																																    --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
 																																										   --><button title="{% trans 'Upvote' %}" {% if user.is_authenticated %} class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}"  {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"> <span>+</span></button>
+	  </div>
 	</div>
-	<div class="col-sm-12 col-12"> {% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %}
+	<div class="col-sm-12 col-12">
+	  <div class="d-flex justify-content-start">{% trans "by" %} {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %}
+	  </div><div class="d-flex justify-content-end">
 <button title="{% trans 'Play in the story teller' %}" class="play"  type="button" onclick="window.location='{% url "reader:index" %}?startStoryId={{story.id}}';"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 485 485">
 	<path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
@@ -114,6 +118,7 @@
 		       c11.601,14.8,18.4,33.5,18.2,53.7c-0.2,19.5-7,37.4-18.2,51.7c-16,20.4-41.1,33.5-68.899,33.5H96.65z"/>
 	    </svg><!--
 		    --></button>
+	  </div>
 	</div>
 	<div id="downloadStatusDiv{{story.id}}" class="col-sm-12 col-12" hidden>
 	  <div class="progress progress-library">

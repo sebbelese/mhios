@@ -38,7 +38,6 @@ def index(request):
 @login_required
 def switchLibrary(request):
     if request.method == 'GET':
-        print(type(request.GET['is_user_library']), request.GET['is_user_library'])
         isUserLibrary = request.GET['is_user_library'] == "true"
 
 
