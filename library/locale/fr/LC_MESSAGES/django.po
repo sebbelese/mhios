@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 21:54+0200\n"
+"POT-Creation-Date: 2020-10-05 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,54 +153,54 @@ msgstr "Tout"
 msgid "View story details"
 msgstr "Voir l'histoire en détails"
 
-#: library/templates/library/index.html:74
+#: library/templates/library/index.html:75
 msgid "Downvote"
 msgstr "Voter vers le bas"
 
-#: library/templates/library/index.html:76
+#: library/templates/library/index.html:77
 msgid "Upvote"
 msgstr "Voter vers le haut"
 
-#: library/templates/library/index.html:78
+#: library/templates/library/index.html:81
 msgid "by"
 msgstr "par"
 
-#: library/templates/library/index.html:78
+#: library/templates/library/index.html:81
 msgid "a deleted user"
 msgstr "un ancien utilisateur"
 
-#: library/templates/library/index.html:79
+#: library/templates/library/index.html:83
 msgid "Play in the story teller"
 msgstr ""
 
-#: library/templates/library/index.html:86
+#: library/templates/library/index.html:90
 msgid "Download story"
 msgstr "Télécharger"
 
-#: library/templates/library/index.html:96
+#: library/templates/library/index.html:100
 msgid "Remove from personal library"
 msgstr "Retirer de ma librairie personnelle"
 
-#: library/templates/library/index.html:96
+#: library/templates/library/index.html:100
 msgid "Add to personal library"
 msgstr "Ajouter à ma librairie personnelle"
 
-#: library/templates/library/index.html:130
+#: library/templates/library/index.html:135
 msgid "No story is available that matches your criteria"
 msgstr "Aucune histoire ne correspond aux critères choisis"
 
-#: library/templates/library/index.html:135
+#: library/templates/library/index.html:140
 msgid "First page"
 msgstr "Première page"
 
-#: library/templates/library/index.html:141
+#: library/templates/library/index.html:146
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: library/templates/library/index.html:153
+#: library/templates/library/index.html:158
 msgid "Next page"
 msgstr "Page suivante"
 
-#: library/templates/library/index.html:158
+#: library/templates/library/index.html:163
 msgid "Last page"
 msgstr "Dernière page"

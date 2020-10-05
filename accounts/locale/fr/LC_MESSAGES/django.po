@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 21:54+0200\n"
+"POT-Creation-Date: 2020-10-05 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: accounts/forms.py:18
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: accounts/managers.py:15
 msgid "The Email must be set"
@@ -39,9 +39,21 @@ msgid "Email"
 msgstr "Email"
 
 #: accounts/templates/accounts/signup.html:7
-#: accounts/templates/accounts/signup.html:22
+#: accounts/templates/accounts/signup.html:23
 msgid "Sign up"
 msgstr "Inscription"
+
+#: accounts/templates/accounts/signup.html:22
+msgid ""
+"Your email address is requested in order to facilitate the login and "
+"password recovery processes. No other use of your email address is made by "
+"us. You address is not shared publicly on the website and not shared with "
+"any other third parties."
+msgstr ""
+"Nous utilisons votre adresse email afin de faciliter les processus de connexion et "
+"de récupération du mot de passe. Aucune autre utilisation n'est faite de "
+"votre adresse email. Votre adresse n'est pas partagée publiquement ou "
+"transmise à des parties tierces."
 
 #: accounts/templates/registration/login.html:7
 msgid "Log in"
@@ -63,12 +75,16 @@ msgstr "Votre mot the passe a été changé. Vous pouvez maintenant vous"
 msgid "sign in"
 msgstr "connecter"
 
-#: accounts/templates/registration/password_reset_confirm.html:6
-#: accounts/templates/registration/password_reset_confirm.html:10
+#: accounts/templates/registration/password_reset_confirm.html:8
+#: accounts/templates/registration/password_reset_confirm.html:12
 msgid "Change password"
 msgstr "Changer de mot de passe"
 
-#: accounts/templates/registration/password_reset_confirm.html:14
+#: accounts/templates/registration/password_reset_confirm.html:16
+msgid "Invalid link"
+msgstr "Lien invalide"
+
+#: accounts/templates/registration/password_reset_confirm.html:17
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -76,7 +92,11 @@ msgstr ""
 "Le lien de réinitialisation de mot de passe est invalide, probablement car "
 "il a déjà été  utilisé. Vous pouvez demander un nouveau lien."
 
-#: accounts/templates/registration/password_reset_done.html:6
+#: accounts/templates/registration/password_reset_done.html:7
+msgid "Password change instruction sent"
+msgstr "Instructions de changement de mot de passe envoyées"
+
+#: accounts/templates/registration/password_reset_done.html:9
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
@@ -85,7 +105,7 @@ msgstr ""
 "passe, si votre compte existe avec l'email entré. Vous devriez le recevoir "
 "bientôt."
 
-#: accounts/templates/registration/password_reset_done.html:9
+#: accounts/templates/registration/password_reset_done.html:12
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
@@ -94,11 +114,11 @@ msgstr ""
 "l'adresse correspondant à votre compte et vérifier vos courriers "
 "indésirables."
 
-#: accounts/templates/registration/password_reset_form.html:5
+#: accounts/templates/registration/password_reset_form.html:7
 msgid "Forgot password?"
 msgstr "Mot de passe oublié?"
 
-#: accounts/templates/registration/password_reset_form.html:7
+#: accounts/templates/registration/password_reset_form.html:9
 msgid ""
 "Please provide your email, and you will receive a link to reset your "
 "password."
@@ -106,6 +126,6 @@ msgstr ""
 "Veuillez entrer votre email, et vous recevrez bientôt un lien permettant de "
 "réinitialiser votre mot de passe."
 
-#: accounts/templates/registration/password_reset_form.html:12
+#: accounts/templates/registration/password_reset_form.html:14
 msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"

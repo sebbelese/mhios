@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 21:54+0200\n"
+"POT-Creation-Date: 2020-10-05 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,54 +18,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: templates/base.html:25
+#: templates/base.html:26
 msgid "Login required"
 msgstr "Connexion nécessaire"
 
-#: templates/base.html:31
+#: templates/base.html:32
 msgid "Log in or register freely to use advanced features"
 msgstr ""
 "Connectez-vous our créez un compte pour utiliser les fonctions avancées"
 
-#: templates/base.html:33
+#: templates/base.html:34
 msgid "Vote for your favourites stories"
 msgstr "Votez pour vos histoires favorites"
 
-#: templates/base.html:34
+#: templates/base.html:35
 msgid "Upload and share your own creations"
 msgstr "Partagez vos propres créations"
 
-#: templates/base.html:35
+#: templates/base.html:36
 msgid "Create your online personal library and stash your private selection"
 msgstr ""
 "Créez votre bibliothèque personnelle pour garder une accès facile à votre "
 "sélection"
 
-#: templates/base.html:39 templates/base.html:126
+#: templates/base.html:40 templates/base.html:127
 msgid "Log in"
 msgstr "Connexion"
 
-#: templates/base.html:40 templates/base.html:129
+#: templates/base.html:41 templates/base.html:130
 msgid "Sign up"
 msgstr "Inscrivez vous"
 
-#: templates/base.html:41
+#: templates/base.html:42
 msgid "Close"
 msgstr "Fermer"
 
-#: templates/base.html:70
+#: templates/base.html:71
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: templates/base.html:90 myopenstories/templates/myopenstories/index.html:95
+#: templates/base.html:91 myopenstories/templates/myopenstories/index.html:95
 msgid "Story teller"
 msgstr "Boîte à histoire"
 
-#: templates/base.html:105 myopenstories/templates/myopenstories/index.html:102
+#: templates/base.html:106 myopenstories/templates/myopenstories/index.html:102
 msgid "Discussion forum"
 msgstr "Forum de discussion"
 
-#: templates/base.html:124
+#: templates/base.html:125
 msgid "Log Out"
 msgstr "Déconnexion"
 
@@ -267,7 +267,7 @@ msgid ""
 "address is not shared publicly on the website and not shared with any other "
 "third parties."
 msgstr ""
-"collecte votre adress email afin de faciliter les processus de connexion et "
+"collecte votre adresse email afin de faciliter les processus de connexion et "
 "de récupération du mot de passe. Aucune autre utilisation n'est faite de "
 "votre adresse email. Votre adresse n'est pas partagée publiquement ou "
 "transmise à des parties tierces."
