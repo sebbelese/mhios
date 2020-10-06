@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block body %}
+<br/>
+<h2>{%trans "Legal information" %}</h2>
+<a href="http://www.mhios.com/">www.mhios.com</a><br>
+<strong>{%trans "Website owner/Publication manager/Development" %}</strong> <br /> Sébastien Blaise –  Rue de l'Agasse, 23, 5030 Gembloux, Belgium - contact@mhios.com<br />
+<strong>{%trans "Hosting" %}</strong><br />Heroku – 415 Mission Street Suite 300 San Francisco, CA 94105<br /><br />
+<h2>{%trans "Privacy" %}</h2>
+<p>{%trans "During the user registration," %} <a href="mhios">mhios</a> {%trans "collects your email address in order to facilitate the login and password recovery processes. No other use of your email address is made by us. You address is not shared publicly on the website and not shared with any other third parties."%}</p>
+
+<p>{%trans "Our site saves small pieces of text information (cookies) on your device in order to deliver better content and for statistical purposes. You can disable the usage of cookies by changing the settings of your browser. By browsing our website without changing the browser settings you grant us permission to store that information on your device."%}</p>
+
+{%trans "Please contact privacy@mhios.com for any question on our use of your personal data." %}
+{% endblock %}
