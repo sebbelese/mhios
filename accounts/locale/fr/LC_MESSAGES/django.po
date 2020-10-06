@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 20:14+0200\n"
+"POT-Creation-Date: 2020-10-06 23:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,10 +50,10 @@ msgid ""
 "us. You address is not shared publicly on the website and not shared with "
 "any other third parties."
 msgstr ""
-"Nous utilisons votre adresse email afin de faciliter les processus de connexion et "
-"de récupération du mot de passe. Aucune autre utilisation n'est faite de "
-"votre adresse email. Votre adresse n'est pas partagée publiquement ou "
-"transmise à des parties tierces."
+"Nous utilisons votre adresse email afin de faciliter les processus de "
+"connexion et de récupération du mot de passe. Aucune autre utilisation n'est "
+"faite de votre adresse email. Votre adresse n'est pas partagée publiquement "
+"ou transmise à des parties tierces."
 
 #: accounts/templates/registration/login.html:7
 msgid "Log in"
@@ -67,11 +67,15 @@ msgstr "Vos email et mot de passe ne correspondent pas. Veuillez réessayer."
 msgid "Lost password?"
 msgstr "Mot de passe perdu?"
 
-#: accounts/templates/registration/password_reset_complete.html:6
+#: accounts/templates/registration/password_reset_complete.html:7
+msgid "Password successfully changed"
+msgstr "Mode de passe réinitialisé avec succès"
+
+#: accounts/templates/registration/password_reset_complete.html:9
 msgid "Your password has been set. You may go ahead and"
 msgstr "Votre mot the passe a été changé. Vous pouvez maintenant vous"
 
-#: accounts/templates/registration/password_reset_complete.html:6
+#: accounts/templates/registration/password_reset_complete.html:9
 msgid "sign in"
 msgstr "connecter"
 
