@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block body %}
+<br>
+<div class="container">
+{% if success %}
+<h2>{% trans "Accound verified" %}</h2>
+<p>
+  {% trans "You have confirmed your account! You can now" %} <a href="{% url "login" %}">{% trans "log in" %}</a> {% trans "to enjoy all the feature of mhios."%}
+</p>
+{% else %}
+<h2>{% trans "Invalid token" %}</h2>
+<p>
+  {% trans "This email link is invalid. It may have expired or have already been used." %}
+</p>
+{% endif %}
+</div>
+{% endblock %}
+</html>
