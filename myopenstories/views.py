@@ -12,6 +12,3 @@ def legal(request):
     }
     return render(request, 'myopenstories/legal.html', context)
 
-
-def temp(request):
-    return HttpResponse("", content_type="text/plain")
