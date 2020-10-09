@@ -33,6 +33,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('forum/', include((machina_urls))),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('67b0777720d6114131453d1c0f3ff020.txt', views.temp),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

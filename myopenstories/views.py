@@ -11,3 +11,6 @@ def legal(request):
     context = {
     }
     return render(request, 'myopenstories/legal.html', context)
+
+def temp():
+    return render('')
