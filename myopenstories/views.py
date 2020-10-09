@@ -13,4 +13,4 @@ def legal(request):
     return render(request, 'myopenstories/legal.html', context)
 
 def temp():
-    return render('')
+    return redirect(to="/static/67b0777720d6114131453d1c0f3ff020.txt")
