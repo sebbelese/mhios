@@ -12,6 +12,6 @@ def legal(request):
     }
     return render(request, 'myopenstories/legal.html', context)
 
-from django.shortcuts import redirect
+
 def temp(request):
-    return redirect(to="/static/67b0777720d6114131453d1c0f3ff020.txt")
+    return HttpResponse("", content_type="text/plain")
