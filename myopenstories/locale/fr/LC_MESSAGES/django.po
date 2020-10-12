@@ -231,7 +231,7 @@ msgid ""
 "mhios includes an interactive story teller which can be used to read "
 "interactively any story available in the library."
 msgstr ""
-"mhios inclut une boîte à histoires permettant de lire de manièreinteractive "
+"mhios inclut une boîte à histoires permettant de lire de manière interactive "
 "toutes les histoires disponibles dans la bibliothèque"
 
 #: myopenstories/templates/myopenstories/index.html:97
