@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 23:21+0200\n"
+"POT-Creation-Date: 2020-10-12 18:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,11 +89,36 @@ msgstr "Mes sujets"
 msgid "Moderation queue"
 msgstr "File de modération"
 
-#: myopenstories/settings.py:151
+#: templates/confirm_template.html:8
+msgid "Account verified"
+msgstr "Compte vérifié"
+
+#: templates/confirm_template.html:10
+msgid "You have confirmed your account! You can now"
+msgstr "Votre compte est confirmé. Vous pouvez maintenant"
+
+#: templates/confirm_template.html:10
+msgid "log in"
+msgstr "vous connecter"
+
+#: templates/confirm_template.html:10
+msgid "to enjoy all the feature of mhios."
+msgstr "afin d'utiliser toutes les fonctionnalités de mhios."
+
+#: templates/confirm_template.html:13
+msgid "Invalid token"
+msgstr "Token invalide"
+
+#: templates/confirm_template.html:15
+msgid ""
+"This email link is invalid. It may have expired or have already been used."
+msgstr "Le lien est invalide. Il se peut qu'il soit expiré ou qu'il ait déjà été utilisé."
+
+#: myopenstories/settings.py:153
 msgid "English"
 msgstr "Anglais"
 
-#: myopenstories/settings.py:152
+#: myopenstories/settings.py:154
 msgid "French"
 msgstr "Français"
 
@@ -240,27 +265,27 @@ msgstr "mhios n'est affilié à"
 msgid "in any way"
 msgstr "en aucune façon"
 
-#: myopenstories/templates/myopenstories/legal.html:7
+#: myopenstories/templates/myopenstories/legal.html:8
 msgid "Legal information"
 msgstr "Informations légales"
 
-#: myopenstories/templates/myopenstories/legal.html:9
+#: myopenstories/templates/myopenstories/legal.html:10
 msgid "Website owner/Publication manager/Development"
 msgstr "Propriétaire/Responsable publication/Développement"
 
-#: myopenstories/templates/myopenstories/legal.html:10
+#: myopenstories/templates/myopenstories/legal.html:11
 msgid "Hosting"
 msgstr "Hébergement"
 
-#: myopenstories/templates/myopenstories/legal.html:11
+#: myopenstories/templates/myopenstories/legal.html:12
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: myopenstories/templates/myopenstories/legal.html:12
+#: myopenstories/templates/myopenstories/legal.html:13
 msgid "During the user registration,"
 msgstr "Lors de votre enregistrement,"
 
-#: myopenstories/templates/myopenstories/legal.html:12
+#: myopenstories/templates/myopenstories/legal.html:13
 msgid ""
 "collects your email address in order to facilitate the login and password "
 "recovery processes. No other use of your email address is made by us. You "
@@ -272,7 +297,7 @@ msgstr ""
 "votre adresse email. Votre adresse n'est pas partagée publiquement ou "
 "transmise à des parties tierces."
 
-#: myopenstories/templates/myopenstories/legal.html:14
+#: myopenstories/templates/myopenstories/legal.html:15
 msgid ""
 "Our site saves small pieces of text information (cookies) on your device in "
 "order to deliver better content and for statistical purposes. You can "
@@ -287,7 +312,7 @@ msgstr ""
 "site sans changer vos paramètres de navigateur vous nous accordez la "
 "permission de conserver des informations sur votre appareil. "
 
-#: myopenstories/templates/myopenstories/legal.html:16
+#: myopenstories/templates/myopenstories/legal.html:17
 msgid ""
 "Please contact privacy@mhios.com for any question on our use of your "
 "personal data."

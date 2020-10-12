@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 23:21+0200\n"
+"POT-Creation-Date: 2020-10-12 18:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,31 @@ msgstr ""
 #: accounts/models.py:8
 msgid "Email"
 msgstr "Email"
+
+#: accounts/models.py:9
+msgid "Is active"
+msgstr "Est actif"
+
+#: accounts/templates/accounts/confirmation.html:7
+msgid "Please check your email"
+msgstr "Veuillez vérifier vos emails"
+
+#: accounts/templates/accounts/confirmation.html:8
+#, fuzzy
+#| msgid "The Email must be set"
+msgid "An email has been sent to"
+msgstr "Un email a été envoyé à l'adresse"
+
+#: accounts/templates/accounts/confirmation.html:8
+msgid ""
+"including a validation link to confirm your email and validate your account."
+msgstr ""
+"incluant un lien de validation afin de confirmer votre email et valider "
+"votre compte."
+
+#: accounts/templates/accounts/confirmation.html:9
+msgid "Please check you emails and use the validation link."
+msgstr "Veuillez vérifier vos emails et utiliser le lien de validation."
 
 #: accounts/templates/accounts/signup.html:7
 #: accounts/templates/accounts/signup.html:23
@@ -73,7 +98,7 @@ msgstr "Mode de passe réinitialisé avec succès"
 
 #: accounts/templates/registration/password_reset_complete.html:9
 msgid "Your password has been set. You may go ahead and"
-msgstr "Votre mot the passe a été changé. Vous pouvez maintenant vous"
+msgstr "Votre mot de passe a été changé. Vous pouvez maintenant vous"
 
 #: accounts/templates/registration/password_reset_complete.html:9
 msgid "sign in"
