@@ -44,7 +44,7 @@ msgstr "Est actif"
 
 #: accounts/templates/accounts/confirmation.html:7
 msgid "Please check your email"
-msgstr "Veuillez vérifier vos emails"
+msgstr "Vérifiez vos emails"
 
 #: accounts/templates/accounts/confirmation.html:8
 #, fuzzy
@@ -56,8 +56,7 @@ msgstr "Un email a été envoyé à l'adresse"
 msgid ""
 "including a validation link to confirm your email and validate your account."
 msgstr ""
-"incluant un lien de validation afin de confirmer votre email et valider "
-"votre compte."
+"incluant un lien de validation afin de confirmer votre email et valider votre compte."
 
 #: accounts/templates/accounts/confirmation.html:9
 msgid "Please check you emails and use the validation link."
