@@ -1,3 +1,6 @@
+{% load i18n %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,7 @@
     </style>
 </head>
     <body>
-        <h1>You are one link from the stories!</h1><br>
+        <h1>{% trans "You are one link from the stories!" %}</h1><br>
         <h2>Please click <a href="{{ link }}">here</a> to confirm your mhios account</h2>
     </body>
 </html>
