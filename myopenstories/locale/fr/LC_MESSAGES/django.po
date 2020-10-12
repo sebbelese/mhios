@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 18:04+0200\n"
+"POT-Creation-Date: 2020-10-12 20:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,21 @@ msgstr "Token invalide"
 #: templates/confirm_template.html:15
 msgid ""
 "This email link is invalid. It may have expired or have already been used."
-msgstr "Le lien est invalide. Il se peut qu'il soit expiré ou qu'il ait déjà été utilisé."
+msgstr ""
+"Le lien est invalide. Il se peut qu'il soit expiré ou qu'il ait déjà été "
+"utilisé."
+
+#: templates/mail_body.html:13
+msgid "You are one click from the stories!"
+msgstr "Vous êtes à un click des histoires!"
+
+#: templates/mail_body.html:14
+msgid "Please click"
+msgstr "Veuillez cliquer "
+
+#: templates/mail_body.html:14
+msgid "to confirm your mhios account"
+msgstr "afin de confirmer votre compte"
 
 #: myopenstories/settings.py:153
 msgid "English"
