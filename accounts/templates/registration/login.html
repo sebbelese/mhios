@@ -7,7 +7,7 @@
   <h2>{% trans "Log in" %}</h2>
   {% if form.errors %}
   <p>{% trans "Your username and password didn't match. Please try again." %}</p>
-  {% for error in form.username.errors %}
+  {% for error in form.errors %}
   <p class="text-danger">{{ error }}</p>
   {% endfor %}
   {% endif %}  
