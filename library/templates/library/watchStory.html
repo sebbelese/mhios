@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/library.css' %}">
+{% endblock %}
+
 
 {% block body %}
+<br>
+<div class="container">
 <h1>{{ story.title }}</h1>
-<h2> {% trans "Language" %} : {{ language }}</h2>
+<h2>{% trans "by" %}  {% if story.uploader %} {{ story.uploader.username }} {% else %} {% trans "a deleted user" %} {% endif %}</h2>
+<p>{{ language }}, {{ age }}, {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %}</p>
 <p> {{ story.abstract }} </p>
-<img src="{{ story.poster.url }}" alt="{% trans "Poster" %}" style="width:100%">
+<img class="posterwatch" src="{{ story.poster.url }}" alt="{% trans "Poster" %}">
+</div>
 {% endblock %}

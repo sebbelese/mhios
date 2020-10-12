@@ -112,7 +112,8 @@ def watchStory(request, storyId):
     response = "You're looking at story %s. Title is %s"%(storyId,currentStory.title)
     context = {
         'story':currentStory,
-        'language':LANGUAGE_CHOICES_DICT[currentStory.language]
+        'language':LANGUAGE_CHOICES_DICT[currentStory.language],
+        'age':AGE_CHOICES_DICT[currentStory.age]
     }
     return render(request, 'library/watchStory.html', context)
 
