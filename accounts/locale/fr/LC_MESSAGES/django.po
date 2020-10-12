@@ -47,8 +47,6 @@ msgid "Please check your email"
 msgstr "Vérifiez vos emails"
 
 #: accounts/templates/accounts/confirmation.html:8
-#, fuzzy
-#| msgid "The Email must be set"
 msgid "An email has been sent to"
 msgstr "Un email a été envoyé à l'adresse"
 
