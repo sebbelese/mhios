@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:45+0200\n"
+"POT-Creation-Date: 2020-10-13 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: library/forms.py:33 library/models.py:45
-#: library/templates/library/watchStory.html:8
+#: library/templates/library/watchStory.html:18
 msgid "Poster"
 msgstr "Vignette"
 
@@ -92,7 +92,6 @@ msgid "Date published"
 msgstr "Date de publication"
 
 #: library/models.py:44 library/templates/library/index.html:36
-#: library/templates/library/watchStory.html:6
 msgid "Language"
 msgstr "Langue"
 
@@ -162,10 +161,12 @@ msgid "Upvote"
 msgstr "Voter vers le haut"
 
 #: library/templates/library/index.html:81
+#: library/templates/library/watchStory.html:15
 msgid "by"
 msgstr "par"
 
 #: library/templates/library/index.html:81
+#: library/templates/library/watchStory.html:15
 msgid "a deleted user"
 msgstr "un ancien utilisateur"
 

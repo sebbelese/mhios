@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:45+0200\n"
+"POT-Creation-Date: 2020-10-13 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,6 +140,40 @@ msgstr ""
 "Si vous ne recevez pas d'email, veuillez vous assurer de bien utiliser "
 "l'adresse correspondant à votre compte et vérifier vos courriers "
 "indésirables."
+
+#: accounts/templates/registration/password_reset_email.html:11
+msgid "Reset your password on mhios.com"
+msgstr "Réinitialiser mon mot de passe sur mhios.com"
+
+#: accounts/templates/registration/password_reset_email.html:12
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Vous recevez cet email car vous aved demandé une réinitialisation de mot de passe "
+"sur %(site_name)s."
+
+#: accounts/templates/registration/password_reset_email.html:14
+msgid "Please go to the following page and choose a new password:"
+msgstr "Veuillez vous rendre sur la page suivante et choisir un nouveau mot de passe:"
+
+#: accounts/templates/registration/password_reset_email.html:16
+msgid "Reset your password here"
+msgstr "Réinitialiser mon mot de passe"
+
+#: accounts/templates/registration/password_reset_email.html:18
+msgid "Your username, in case you’ve forgotten:"
+msgstr "En cas d'oubli, votre nom d'utilisateur est"
+
+#: accounts/templates/registration/password_reset_email.html:20
+msgid "Thanks for using our site!"
+msgstr "Merci d'utiliser notre site!"
+
+#: accounts/templates/registration/password_reset_email.html:22
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "L'équipe %(site_name)s"
 
 #: accounts/templates/registration/password_reset_form.html:7
 msgid "Forgot password?"

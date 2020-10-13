@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 21:45+0200\n"
+"POT-Creation-Date: 2020-10-13 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,27 +116,27 @@ msgstr ""
 "Le lien est invalide. Il se peut qu'il soit expiré ou qu'il ait déjà été "
 "utilisé."
 
-#: templates/mail_body.html:13
+#: templates/mail_body.html:11
 msgid "You are one click from the stories!"
 msgstr "Vous êtes à un click des histoires!"
 
-#: templates/mail_body.html:14
+#: templates/mail_body.html:12
 msgid "Please click"
 msgstr "Veuillez cliquer "
 
-#: templates/mail_body.html:14
+#: templates/mail_body.html:12
 msgid "here"
 msgstr "ici"
 
-#: templates/mail_body.html:14
+#: templates/mail_body.html:12
 msgid "to confirm your mhios account"
 msgstr "afin de confirmer votre compte"
 
-#: myopenstories/settings.py:153
+#: myopenstories/settings.py:156
 msgid "English"
 msgstr "Anglais"
 
-#: myopenstories/settings.py:154
+#: myopenstories/settings.py:157
 msgid "French"
 msgstr "Français"
 

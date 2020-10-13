@@ -1,33 +1,19 @@
-/* 0 is clearest, 3 darkest */
-:root {
-    --theme-0-color: #ECECEC;
-    --theme-1-color: #65CCB8;
-    --theme-2-color: #3B945E;
-    --theme-3-color: #182628;
-}
+
 
 body {
-  padding: 0;
-  margin: 0;
-  background: #ECECEC;
-  color: #182628;
-}
-
-h1 { font-size: 2rem; }
-
-
-.test {
-     color: #3B945E;
-}
-
-.test2 {
     background: #ECECEC;
-    color: #65CCB8;
 }
+
+h1 {
+    color:#65CCB8;
+}
+
 
 a {
-  color: #3B945E;
-  text-decoration: none;
+    display: block;
+    text-align: center;
+    color: #3B945E;
+    text-decoration: none;
 }
 
 a:hover {
