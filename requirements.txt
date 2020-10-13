@@ -11,3 +11,4 @@ django-haystack>=3.0b1
 django-cookie-law>=2.0.3
 django-machina>=1.1.1
 django-email-verification>=0.0.7
+django-inlinecss>=0.3.0
