@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 23:04+0200\n"
+"POT-Creation-Date: 2020-10-14 08:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,16 +121,24 @@ msgid "You are one click from the stories!"
 msgstr "Vous êtes à un click des histoires!"
 
 #: templates/mail_body.html:12
-msgid "Please click"
-msgstr "Veuillez cliquer "
+msgid ""
+"You email address needs to be validated in order to confirm your account at "
+"www.mhios.com"
+msgstr ""
+"Votre adresse email doit être validée afin de confirmer votre compte sur "
+"www.mhios.com"
 
-#: templates/mail_body.html:12
-msgid "here"
-msgstr "ici"
+#: templates/mail_body.html:14
+msgid "Validate your address here"
+msgstr "Validez votre email ici"
 
-#: templates/mail_body.html:12
-msgid "to confirm your mhios account"
-msgstr "afin de confirmer votre compte"
+#: templates/mail_body.html:16
+msgid "Thanks for using our site!"
+msgstr "Mecri d'utiliser ce site!"
+
+#: templates/mail_body.html:18
+msgid "The www.mhios.com team"
+msgstr "L'équipe www.mhios.com"
 
 #: myopenstories/settings.py:156
 msgid "English"
@@ -337,3 +345,12 @@ msgid ""
 msgstr ""
 "Vous pouvez contacter privacy@mhios.com pour toute question ou requête sur "
 "l'utilisation de vos données personnelles."
+
+#~ msgid "Please click"
+#~ msgstr "Veuillez cliquer "
+
+#~ msgid "here"
+#~ msgstr "ici"
+
+#~ msgid "to confirm your mhios account"
+#~ msgstr "afin de confirmer votre compte"
