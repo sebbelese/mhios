@@ -151,7 +151,7 @@ msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
-"Vous recevez cet email car vous aved demandé une réinitialisation de mot de "
+"Vous recevez cet email car vous avez demandé une réinitialisation de mot de "
 "passe sur %(site_name)s."
 
 #: accounts/templates/registration/password_reset_email.html:14
