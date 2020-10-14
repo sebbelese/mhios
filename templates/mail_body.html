@@ -9,7 +9,13 @@
 </head>
     <body>
       <h1> {% trans "You are one click from the stories!" %} </h1>
-      {% trans "Please click" %} <a href="{{ link }}">{% trans "here" %}</a> {% trans "to confirm your mhios account" %}
+      {% trans "You email address needs to be validated in order to confirm your account at www.mhios.com" %}
+          <br/><br/>
+	  <a href="{{ link }}">{% trans "Validate your address here" %}</a>
+	        <br/>
+		{% translate "Thanks for using our site!" %}
+		<br/>
+		{% blocktranslate %}The {{ site_name }} team{% endblocktranslate %}
     </body>
 </html>
 {% endinlinecss %}
