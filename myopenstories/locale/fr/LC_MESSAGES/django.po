@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-14 08:20+0200\n"
+"POT-Creation-Date: 2020-10-15 07:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgstr ""
 "utilisé."
 
 #: templates/mail_body.html:11
-msgid "You are one click from the stories!"
+msgid "You are one click away from the stories!"
 msgstr "Vous êtes à un click des histoires!"
 
 #: templates/mail_body.html:12
@@ -125,8 +125,8 @@ msgid ""
 "You email address needs to be validated in order to confirm your account at "
 "www.mhios.com"
 msgstr ""
-"Votre adresse email doit être validée afin de confirmer votre compte sur "
-"www.mhios.com"
+"Votre adresse email doit être validée afin de confirmer votre compte sur www."
+"mhios.com"
 
 #: templates/mail_body.html:14
 msgid "Validate your address here"
@@ -205,16 +205,16 @@ msgid ""
 "Designed to encourage the sharing of interactive stories created by the "
 "community for the community, mhios is an open repository for stories in the"
 msgstr ""
-"Imaginé pour encourager le partage d'histoires interactives créées par "
-"lacommunauté pour la communauté, myopenstories est une bibliothèque ouverte "
-"pourdes histoires au format"
+"Imaginé pour encourager le partage d'histoires interactives créées par la "
+"communauté pour la communauté, mhios est une bibliothèque ouverte pour des "
+"histoires au format"
 
 #: myopenstories/templates/myopenstories/index.html:89
 msgid ""
 "format, a set of tools to read and create interactive stories with "
 "possibility to transfer from and to the"
 msgstr ""
-"un ensemble d'outils pour lire et créer des histoires interactives,avec des "
+"un ensemble d'outils pour lire et créer des histoires interactives, avec des "
 "possibilités de transfert de et vers la boîte à histoires"
 
 #: myopenstories/templates/myopenstories/index.html:89
@@ -226,8 +226,8 @@ msgid ""
 "Registration is not necessary to browse or download the stories. Registered "
 "users can upload their own stories and vote for their favourite stories."
 msgstr ""
-"Aucune inscription n'est nécessaire pour explorée ou télécharger les "
-"histoires.Les utilisateurs enregitrés peuvent partager leurs propres "
+"Aucune inscription n'est nécessaire pour explorer ou télécharger les "
+"histoires. Les utilisateurs enregitrés peuvent partager leurs propres "
 "créations ou voter pour leurs histoires favorites."
 
 #: myopenstories/templates/myopenstories/index.html:91
