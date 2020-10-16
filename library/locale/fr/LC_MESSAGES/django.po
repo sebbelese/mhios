@@ -172,7 +172,7 @@ msgstr "un ancien utilisateur"
 
 #: library/templates/library/index.html:83
 msgid "Play in the story teller"
-msgstr ""
+msgstr "Ecouter dans la boîte à histoires"
 
 #: library/templates/library/index.html:90
 msgid "Download story"
