@@ -168,7 +168,7 @@ $( "#formUpload" ).submit(function( event ) {
 	alert("ERROR: story zip file not provided");
 	return;
     }
-    if (files_data.type == "application/zip"){
+   // if (files_data.type == "application/zip"){
 	totalPerFile = {};
 	loadedPerFile = {};
 	totalSize = files_data.size;
@@ -242,10 +242,10 @@ $( "#formUpload" ).submit(function( event ) {
 
 	xhrAdd.send(new FormData(document.querySelector("#formUpload")));
 	
-    }else{
-	alert("ERROR: story should be a zip file");
-	return;
-    }
+    //}else{
+//	alert("ERROR: story should be a zip file");
+//	return;
+  //  }
 });
 
 
