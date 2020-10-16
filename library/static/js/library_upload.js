@@ -53,19 +53,20 @@ function load_poster_from_zip(elem) {
     var file;
     if (elem.files && elem.files[0]){
 
-	if (elem.files[0].type == "application/zip"){
-	    var zip = new JSZip();
-	    zip.loadAsync( elem.files[0] ).then(function(zip) {
-		if (zip.files["thumbnail.png"]){
-		    zip.file("thumbnail.png").async("base64").then((thumb_b64) => {
-			zip.file("thumbnail.png").async("blob").then((thumb_blob) => {
-			    init_crop_with_file(thumb_blob);
-			    jQuery('#id_thumbnailFromZip').val(thumb_b64);
-			});
+	var zip = new JSZip();
+	zip.loadAsync( elem.files[0] ).then(function(zip) {
+	    if (zip.files["thumbnail.png"]){
+		zip.file("thumbnail.png").async("base64").then((thumb_b64) => {
+		    zip.file("thumbnail.png").async("blob").then((thumb_blob) => {
+			init_crop_with_file(thumb_blob);
+			jQuery('#id_thumbnailFromZip').val(thumb_b64);
 		    });
-		}
-	    });
-	}
+		});
+	    }
+	}).catch(function(err) {
+	    alert("ERROR: story should be a zip file");
+	    return;
+	});	
     }
 }
 
@@ -235,8 +236,10 @@ $( "#formUpload" ).submit(function( event ) {
 			});
 
 			
-			
-		    });
+		    }).catch(function(err) {
+			alert("ERROR: story should be a zip file");
+			return;
+		    });	
 	    }
 	}
 
