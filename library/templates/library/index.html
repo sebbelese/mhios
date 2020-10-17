@@ -5,7 +5,7 @@
 {% load tz %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/library.css' %}">
+<link rel="stylesheet" href="{% static 'css/library.css' %}" type='text/css'>
 {% endblock %}
 
 {% block body %}
@@ -72,7 +72,7 @@
 	<div class="col-sm-4 col-6">  {% localtime off %}{{ story.pub_date.date }}{% endlocaltime %} </div>
 	<div class="col-sm-2 col-6">
 	  <div class="d-flex justify-content-end">
-	  <button title="{% trans 'Downvote' %}" {% if user.is_authenticated %} class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" data-storyid="{{story.id}}" {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"><span>-</span> </button><!--
+	  <button title="{% trans 'Downvote' %}" {% if user.is_authenticated %} class="vote {% if user in story.downvotes.all  %}selected{% endif %}" id="downvoteStory{{story.id}}" data-vote="down" dbata-storyid="{{story.id}}" {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"><span>-</span> </button><!--
 																																    --><span class="score" id="scoreStory{{ story.id }}">{{ story.score }}</span><!--
 																																										   --><button title="{% trans 'Upvote' %}" {% if user.is_authenticated %} class="vote  {% if user in story.upvotes.all  %}selected{% endif %}" id="upvoteStory{{story.id}}" data-vote="up" data-storyid="{{story.id}}"  {% else %} class="vote"  data-toggle="modal" data-target="#needregisterModal" {% endif %} type="button"> <span>+</span></button>
 	  </div>
