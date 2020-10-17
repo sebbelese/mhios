@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block body %}
+<br>
+<div class="container">
+  <h2>{% trans "Your account has been deleted" %}</h2>
+  <p>{% trans "The account associated with the address" %}<b> {{ email }} </b>{% trans "is now deleted." %}</p>
+  <p>{% trans "We are sad to see you leave and hope to see you back soon!." %}</p>
+</div>
+{% endblock %}

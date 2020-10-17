@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
+    path('edit_user/', views.editUser, name='edit_user'),
+    path('delete_user/', views.deleteUser, name='delete_user'),
     path('confirmation/<email>', views.confirmation, name='confirmation'),
     path('email/', include(mail_urls)),
     path('password_reset/', auth_views.PasswordResetView.as_view(html_email_template_name='registration/password_reset_email.html')),

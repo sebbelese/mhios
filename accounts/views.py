@@ -1,9 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, EditUserForm
 from django.utils.translation import get_language
 from django_email_verification import sendConfirm
+from .models import User
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':
@@ -22,3 +24,20 @@ def confirmation(request, email):
         return render(request, 'accounts/confirmation.html', {'email' : email})
     
 
+@login_required
+def editUser(request):
+    if request.method == 'POST':
+        f = EditUserForm(request.POST, instance=request.user)
+        if f.is_valid():
+            user = f.save()
+    else:
+        f = EditUserForm(instance=request.user)
+    return render(request, 'accounts/edituser.html', {'form': f})
+
+@login_required
+def deleteUser(request):
+    context = {}
+    context['email'] = str(request.user)
+    request.user.is_active = False
+    request.user.save()
+    return render(request, 'accounts/userdeleted.html', context=context) 
