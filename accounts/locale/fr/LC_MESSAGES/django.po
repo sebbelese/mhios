@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-17 20:02+0200\n"
+"POT-Creation-Date: 2020-10-17 22:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: accounts/forms.py:18
-msgid "Language"
-msgstr "Langue"
 
 #: accounts/managers.py:15
 msgid "The Email must be set"
@@ -61,6 +57,38 @@ msgstr ""
 msgid "Please check you emails and use the validation link."
 msgstr "Veuillez vérifier vos emails et utiliser le lien de validation."
 
+#: accounts/templates/accounts/edituser.html:10
+msgid "Account deletion"
+msgstr "Suppression du compte"
+
+#: accounts/templates/accounts/edituser.html:16
+msgid "Do you really want to delete your account?"
+msgstr "Voulez-vous réellement supprimer votre compte?"
+
+#: accounts/templates/accounts/edituser.html:19
+msgid "Yes, delete my account"
+msgstr "Oui, supprimez mon compte"
+
+#: accounts/templates/accounts/edituser.html:20
+msgid "No"
+msgstr "Non"
+
+#: accounts/templates/accounts/edituser.html:27
+msgid "Edit your profile"
+msgstr "Editer mon profil"
+
+#: accounts/templates/accounts/edituser.html:42
+msgid "Change my password"
+msgstr "Changer mon mot de passe"
+
+#: accounts/templates/accounts/edituser.html:43
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: accounts/templates/accounts/edituser.html:45
+msgid "Delete my account"
+msgstr "Supprimer mon compte"
+
 #: accounts/templates/accounts/signup.html:7
 #: accounts/templates/accounts/signup.html:23
 msgid "Sign up"
@@ -78,11 +106,35 @@ msgstr ""
 "faite de votre adresse email. Votre adresse n'est pas partagée publiquement "
 "ou transmise à des parties tierces."
 
+#: accounts/templates/accounts/userdeleted.html:7
+msgid "Your account has been deleted"
+msgstr "Votre compte a été supprimé"
+
+#: accounts/templates/accounts/userdeleted.html:8
+msgid "The account associated with the address"
+msgstr "Le compte associé à l'adresse"
+
+#: accounts/templates/accounts/userdeleted.html:8
+msgid "is now deleted."
+msgstr "est maintenant supprimé."
+
+#: accounts/templates/accounts/userdeleted.html:9
+msgid "We are sad to see you leave and hope to see you back soon!"
+msgstr "Nous sommes tristes de vous voir partir et espérons vous revoir bientôt!"
+
 #: accounts/templates/registration/login.html:7
 msgid "Log in"
 msgstr "Connexion"
 
-#: accounts/templates/registration/login.html:36
+#: accounts/templates/registration/login.html:9
+msgid ""
+"Login error. Your username and password did not match or your email is not "
+"validated. Please try again or click the email activation link."
+msgstr ""
+"Erreur de login. Votre nom d'utilisateur et mot de passe ne correspondent pas, ou votre email "
+"n'est pas validé. Veuillez réessayer ou cliquer sur le lien d'activation envoyé par email."
+
+#: accounts/templates/registration/login.html:28
 msgid "Lost password?"
 msgstr "Mot de passe perdu?"
 
@@ -191,6 +243,12 @@ msgstr ""
 #: accounts/templates/registration/password_reset_form.html:14
 msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"
+
+#~ msgid "All the data associated with this account will be deleted"
+#~ msgstr "Les données associées à votre compte seront supprimées"
+
+#~ msgid "Language"
+#~ msgstr "Langue"
 
 #~ msgid "Your username and password didn't match. Please try again."
 #~ msgstr "Vos email et mot de passe ne correspondent pas. Veuillez réessayer."

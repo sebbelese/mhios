@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-17 20:02+0200\n"
+"POT-Creation-Date: 2020-10-17 22:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,11 +41,11 @@ msgstr ""
 "Créez votre bibliothèque personnelle pour garder une accès facile à votre "
 "sélection"
 
-#: templates/base.html:63 templates/base.html:160
+#: templates/base.html:63 templates/base.html:192
 msgid "Log in"
 msgstr "Connexion"
 
-#: templates/base.html:64 templates/base.html:177
+#: templates/base.html:64 templates/base.html:209
 msgid "Sign up"
 msgstr "Inscription"
 
@@ -68,6 +68,10 @@ msgstr "Forum de discussion"
 #: templates/base.html:148
 msgid "Log Out"
 msgstr "Déconnexion"
+
+#: templates/base.html:161
+msgid "Edit user profile"
+msgstr ""
 
 #: templates/board_base.html:19
 msgid "Advanced search"
