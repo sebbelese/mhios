@@ -270,11 +270,15 @@ function switchLibrary(toUserLibrary){
 }
 
 function onUserLibrary(){
-    switchLibrary(true);
+    if (isUserAuthenticated) {
+	switchLibrary(true);
+    }
 }
 
 function onGlobalLibrary(){
-    switchLibrary(false);
+    if (isUserAuthenticated) {
+	switchLibrary(false);
+    }
 }
 
 function toggleFullScreen() {
