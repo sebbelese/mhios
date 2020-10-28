@@ -169,23 +169,41 @@ function playStageNode(node){
     }else{
 	$("#nodeImage").attr("src", emptyBlackImage);
     }
-    getUrl("assets/"+node.audio).then((audioUrl) => {
-	if (soundInstance != null){
-	    soundInstance.stop();
-	}
-	paused = false;
-	soundInstance = new Howl({
-	    src: audioUrl,
-	    html5: true, //This is needed for streaming rather than downloading
-	    format: node.audio.split('.').pop().toLowerCase(),
-	    autoplay: true
-	});
-	soundInstance.on('end', function(){
-	    if (node.controlSettings.autoplay){
-		onOk();
+    if (node.audio != null){
+	getUrl("assets/"+node.audio).then((audioUrl) => {
+	    if (soundInstance != null){
+		soundInstance.stop();
 	    }
+	    paused = false;
+	    soundInstance = new Howl({
+		src: audioUrl,
+		html5: true, //This is needed for streaming rather than downloading
+		format: node.audio.split('.').pop().toLowerCase(),
+		autoplay: true
+	    });
+	    soundInstance.on('end', function(){
+		if (node.controlSettings.autoplay){
+		    onOk();
+		}
+	    });
+	    soundInstance.on('loaderror', function(e,msg){
+		console.log("LOAD ERROR :",e,msg)
+		if (node.controlSettings.autoplay){
+		    onOk();
+		}
+	    });
+	    soundInstance.on('playerror', function(e,msg){
+		console.log("PLAY ERROR :",e,msg)
+		if (node.controlSettings.autoplay){
+		    onOk();
+		}
+	    });
 	});
-    });
+    }else{ //No audio in this node
+	if (node.controlSettings.autoplay){
+	    onOk();
+	}
+    }
 }
 
 
