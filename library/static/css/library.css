@@ -78,6 +78,7 @@
 
 .story-title {
     font-size:larger;
+    color: var(--theme-1-color);
 }
 
 .poster {
@@ -153,3 +154,5 @@
     margin-right: auto;
     width: 25%;
 }
+
+

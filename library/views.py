@@ -107,15 +107,15 @@ def index(request):
     return render(request, 'library/index.html', context)
 
 
-def watchStory(request, storyId):
-    currentStory = get_object_or_404(story, pk=storyId)
-    response = "You're looking at story %s. Title is %s"%(storyId,currentStory.title)
-    context = {
-        'story':currentStory,
-        'language':LANGUAGE_CHOICES_DICT[currentStory.language],
-        'age':AGE_CHOICES_DICT[currentStory.age]
-    }
-    return render(request, 'library/watchStory.html', context)
+#def watchStory(request, storyId):
+#    currentStory = get_object_or_404(story, pk=storyId)
+#    response = "You're looking at story %s. Title is %s"%(storyId,currentStory.title)
+#    context = {
+#        'story':currentStory,
+#        'language':LANGUAGE_CHOICES_DICT[currentStory.language],
+#        'age':AGE_CHOICES_DICT[currentStory.age]
+#    }
+#    return render(request, 'library/watchStory.html', context)
 
 @login_required
 def uploadStoryFile(request):

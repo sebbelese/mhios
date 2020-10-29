@@ -227,7 +227,7 @@ $( "#formUpload" ).submit(function( event ) {
 			
 			Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
 			    $.get('uploadStoryDone', {story_id: storyId}).then(function(){
-				window.location.replace("../"+storyId);	    
+				window.location.replace("../");	    
 			    })
 			}).catch(function(err) {
 			    uploadInError = true;

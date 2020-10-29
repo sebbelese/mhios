@@ -65,7 +65,7 @@
   <div class="col-10">
     <div class="content container-fluid">
       <div class="row">
-	<div class="col-sm-12 col-12">  <a title="{% trans 'View story details' %}" class="story-title" href={% url "library:watchStory" storyId=story.id %}>{{ story.title }}</a> </div>
+	<div class="col-sm-12 col-12 story-title"> {{ story.title }}  </div>
 	<div class="col-sm-12 col-12">  {{ story.abstract }}  </div>
 	<div class="col-sm-3 col-6">  {{ ageDict|get_item:story.age }} </div>
 	<div class="col-sm-3 col-6">  <div class="d-flex justify-content-end justify-content-sm-start">{{ languageDict|get_item:story.language }} </div></div>
