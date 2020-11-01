@@ -94,7 +94,7 @@ $("#storyFile").change(function () {
 	spanElem.style.display= 'none';
     }
     storyFileChosen = true;
-    document.getElementById("licensing").disabled = false;
+    document.getElementById("licensing").classList.remove("hiddenField");
 });
 
 
@@ -181,7 +181,6 @@ $( "#formUpload" ).submit(function( event ) {
 	$("#id_width").val(initCrop.width);
 	$("#id_rotation").val(initCrop.rotate);
     }
-    
     var csrftoken = $("[name=csrfmiddlewaretoken]").val();    
     var xhrAdd = new XMLHttpRequest();
     xhrAdd.open("POST", '#', true);
