@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-17 22:20+0200\n"
+"POT-Creation-Date: 2020-11-01 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,7 +120,8 @@ msgstr "est maintenant supprimé."
 
 #: accounts/templates/accounts/userdeleted.html:9
 msgid "We are sad to see you leave and hope to see you back soon!"
-msgstr "Nous sommes tristes de vous voir partir et espérons vous revoir bientôt!"
+msgstr ""
+"Nous sommes tristes de vous voir partir et espérons vous revoir bientôt!"
 
 #: accounts/templates/registration/login.html:7
 msgid "Log in"
@@ -131,8 +132,9 @@ msgid ""
 "Login error. Your username and password did not match or your email is not "
 "validated. Please try again or click the email activation link."
 msgstr ""
-"Erreur de login. Votre nom d'utilisateur et mot de passe ne correspondent pas, ou votre email "
-"n'est pas validé. Veuillez réessayer ou cliquer sur le lien d'activation envoyé par email."
+"Erreur de login. Votre nom d'utilisateur et mot de passe ne correspondent "
+"pas, ou votre email n'est pas validé. Veuillez réessayer ou cliquer sur le "
+"lien d'activation envoyé par email."
 
 #: accounts/templates/registration/login.html:28
 msgid "Lost password?"

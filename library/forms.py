@@ -16,9 +16,13 @@ from .models import story
 
 class addStoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-         self.user = kwargs.pop('user',None)
-         super(addStoryForm, self).__init__(*args, **kwargs)
-         
+
+        self.editForm = kwargs.pop('editForm',False)
+        self.user = kwargs.pop('user',None)
+        super(addStoryForm, self).__init__(*args, **kwargs)
+
+
+
     x = forms.FloatField(widget=forms.HiddenInput(), required=False)
     y = forms.FloatField(widget=forms.HiddenInput(), required=False)
     width = forms.FloatField(widget=forms.HiddenInput(), required=False)
@@ -26,16 +30,18 @@ class addStoryForm(forms.ModelForm):
     rotation = forms.FloatField(widget=forms.HiddenInput(), required=False)
 
     thumbnailFromZip = forms.CharField(widget=forms.HiddenInput(), required=False, initial="")
+
+    poster = forms.ImageField(label=str(_("Poster"))+" ("+str(_("Option"))+")",required=False, error_messages = {'invalid':_("Image files only")}, widget=forms.FileInput)
     
     class Meta:
         model = story
         fields = ('title','abstract','age','licensing','language','poster', 'x', 'y', 'width', 'height','rotation')
-        labels = {"poster": str(_("Poster"))+" ("+str(_("Optional"))+")"}
 
     def save(self, commit=True):
 
         story = super(addStoryForm, self).save(commit=False)
-        story.pub_date = timezone.now()
+        if not self.editForm:
+            story.pub_date = timezone.now() #Only when story is created
         story.uploader = self.user
 
         x = self.cleaned_data.get('x')

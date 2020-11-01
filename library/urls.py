@@ -7,11 +7,12 @@ app_name = 'library'
 
 urlpatterns = [
     path('', views.index, name='index'),
-#    path('<int:storyId>/', views.watchStory, name='watchStory'),
+    path('editStory<int:storyId>/', views.editStory, name='editStory'),
     path('voteStory', views.voteStory, name='voteStory'),
     path('addStory/',views.addStory, name='addStory'),
-    path('addStory/uploadStoryFile',views.uploadStoryFile, name='uploadStoryFile'),
-    path('addStory/uploadStoryDone',views.uploadStoryDone, name='uploadStoryDone'),
+    path('uploadStoryFile',views.uploadStoryFile, name='uploadStoryFile'),
+    path('uploadStoryDone',views.uploadStoryDone, name='uploadStoryDone'),
+    path('deleteStoryPath',views.deleteStoryPath, name='deleteStoryPath'),
     path('getStoryFilesListAndSize', views.getStoryFilesListAndSize, name='getStoryFilesListAndSize'),
     path('getStoryFileLink', views.getStoryFileLink, name='getStoryFileLink'),
     path('toUserLibrary',views.toUserLibrary, name='toUserLibrary'),

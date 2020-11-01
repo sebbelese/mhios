@@ -106,17 +106,56 @@ def index(request):
     }
     return render(request, 'library/index.html', context)
 
+def getLicenseText(currentStory):
+    #We prepare the license file
+    licFin = open('static/licenses/'+currentStory.licensing+'.txt', "rt")
+    licText = licFin.read()
+    licFin.close()
+    licText = licText.replace('<WORK>', '"'+currentStory.title+'"')
+    licText = licText.replace('<AUTHOR(S)>', currentStory.uploader.username)
+    return licText
 
-#def watchStory(request, storyId):
-#    currentStory = get_object_or_404(story, pk=storyId)
-#    response = "You're looking at story %s. Title is %s"%(storyId,currentStory.title)
-#    context = {
-#        'story':currentStory,
-#        'language':LANGUAGE_CHOICES_DICT[currentStory.language],
-#        'age':AGE_CHOICES_DICT[currentStory.age]
-#    }
-#    return render(request, 'library/watchStory.html', context)
+@login_required
+def editStory(request, storyId):
+    currentStory = get_object_or_404(story, pk=storyId)
+    if request.user == currentStory.uploader:
+        if request.method == 'POST':
+            f = addStoryForm(request.POST, request.FILES, instance=currentStory, user=request.user, editForm=True)
+            if f.is_valid():
+                user = f.save()
+                licText = getLicenseText(currentStory)
+                data = json.dumps({
+                    'storyId' : storyId,
+                    'license' : licText,
+                })
+                return HttpResponse(data, content_type='application/json')
+            else:
+                return HttpResponse("Error invalid input")
+        else:
+            f = addStoryForm(instance=currentStory, editForm=True)
+        return render(request, 'library/editStory.html', {'form': f, 'story': currentStory})
+    else:
+        return HttpResponse("Error: forbidden. User %s is not allowed to modify story created by %s"%(request.user,currentStory.uploader))
 
+@login_required
+def deleteStoryPath(request):
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+        currentStory = get_object_or_404(story, pk=story_id)
+        if request.user == currentStory.uploader:
+            story_id = request.GET['story_id']
+            currentStory = get_object_or_404(story, pk=story_id)
+            currentStory.uploadReady = False
+            currentStory.save(update_fields=["uploadReady"])
+            storage = customstorage.CustomStorage()
+            storage.delete(story.storiesPath+'/'+currentStory.buildStoryDirname())
+            return HttpResponse()
+        else:
+            return HttpResponse("Error: forbidden. User %s is not allowed to modify story created by %s"%(request.user,currentStory.uploader))
+    else:
+        return HttpResponse("Error: invalid input")
+
+    
 @login_required
 def uploadStoryFile(request):
     if request.method == 'GET':
@@ -188,12 +227,7 @@ def addStory(request):
         if currentStoryForm.is_valid():
             currentStory = currentStoryForm.save()
             storyId = currentStory.id
-            #We prepare the license file
-            licFin = open('static/licenses/'+currentStory.licensing+'.txt', "rt")
-            licText = licFin.read()
-            licFin.close()
-            licText = licText.replace('<WORK>', '"'+currentStory.title+'"')
-            licText = licText.replace('<AUTHOR(S)>', currentStory.uploader.username)
+            licText = getLicenseText(currentStory)
             data = json.dumps({
                 'storyId' : storyId,
                 'license' : licText,

@@ -34,13 +34,19 @@ class CustomStorage(DropBoxStorage):
             fList += res.entries
         cleanList = []
         return [[f.path_lower[len(self.root_path)+1:], f.size] for f in fList if isinstance(f, FileMetadata)]
-            
+
+    def delete(self, path):
+        try:
+            self.client.files_delete_v2(self._full_path(path))
+        except Exception: #Avoids crash if file dos not exists
+            pass
 
         
     def _getUploadLink(self, name):
         commit = CommitInfo(path=self._full_path(name), mode=WriteMode(self.write_mode))
         return self.client.files_get_temporary_upload_link(commit_info=commit)
-        
+
+    
 
         
 

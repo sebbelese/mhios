@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-17 22:20+0200\n"
+"POT-Creation-Date: 2020-11-01 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: library/forms.py:33 library/models.py:45
-#: library/templates/library/watchStory.html:18
+#: library/forms.py:34 library/models.py:45
 msgid "Poster"
 msgstr "Vignette"
 
-#: library/forms.py:33
-msgid "Optional"
+#: library/forms.py:34
+#, fuzzy
+#| msgid "Optional"
+msgid "Option"
 msgstr "Facultatif"
+
+#: library/forms.py:34
+msgid "Image files only"
+msgstr "Images uniquement"
 
 #: library/models.py:10
 msgid "French"
@@ -119,6 +124,22 @@ msgstr ""
 msgid "Upload story"
 msgstr "Télécharger"
 
+#: library/templates/library/editStory.html:25
+msgid "Not updated"
+msgstr "Conserver actuel"
+
+#: library/templates/library/editStory.html:43
+msgid ""
+"By clicking the <i>Update story</i> button, I certify that I have the right "
+"to post the story on this website under the associated license."
+msgstr ""
+"En cliquant <i>Enregistrer</i> , je certifie détenir les droits nécessaires "
+"afin de poster l'histoire sur ce site sous la licence associée."
+
+#: library/templates/library/editStory.html:49
+msgid "Update story"
+msgstr "Enregistrer"
+
 #: library/templates/library/index.html:15
 msgid "Add story"
 msgstr "Ajouter une histoire"
@@ -148,10 +169,6 @@ msgstr "Auteur"
 msgid "All"
 msgstr "Tout"
 
-#: library/templates/library/index.html:68
-msgid "View story details"
-msgstr "Voir l'histoire en détails"
-
 #: library/templates/library/index.html:75
 msgid "Downvote"
 msgstr "Voter vers le bas"
@@ -161,47 +178,52 @@ msgid "Upvote"
 msgstr "Voter vers le haut"
 
 #: library/templates/library/index.html:81
-#: library/templates/library/watchStory.html:15
 msgid "by"
 msgstr "par"
 
 #: library/templates/library/index.html:81
-#: library/templates/library/watchStory.html:15
 msgid "a deleted user"
 msgstr "un ancien utilisateur"
 
-#: library/templates/library/index.html:83
+#: library/templates/library/index.html:84
+msgid "Edit"
+msgstr "Editer"
+
+#: library/templates/library/index.html:91
 msgid "Play in the story teller"
 msgstr "Ecouter dans la boîte à histoires"
 
-#: library/templates/library/index.html:90
+#: library/templates/library/index.html:98
 msgid "Download story"
 msgstr "Télécharger"
 
-#: library/templates/library/index.html:100
+#: library/templates/library/index.html:108
 msgid "Remove from personal library"
 msgstr "Retirer de ma librairie personnelle"
 
-#: library/templates/library/index.html:100
+#: library/templates/library/index.html:108
 msgid "Add to personal library"
 msgstr "Ajouter à ma librairie personnelle"
 
-#: library/templates/library/index.html:135
+#: library/templates/library/index.html:143
 msgid "No story is available that matches your criteria"
 msgstr "Aucune histoire ne correspond aux critères choisis"
 
-#: library/templates/library/index.html:140
+#: library/templates/library/index.html:148
 msgid "First page"
 msgstr "Première page"
 
-#: library/templates/library/index.html:146
+#: library/templates/library/index.html:154
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: library/templates/library/index.html:158
+#: library/templates/library/index.html:166
 msgid "Next page"
 msgstr "Page suivante"
 
-#: library/templates/library/index.html:163
+#: library/templates/library/index.html:171
 msgid "Last page"
 msgstr "Dernière page"
+
+#~ msgid "View story details"
+#~ msgstr "Voir l'histoire en détails"

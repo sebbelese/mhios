@@ -1,7 +1,8 @@
-//Cropping the poster image
+
 
 var cropper;
 var posterChanged;
+var storyFileChosen;
 
 var uploadInError;
 
@@ -43,8 +44,20 @@ $("#id_poster").change(function () {
 
 $(window).on('pageshow', function(){
     var inputElement = document.getElementById("id_poster");
-    posterChanged = false;
+    //Update existing story
+    if (typeof old_poster !== 'undefined') {
+	if (old_poster == "assets/defaultPoster.jpg"){
+	    posterChanged = false;
+	}else{
+	    posterChanged = true;
+	}
+    }
+    //Upload new story
+    else{
+	posterChanged = false;
+    }
     init_crop(inputElement)
+    storyFileChosen = false;
 });
 
 
@@ -76,6 +89,11 @@ $("#storyFile").change(function () {
     if (!posterChanged){
 	load_poster_from_zip(this);
     }
+    spanElem = document.getElementById("noFileUpdate")
+    if(typeof(spanElem) != 'undefined' && spanElem != null){
+	spanElem.style.display= 'none';
+    }
+    storyFileChosen = true;
 });
 
 
@@ -162,91 +180,104 @@ $( "#formUpload" ).submit(function( event ) {
 	$("#id_width").val(initCrop.width);
 	$("#id_rotation").val(initCrop.rotate);
     }
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();    
+    var xhrAdd = new XMLHttpRequest();
+    xhrAdd.open("POST", '#', true);
+    xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
+    
+    xhrAdd.onreadystatechange = function() {
+	//When the server has answered (story was created on server, but not uploaded)
+	if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 
-    var files_data = $('#storyFile').prop('files')[0];
-    if (files_data == undefined){
-	alert("ERROR: story zip file not provided");
-	return;
-    }
-   // if (files_data.type == "application/zip"){
-	totalPerFile = {};
-	loadedPerFile = {};
-	totalSize = files_data.size;
-
-
-	var xhrAdd = new XMLHttpRequest();
-	xhrAdd.open("POST", '#', true);
-	xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
-
-	xhrAdd.onreadystatechange = function() {
-	    //When the server has answered (story was created on server, but not uploaded)
-	    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	    //The user has set a story file to upload
+	    if (storyFileChosen){
 		storyId = JSON.parse(xhrAdd.responseText)['storyId'];
-	
-		var zip = new JSZip();
-		zip.loadAsync( files_data )
-		    .then(function(zip) {
+		
+		$.get('../deleteStoryPath', {story_id: storyId}).then(function(data){
 
-			if (!zip.files["story.json"]){
-			    alert("ERROR: zip file is not a valid story file");
-			    return;
-			}
-			
-			nbFilesInZip = Object.keys(zip.files).length;
-			
-			$("#id_initDone").val(false); //Story is initialized along with the first zip upload. We don't want to do it twice
-			promises = [];//This is a list of promises to know when all files are done uploading
-			//Loop in files in zip
-			zip.forEach(function(file){
-			    promises.push($.get('uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
-				
-				
-				//Unzip
-				return zip.files[file].async('blob').then(function (fileData) {
-				    if (fileData.size > 0){
-					var uploadUrl =  data['uploadUrl'];
-					totalPerFile[uploadUrl] = fileData.size;
-					//UPLOAD HERE
-					return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
-				    }
-				});
-			    }));
-			});
-			//We update the license file
-			promises.push($.get('uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
-			    licText = JSON.parse(xhrAdd.responseText)['license'];
-			    var licBlob = new Blob([licText], {
-				type: 'text/plain'
-			    });
-			    var uploadUrl =  dataLic['uploadUrl'];
-			    totalPerFile[uploadUrl] = licBlob.size;
-			    return upload_story(licBlob, storyId, uploadUrl, nbRetriesUpload);
-			}));
-				    
-			
-			Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
-			    $.get('uploadStoryDone', {story_id: storyId}).then(function(){
-				window.location.replace("../");	    
-			    })
-			}).catch(function(err) {
-			    uploadInError = true;
-			    alert("ERROR: cannot create story: "+err.message);
-			    return;
-			});
-
-			
-		    }).catch(function(err) {
-			alert("ERROR: story should be a zip file");
+		
+		    var files_data = $('#storyFile').prop('files')[0];
+		    if (files_data == undefined){
+			alert("ERROR: story zip file not provided");
 			return;
-		    });	
+		    }
+		    // if (files_data.type == "application/zip"){
+		    totalPerFile = {};
+		    loadedPerFile = {};
+		    totalSize = files_data.size;
+		    
+		    
+		    var zip = new JSZip();
+		    zip.loadAsync( files_data )
+			.then(function(zip) {
+			    
+			    if (!zip.files["story.json"]){
+				alert("ERROR: zip file is not a valid story file");
+				return;
+			    }
+			    
+			    nbFilesInZip = Object.keys(zip.files).length;
+			    
+			    $("#id_initDone").val(false); //Story is initialized along with the first zip upload. We don't want to do it twice
+			    promises = [];//This is a list of promises to know when all files are done uploading
+			    //Loop in files in zip
+			    zip.forEach(function(file){
+				if (file.toLowerCase() != "license.txt") {
+				    promises.push($.get('../uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
+					
+					
+					//Unzip
+					return zip.files[file].async('blob').then(function (fileData) {
+					    if (fileData.size > 0){
+						var uploadUrl =  data['uploadUrl'];
+						totalPerFile[uploadUrl] = fileData.size;
+						//UPLOAD HERE
+						return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
+					    }
+					});
+				    }));
+				}
+			    });
+			    //We update the license file
+			    promises.push($.get('../uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
+				licText = JSON.parse(xhrAdd.responseText)['license'];
+				var licBlob = new Blob([licText], {
+				    type: 'text/plain'
+				});
+				var uploadUrl =  dataLic['uploadUrl'];
+				totalPerFile[uploadUrl] = licBlob.size;
+				return upload_story(licBlob, storyId, uploadUrl, nbRetriesUpload);
+			    }));
+			    
+			    
+			    Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
+				$.get('../uploadStoryDone', {story_id: storyId}).then(function(){
+				    window.location.replace("../");	    
+				})
+			    }).catch(function(err) {
+				uploadInError = true;
+				alert("ERROR: cannot create story: "+err.message);
+				return;
+			    });
+			    
+			    
+			}).catch(function(err) {
+			    alert("ERROR: story should be a zip file");
+			    return;
+			});
+		});
+	    }else{
+		//If no file update has bee done, the changes are saved and we can go back to library
+		window.location.replace("../");
 	    }
 	}
-
-	xhrAdd.send(new FormData(document.querySelector("#formUpload")));
-	
+    }
+    
+    xhrAdd.send(new FormData(document.querySelector("#formUpload")));
+    
     //}else{
-//	alert("ERROR: story should be a zip file");
+    //	alert("ERROR: story should be a zip file");
 //	return;
   //  }
 });
