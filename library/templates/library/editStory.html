@@ -26,7 +26,9 @@
       {{ form.abstract|as_crispy_field }}
       {{ form.language|as_crispy_field }}
       {{ form.age|as_crispy_field }}
-      {{ form.licensing|as_crispy_field }}
+      <fieldset disabled="disabled" id="licensing">
+	{{ form.licensing|as_crispy_field }}
+      </fieldset>
     </div>
     <div class="col-12 col-md-5">
       <div class="mr-md-20 form-poster">

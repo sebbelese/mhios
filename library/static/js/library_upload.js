@@ -94,6 +94,7 @@ $("#storyFile").change(function () {
 	spanElem.style.display= 'none';
     }
     storyFileChosen = true;
+    document.getElementById("licensing").disabled = false;
 });
 
 
