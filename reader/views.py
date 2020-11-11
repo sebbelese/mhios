@@ -15,14 +15,17 @@ def index(request):
 
     startStoryIdx = -1
     showUserLib = storyId < 0 and request.user.is_authenticated
+
+    storiesReady = [ story_instance for story_instance in story.objects.all() if story_instance.uploadReady]
+    
     if showUserLib: #No specific story selected and authenticated user with non empty library: default is user library
         isUserLib = True
-        storiesList = [ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]
+        storiesList = [ story_instance.id for story_instance in storiesReady if request.user in story_instance.inUserLibrary.all()]
         if len(storiesList) == 0:
             showUserLib = False
     if not showUserLib: #Specific story selected or unauthenticated user or user with empty list:  default is global library
         isUserLib = False
-        storiesList = [ story_instance.id for story_instance in story.objects.all()]
+        storiesList = [ story_instance.id for story_instance in storiesReady]
         if storyId >= 0: #A story is selected
             startStoryIdx = storiesList.index(storyId)
         
@@ -40,15 +43,15 @@ def switchLibrary(request):
     if request.method == 'GET':
         isUserLibrary = request.GET['is_user_library'] == "true"
 
-
+        storiesReady = [ story_instance for story_instance in story.objects.all() if story_instance.uploadReady]
         
         if isUserLibrary: #Authenticated user with non empty library: default is user library
-            storiesList = [ story_instance.id for story_instance in story.objects.all() if request.user in story_instance.inUserLibrary.all()]
+            storiesList = [ story_instance.id for story_instance in storiesReady if request.user in story_instance.inUserLibrary.all()]
             if len(storiesList) == 0:
                 isUserLibrary = False
         if not isUserLibrary: #Unauthenticated user or user with empty list:  default is global library
-            storiesList = [ story_instance.id for story_instance in story.objects.all()]
-        
+            storiesList = [ story_instance.id for story_instance in storiesReady]
+
         data = json.dumps({
             'isUserLibrary' : isUserLibrary,
             'storiesId' : json.dumps(storiesList),
