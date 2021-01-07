@@ -106,7 +106,7 @@ var totalPerFile;
 var loadedPerFile;
 var totalSize;
 var nbFilesInZip;
-var nbRetriesUpload=10;
+var nbRetriesUpload=100;
 
 function updateProgress(uploadUrl, evt) 
 {
