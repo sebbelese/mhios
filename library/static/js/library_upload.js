@@ -107,6 +107,7 @@ var loadedPerFile;
 var totalSize;
 var nbFilesInZip;
 var nbRetriesUpload=10;
+var nbRetriesGetUploadLink = 20;
 
 function updateProgress(uploadUrl, evt) 
 {
@@ -168,7 +169,19 @@ function upload_story(file_data, storyId, uploadUrl, nbRetries) {
     
 }
 
-
+function getLinkUploadFile(zip, storyId, file){
+    return $.get('../uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
+	//Unzip
+	return zip.files[file].async('blob').then(function (fileData) {
+	    if (fileData.size > 0){
+		var uploadUrl =  data['uploadUrl'];
+		totalPerFile[uploadUrl] = fileData.size;
+		//UPLOAD HERE
+		return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
+	    }
+	});
+    });
+}
 
 $( "#formUpload" ).submit(function( event ) {
     uploadInError = false;
@@ -224,19 +237,15 @@ $( "#formUpload" ).submit(function( event ) {
 			    //Loop in files in zip
 			    zip.forEach(function(file){
 				if (file.toLowerCase() != "license.txt") {
-				    promises.push($.get('../uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
-					
-					
-					//Unzip
-					return zip.files[file].async('blob').then(function (fileData) {
-					    if (fileData.size > 0){
-						var uploadUrl =  data['uploadUrl'];
-						totalPerFile[uploadUrl] = fileData.size;
-						//UPLOAD HERE
-						return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
-					    }
+				    promise = getLinkUploadFile(zip, storyId, file);
+				    for(var iRetry=0; iRetry<nbRetriesGetUploadLink; iRetry++) {
+					promise = promise.catch(function(err) {
+					    console.log("When uploading",file);
+					    console.log("Server error, probably Heroku timeout. Retry",iRetry,"over",nbRetriesGetUploadLink);
+					    return getLinkUploadFile(zip, storyId, file);
 					});
-				    }));
+				    }
+				    promises.push(promise)
 				}
 			    });
 			    //We update the license file
@@ -252,17 +261,25 @@ $( "#formUpload" ).submit(function( event ) {
 			    
 			    
 			    Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
-				$.get('../uploadStoryDone', {story_id: storyId}).then(function(){
-				    window.location.replace("../");	    
-				})
+				$.get('../uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
+				    licText = JSON.parse(xhrAdd.responseText)['license'];
+				    var licBlob = new Blob([licText], {
+					type: 'text/plain'
+				    });
+				    var uploadUrl =  dataLic['uploadUrl'];
+				    totalPerFile[uploadUrl] = licBlob.size;
+				    return upload_story(licBlob, storyId, uploadUrl, nbRetriesUpload);
+				}).then((value)=>{				
+				    $.get('../uploadStoryDone', {story_id: storyId}).then(function(){
+					window.location.replace("../");	    
+				    })
+				});
 			    }).catch(function(err) {
 				uploadInError = true;
 				console.log("err.stack")
 				alert("ERROR: cannot create story: "+err.message);
 				return;
 			    });
-			    
-			    
 			}).catch(function(err) {
 			    alert("ERROR: story should be a zip file");
 			    return;
