@@ -241,7 +241,8 @@ $( "#formUpload" ).submit(function( event ) {
 				    for(var iRetry=0; iRetry<nbRetriesGetUploadLink; iRetry++) {
 					promise = promise.catch(function(err) {
 					    console.log("When uploading",file);
-					    console.log("Server error, probably Heroku timeout. Retry",iRetry,"over",nbRetriesGetUploadLink);
+					    console.log("Server error, probably Heroku timeout. Retry",iRetry,"over",nbRetriesGetUploadLink)
+					}).then(value)=>{
 					    return getLinkUploadFile(zip, storyId, file);
 					});
 				    }
