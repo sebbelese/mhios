@@ -106,7 +106,7 @@ var totalPerFile;
 var loadedPerFile;
 var totalSize;
 var nbFilesInZip;
-var nbRetriesUpload=100;
+var nbRetriesUpload=10;
 
 function updateProgress(uploadUrl, evt) 
 {
@@ -257,6 +257,7 @@ $( "#formUpload" ).submit(function( event ) {
 				})
 			    }).catch(function(err) {
 				uploadInError = true;
+				console.log("err.stack")
 				alert("ERROR: cannot create story: "+err.message);
 				return;
 			    });
