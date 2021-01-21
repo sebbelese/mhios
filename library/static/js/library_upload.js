@@ -169,7 +169,7 @@ function upload_story(file_data, storyId, uploadUrl, nbRetries) {
     
 }
 
-function getLinkUploadFile(remainingAttempt, zip, storyId, file){
+function getLinkUploadFile(remainingAttempts, zip, storyId, file){
     return $.get('../uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
 	//Unzip
 	return zip.files[file].async('blob').then(function (fileData) {
