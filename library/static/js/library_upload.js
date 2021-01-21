@@ -276,7 +276,6 @@ $( "#formUpload" ).submit(function( event ) {
 				});
 			    }).catch(function(err) {
 				uploadInError = true;
-				console.log("err.stack")
 				alert("ERROR: cannot create story: "+err.message);
 				return;
                             });
