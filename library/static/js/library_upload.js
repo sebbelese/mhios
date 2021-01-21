@@ -169,7 +169,7 @@ function upload_story(file_data, storyId, uploadUrl, nbRetries) {
     
 }
 
-function getLinkUploadFile(zip, storyId, file){
+function getLinkUploadFile(remainingAttempt, zip, storyId, file){
     return $.get('../uploadStoryFile', {story_id: storyId, filename : file}).then(function(data){
 	//Unzip
 	return zip.files[file].async('blob').then(function (fileData) {
@@ -180,8 +180,18 @@ function getLinkUploadFile(zip, storyId, file){
 		return upload_story(fileData, storyId, uploadUrl, nbRetriesUpload);
 	    }
 	});
+    }).catch(err => {
+	console.log("When uploading",file);
+	console.log("Server error",err.message,", probably Heroku timeout.")
+	if (maxAttempts > 0){
+	    console.log("Retry lefts:",remainingAtempts,"from",nbRetriesGetUploadLink);
+	    console.log(nbRetriesGetUploadLink)
+	    return getLinkUploadFile(remainingAttempts-1, zip, storyId, file);
+	}
     });
 }
+
+
 
 $( "#formUpload" ).submit(function( event ) {
     uploadInError = false;
@@ -237,32 +247,14 @@ $( "#formUpload" ).submit(function( event ) {
 			    //Loop in files in zip
 			    zip.forEach(function(file){
 				if (file.toLowerCase() != "license.txt") {
-				    promise = getLinkUploadFile(zip, storyId, file);
-				    for(var iRetry=0; iRetry<nbRetriesGetUploadLink; iRetry++) {
-					promise = promise.catch(function(err, iRetry, nbRetriesGetUploadLink, zip, storyId, file) {
-					    console.log("When uploading",file);
-					    console.log("Server error",err.message,", probably Heroku timeout. Retry",iRetry,"over",nbRetriesGetUploadLink);
-					    console.log(iRetry)
-					    console.log(nbRetriesGetUploadLink)
-					    return getLinkUploadFile(zip, storyId, file);
-					});
-				    }
+				    promises.push(getLinkUploadFile(zip, storyId, file));
 				    promises.push(promise)
 				}
 			    });
-			    //We update the license file
-			    promises.push($.get('../uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
-				licText = JSON.parse(xhrAdd.responseText)['license'];
-				var licBlob = new Blob([licText], {
-				    type: 'text/plain'
-				});
-				var uploadUrl =  dataLic['uploadUrl'];
-				totalPerFile[uploadUrl] = licBlob.size;
-				return upload_story(licBlob, storyId, uploadUrl, nbRetriesUpload);
-			    }));
 			    
 			    
 			    Promise.all(promises).then((value)=>{//Wait for all the files are uploaded
+				//We update the license file
 				$.get('../uploadStoryFile', {story_id: storyId, filename : "LICENSE.txt"}).then(function(dataLic){
 				    licText = JSON.parse(xhrAdd.responseText)['license'];
 				    var licBlob = new Blob([licText], {
