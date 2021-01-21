@@ -183,7 +183,7 @@ function getLinkUploadFile(remainingAttempt, zip, storyId, file){
     }).catch(err => {
 	console.log("When uploading",file);
 	console.log("Server error",err.message,", probably Heroku timeout.")
-	if (maxAttempts > 0){
+	if (remainingAttempts > 0){
 	    console.log("Retry lefts:",remainingAtempts,"from",nbRetriesGetUploadLink);
 	    console.log(nbRetriesGetUploadLink)
 	    return getLinkUploadFile(remainingAttempts-1, zip, storyId, file);
@@ -247,8 +247,7 @@ $( "#formUpload" ).submit(function( event ) {
 			    //Loop in files in zip
 			    zip.forEach(function(file){
 				if (file.toLowerCase() != "license.txt") {
-				    promises.push(getLinkUploadFile(zip, storyId, file));
-				    promises.push(promise)
+				    promises.push(getLinkUploadFile(nbRetriesGetUploadLink, zip, storyId, file));
 				}
 			    });
 			    
@@ -275,6 +274,8 @@ $( "#formUpload" ).submit(function( event ) {
                             });
 
 			}).catch(function(err) {
+			    console.log(err.stack)
+			    console.log(err.message)
 			    alert("ERROR: story should be a zip file");
 			    return;
 			});
