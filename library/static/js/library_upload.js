@@ -184,7 +184,7 @@ function getLinkUploadFile(remainingAttempts, zip, storyId, file){
 	console.log("When uploading",file);
 	console.log("Server error",err.message,", probably Heroku timeout.")
 	if (remainingAttempts > 0){
-	    console.log("Retry lefts:",remainingAtempts,"from",nbRetriesGetUploadLink);
+	    console.log("Retry lefts:",remainingAttempts,"from",nbRetriesGetUploadLink);
 	    console.log(nbRetriesGetUploadLink)
 	    return getLinkUploadFile(remainingAttempts-1, zip, storyId, file);
 	}
