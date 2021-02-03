@@ -193,9 +193,14 @@ function getLinkUploadFile(remainingAttempts, zip, storyId, file){
 
 
 
-$( "#formUpload" ).submit(function( event ) {
+$( "#formUpload" ).submit(function( event ) {    
     uploadInError = false;
     event.preventDefault();
+    //This is a new story (not an update) and nos tory file is provided: error 
+    if (typeof old_poster == 'undefined' && !storyFileChosen) {
+	alert("ERREUR: vous devez choisir un fichier d'histoire");
+	return
+    }
     if(cropper){
 	initCrop = cropper.getData();
 	$("#id_x").val(initCrop.x);
@@ -204,7 +209,7 @@ $( "#formUpload" ).submit(function( event ) {
 	$("#id_width").val(initCrop.width);
 	$("#id_rotation").val(initCrop.rotate);
     }
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();    
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     var xhrAdd = new XMLHttpRequest();
     xhrAdd.open("POST", '#', true);
     xhrAdd.setRequestHeader("X-CSRFToken", csrftoken);
@@ -281,7 +286,7 @@ $( "#formUpload" ).submit(function( event ) {
 			});
 		});
 	    }else{
-		//If no file update has bee done, the changes are saved and we can go back to library
+		//If no file update has been done, the changes are saved and we can go back to library
 		window.location.replace("../");
 	    }
 	}
