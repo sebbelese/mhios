@@ -3,7 +3,7 @@ Designed to encourage the sharing of interactive stories created by the communit
 
 This website is now offline. This repository contains the Django/js/html... sources required to run the server.
 
-I would really appreciate anywone wanting to revive the website to let me know
+I would really appreciate anywone wanting to resurrect the website or use this codebase to let me know
 
 # License
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
