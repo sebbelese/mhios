@@ -1,7 +1,7 @@
 # myopenstories
 Designed to encourage the sharing of interactive stories created by the community for the community, the website formerly named www.mhios.com is an open repository for stories in the STUdio format, a set of tools to read and create interactive stories with possibility to transfer from and to the lunii story teller device.
 
-This website is now offline. This repository contains the Django/js/html... sources required to run the server. This was my first step into Django and js, coding may not be always optimal.
+This website is now offline. This repository contains the Django/js/html... sources required to run the server. This was my first step into Django, js and web development, coding may not be always optimal.
 
 I would really appreciate anywone wanting to resurrect the website or use this codebase to let me know
 
